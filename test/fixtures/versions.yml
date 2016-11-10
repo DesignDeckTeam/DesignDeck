@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: versions
+#
+#  id                  :integer          not null, primary key
+#  order_id            :integer
+#  image_from_designer :string
+#  image_from_customer :string
+#  for_status          :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_id: 1
+  image_from_designer: MyString
+  image_from_customer: MyString
+  for_status: MyString
+
+two:
+  order_id: 1
+  image_from_designer: MyString
+  image_from_customer: MyString
+  for_status: MyString
