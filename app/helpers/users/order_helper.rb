@@ -1,2 +1,0 @@
-module Users::OrderHelper
-end
