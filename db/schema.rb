@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161110061048) do
 
   create_table "orders", force: :cascade do |t|
@@ -21,16 +20,6 @@ ActiveRecord::Schema.define(version: 20161110061048) do
     t.datetime "updated_at",  null: false
     t.string   "aasm_state"
   end
-
-  create_table "versions", force: :cascade do |t|
-    t.integer  "order_id"
-    t.string   "image_from_designer"
-    t.string   "image_from_customer"
-    t.string   "for_status"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-=======
-ActiveRecord::Schema.define(version: 20161110060021) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -47,7 +36,15 @@ ActiveRecord::Schema.define(version: 20161110060021) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
->>>>>>> 39bf666c10d086a24c77387618a5cee6e3906c25
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "image_from_designer"
+    t.string   "image_from_customer"
+    t.string   "for_status"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
 end
