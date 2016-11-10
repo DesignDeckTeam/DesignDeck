@@ -15,12 +15,14 @@
 
 class Order < ApplicationRecord
 
+	mount_uploader :image, ImageUploader
+
 	has_many :versions
 	belongs_to :user
 
   include AASM
-  	
-  	
+
+
 
   aasm do
   	state :order_placed, :initial => true
