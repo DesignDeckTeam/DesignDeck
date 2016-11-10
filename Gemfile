@@ -32,6 +32,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'aasm'
 gem "annotate"
+gem "devise"
+
+>>>>>>> 39bf666c10d086a24c77387618a5cee6e3906c25
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
