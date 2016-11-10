@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  description :text
+#  style       :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  aasm_state  :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  style: MyString
+
+two:
+  title: MyString
+  description: MyText
+  style: MyString
