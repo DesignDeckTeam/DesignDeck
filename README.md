@@ -7,8 +7,8 @@
 
 # 开发用帐号
 
-* Admin :
-* User :
+* Admin : designer@designerdeck.com  password: 111111
+* User : user1@designerdeck.com      password: 111111
 
 # 其他
 
