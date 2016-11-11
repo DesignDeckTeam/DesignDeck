@@ -15,7 +15,7 @@
 
 class Order < ApplicationRecord
 
-	
+validates :image_from_designer, presence: true
 
 	has_many :versions
 	belongs_to :user

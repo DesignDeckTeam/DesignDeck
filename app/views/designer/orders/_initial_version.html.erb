@@ -1,0 +1,61 @@
+
+<div class="col-md-12">
+
+<h2 class="text-center">用户订单</h2>
+<br><br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>订单号</th>
+      <th>项目主题</th>
+      <th>需求描述</th>
+      <th>类型</th>
+      <th>用户名</th>
+      <th>创建时间</th>
+      <th>用户样图</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @order.id %></td>
+      <td><%= @order.title %></td>
+      <td><%= @order.description %></td>
+      <td><%= @order.type %></td>
+      <td><%= @order.user.email %></td>
+      <td><%#= image_tag(@order.versions.image_from_customer.thumb.url, class: "thumbnail") %>
+    </tr>
+  </tbody>
+</table>
+
+<br><br><br><br><br>
+
+<h3> 上传三份图片样张给用户 </h3>
+<br><br>
+
+<%= simple_form_for [:designer, @order] do |f| %>
+<div class="group">
+  <div class="row">
+    <div class="col-md-4">
+      <%# if @order.versions.image_from_designer.present? %>
+        <span>第一张图样</span>
+        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+        <%#= image_tag(@order.versions.image_from_designer.medium.url, class: "thumbnail") %>
+      <%# end %>
+      <%= f.input :image_from_designer, as: :file %>
+    </div>
+    <div class="col-md-4">
+      <span>第二张图样</span>
+        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+        <%= f.input :image_from_designer, as: :file %>
+    </div>
+    <div class="col-md-4">
+      <span>第三张图样</span>
+        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+        <%= f.input :image_from_designer, as: :file %>
+    </div>
+  </div>
+</div>
+
+
+  <%= f.submit "Submit", data: { disable_with: "Submitting..." } %>
+<% end %>
