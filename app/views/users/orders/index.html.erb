@@ -1,0 +1,33 @@
+
+<div class="col-md-12">
+  <div class="pull-right">
+    <%= link_to("委托设计", new_users_order_path, :class => "btn btn-default") %>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Title</td>
+        <td>Description</td>
+      </tr>
+    </thead>
+    </tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td>#</td>
+          <td><%= link_to(order.title, users_order_path(order)) %></td>
+          <td><%= order.description %></td>
+          <td>
+            <%= link_to("Edit", edit_users_order_path(order), class: "btn btn-sm btn-default") %>
+            <%= link_to("Delete", users_order_path(order), class: "btn btn-sm btn-default", method: :delete, data: {confirm: "Are you sure?"}) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+</div>
