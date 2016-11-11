@@ -10,6 +10,7 @@ class Users::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    3.times { @order.versions.build }
   end
 
   def create

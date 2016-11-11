@@ -17,6 +17,7 @@ class Order < ApplicationRecord
 
 	has_many :versions
 	belongs_to :user
+  accepts_nested_attributes_for :versions
 
   include AASM
   	
