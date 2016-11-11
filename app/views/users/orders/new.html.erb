@@ -1,5 +1,6 @@
-<h1>需求列表</h1>
+<h2>需求列表</h2>
 <%= simple_form_for [:users, @order] do |f| %>
+<%= f.input :title %>
 <%= f.input :description %>
 <%= f.submit "Submit" %>
 <% end %>

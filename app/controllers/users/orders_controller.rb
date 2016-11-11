@@ -20,6 +20,9 @@ class Users::OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def edit
+  end 
+
 
   private
 
