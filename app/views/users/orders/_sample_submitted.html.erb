@@ -30,7 +30,9 @@
 			<div class="col-md-4 text-center">
 				<%= image_tag(sample_versions[2].image_from_designer.url) %>
 					<%= radio_button_tag "order[sample_number]", 3 %>
-			</div>			
+			</div>	
+
+			<%= f.input "order[comment_from_customer]", as: :text %>		
 
 		</div>
 
