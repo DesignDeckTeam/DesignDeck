@@ -21,12 +21,27 @@ class Users::OrdersController < ApplicationController
   end
 
   def edit
-  end 
+    @order = Order.find(params[:id])
+  end
 
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      redirect_to users_orders_path
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+    redirect_to users_orders_path
+  end
 
   private
 
   def order_params
-    params.require(:order).permit(:description)
+    params.require(:order).permit(:title, :description)
   end
 end
