@@ -1,6 +1,11 @@
 class Users::OrdersController < ApplicationController
+
+  before_action :authenticate_user!
+
+
+
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def new
@@ -42,6 +47,6 @@ class Users::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:title, :description)
+    params.require(:order).permit(:title, :description, :type)
   end
 end

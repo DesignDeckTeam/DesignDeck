@@ -1,6 +1,36 @@
-<h2>需求列表</h2>
-<%= simple_form_for [:users, @order] do |f| %>
-<%= f.input :title %>
-<%= f.input :description %>
-<%= f.submit "Submit" %>
-<% end %>
+
+
+
+
+<div class="container">
+	<h2>委托设计</h2><br>
+
+	<%= simple_form_for [:users, @order] do |f| %>
+
+		<div class="form-group">
+			<%= f.input :title, input_html: { class: "form-control"}  %>
+			<br>
+			<%= f.input :description, input_html: { class: "form-control"}  %>
+			<br>
+			<h4>风格选择</h4>
+			<div class="col-md-4 text-center">
+				<h5>极简</h5>
+				<%= radio_button_tag "order[type]", "CONCISE" %>
+			</div>
+			<div class="col-md-4 text-center">
+				<h5>普通</h5>
+				<%= radio_button_tag "order[type]", "MEDIUM", checked = true %>
+			</div>
+			<div class="col-md-4 text-center">
+				<h5>华丽</h5>
+				<%= radio_button_tag "order[type]", "GORGEOUS" %>
+			</div>
+		</div>
+		
+  		<div class="form-action">
+   			<%= f.submit "Submit", disable_with: "Submitting...", class: "btn btn-primary pull-right"  %>
+    	</div>
+
+	<% end %>
+</div>
+
