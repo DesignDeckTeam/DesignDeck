@@ -19,6 +19,7 @@
           <td><%= order.description %></td>
           <td>
             <% if current_user %>
+              <%= link_to "Show", users_order_path(order), class: "btn btn-sm btn-default" %>
               <%= link_to("Edit", edit_users_order_path(order), class: "btn btn-sm btn-default") %>
               <%= link_to("Delete", users_order_path(order), class: "btn btn-sm btn-default", method: :delete, data: {confirm: "Are you sure?"}) %>
             <% end %>

@@ -32,6 +32,11 @@ class Users::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
+      if @order.sample_number.present?
+        @order.decide_style!
+        redirect_to users_order_path(@order), notice: "已选择方案"
+        return
+      end
       redirect_to users_orders_path
     else
       render :new
@@ -47,6 +52,6 @@ class Users::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:title, :description, :type)
+    params.require(:order).permit(:title, :description, :type_preference, :sample_number)
   end
 end

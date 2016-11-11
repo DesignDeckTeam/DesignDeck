@@ -1,0 +1,46 @@
+<div class="container-fluid">
+	<% sample_versions = @order.versions.first(3) %>
+	<% if sample_versions.count < 3 %>
+		<%= redirect_to :back, notice: "ERROR，应该至少有3张sample图片" %>
+	<% else %>
+
+
+	<% if @order.sample_number.present? %>
+		<div class="well text-center">
+			<p>已选择设计师的初步方案，等待设计提交初稿</p>
+		</div>
+	<% else %>
+		<% image1 = sample_versions[0].image_from_designer %>
+		<% image2 = sample_versions[0].image_from_designer %>
+		<% image3 = sample_versions[0].image_from_designer %>
+
+		<%= simple_form_for [:users, @order] do |f| %>
+
+		<div class="form-group">
+			<div class="col-md-4 text-center">
+				<%= image_tag(sample_versions[0].image_from_designer.url) %>
+					<%= radio_button_tag "order[sample_number]", 1, checked = true %>
+			</div>
+
+			<div class="col-md-4 text-center">
+				<%= image_tag(sample_versions[1].image_from_designer.url) %>
+					<%= radio_button_tag "order[sample_number]", 2 %>
+			</div>
+
+			<div class="col-md-4 text-center">
+				<%= image_tag(sample_versions[2].image_from_designer.url) %>
+					<%= radio_button_tag "order[sample_number]", 3 %>
+			</div>			
+
+		</div>
+
+  		<div class="form-action">
+   			<%= f.submit "Submit", disable_with: "Submitting...", class: "btn btn-primary pull-right"  %>
+    	</div>
+
+		<% end %>
+
+	<% end %>
+	
+	<% end %>
+</div>

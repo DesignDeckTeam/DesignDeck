@@ -9,6 +9,36 @@
 			<br>
 			<%= f.input :description, input_html: { class: "form-control"}  %>
 			<br>
+
+			<h4>请选择您需要的作品类型</h4>
+			<div class="col-md-4 text-center">
+				<h5>LOGO</h5>
+				<% if @order.type_preference == "LOGO" %>
+					<%= radio_button_tag "order[type_preference]", "LOGO", checked = true %>
+				<% else %>
+					<%= radio_button_tag "order[type_preference]", "LOGO" %>
+				<% end %>
+			</div>
+
+			<div class="col-md-4 text-center">
+				<h5>PRESENTATION</h5>
+				<% if @order.type_preference == "PRESENTATION" %>
+					<%= radio_button_tag "order[type_preference]", "PRESENTATION", checked = true %>
+				<% else %>
+					<%= radio_button_tag "order[type_preference]", "PRESENTATION" %>
+				<% end %>				
+			</div>
+			<div class="col-md-4 text-center">
+				<h5>WEB DESIGN</h5>
+				<% if @order.type_preference == "WEBDESIGN" %>
+					<%= radio_button_tag "order[type_preference]", "WEBDESIGN", checked = true %>
+				<% else %>
+					<%= radio_button_tag "order[type_preference]", "WEBDESIGN" %>
+				<% end %>								
+			</div>
+
+
+
 		</div>
 
   		<div class="form-action">
