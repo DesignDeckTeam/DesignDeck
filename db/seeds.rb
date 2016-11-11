@@ -11,3 +11,16 @@ create_account = User.create([email: 'user1@designerdeck.com', password: '111111
 create_account = User.create([email: 'user2@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false'])
 
 
+create_order = Order.create([title: "咖啡公司咖啡杯设计", description: "需要设计一款咖啡杯，体现出简洁优雅的风格", user_id: 2])
+create_order = Order.create([title: "委托设计一系列统计图标", description: "需要有柱状图，饼图，和好看的色彩", user_id: 2])
+
+
+
+#  title         :string
+#  description   :text
+#  type          :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  aasm_state    :string
+#  user_id       :integer
+#  sample_number :integer
