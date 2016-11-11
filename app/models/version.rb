@@ -12,6 +12,7 @@
 #
 
 class Version < ApplicationRecord
-
+mount_uploader :image_from_designer, ImageFromDsignerUploader
+mount_uploader :image_from_customer, ImageFromCustomerUploader
 	belongs_to :order
 end
