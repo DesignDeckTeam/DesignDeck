@@ -25,4 +25,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :orders
+
+
+  def is_user
+  	!is_designer
+  end
+
+
 end

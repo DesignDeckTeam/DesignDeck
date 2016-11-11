@@ -1,2 +1,22 @@
-<h2><%= @order.title %></h2>
-<%= @order.description %>
+
+
+
+<div class="container">
+	<h2><%= @order.title %></h2>
+	<p>描述：<%= @order.description %></p>
+	<p>设计类型：<%= @order.type_preference %></p>
+
+	<% case @order.aasm_state %>
+	<% when "order_placed"%>
+		<div class="well text-center">
+			<p>正待等待设计师完成初步方案</p>
+		</div>
+	<% when "sample_submitted" %>
+		<%= render partial: "sample_submitted" %>
+	<% when "style_decided" %>
+	<% when "started" %>
+	<% when "completed" %>
+
+
+	<% end %>
+</div>
