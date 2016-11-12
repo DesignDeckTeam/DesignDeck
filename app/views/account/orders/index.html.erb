@@ -1,7 +1,7 @@
 
 <div class="col-md-12">
   <div class="pull-right">
-    <%= link_to("委托设计", new_users_order_path, :class => "btn btn-default") %>
+    <%= link_to("委托设计", new_account_order_path, :class => "btn btn-default") %>
   </div>
   <table class="table table-hover">
     <thead>
@@ -15,13 +15,13 @@
       <% @orders.each do |order| %>
         <tr>
           <td><%= "#{order.id}" %></td>
-          <td><%= link_to(order.title, users_order_path(order)) %></td>
+          <td><%= link_to(order.title, account_order_path(order)) %></td>
           <td><%= order.description %></td>
           <td>
             <% if current_user %>
-              <%= link_to "Show", users_order_path(order), class: "btn btn-sm btn-default" %>
-              <%= link_to("Edit", edit_users_order_path(order), class: "btn btn-sm btn-default") %>
-              <%= link_to("Delete", users_order_path(order), class: "btn btn-sm btn-default", method: :delete, data: {confirm: "Are you sure?"}) %>
+              <%= link_to "Show", account_order_path(order), class: "btn btn-sm btn-default" %>
+              <%= link_to("Edit", edit_account_order_path(order), class: "btn btn-sm btn-default") %>
+              <%= link_to("Delete", account_order_path(order), class: "btn btn-sm btn-default", method: :delete, data: {confirm: "Are you sure?"}) %>
             <% end %>
           </td>
         </tr>

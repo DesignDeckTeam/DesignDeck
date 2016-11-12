@@ -32,7 +32,10 @@
     <%= render partial: "common/user_selected_style" %>
     <h4>用户选择的理由</h4>
     <% sample_version_with_comment = Version.samples_for_order(@order).where.not(comment_from_customer: nil).first %>
-    <h5 class="well"><%= "#{sample_version_with_comment.comment_from_customer}" %></h5>
+    <% if sample_version_with_comment.present? %>
+      <h5 class="well"><%= "#{sample_version_with_comment.comment_from_customer}" %></h5>
+    <% end %>
+    
   </div>
 
   <div class="col-md-6 text-center">

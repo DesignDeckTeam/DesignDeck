@@ -20,7 +20,7 @@
 			<% image2 = sample_versions[1].image_from_designer %>
 			<% image3 = sample_versions[2].image_from_designer %>
 
-			<%= simple_form_for [:users, @order] do |f| %>
+			<%= simple_form_for [:account, @order] do |f| %>
 
 			<div class="form-group">
 				<div class="row">
@@ -45,8 +45,6 @@
 					<%= text_area_tag "comment_from_customer" %>	
 				</div>
 
-					
-
 			</div>
 
 	  		<div class="form-action">
@@ -56,6 +54,6 @@
 			<% end %>
 
 		<% end %>
-	
+
 	<% end %>
 </div>

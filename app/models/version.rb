@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: versions
@@ -50,3 +51,4 @@ mount_uploader :image_from_customer, ImageFromCustomerUploader
 	end
 
 end
+
