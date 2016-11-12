@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require jquery_nested_form
 //= require_tree .
+//= require_self

@@ -4,7 +4,7 @@
 <div class="container">
 	<h2><%= @order.title %></h2>
 	<p>描述：<%= @order.description %></p>
-	<p>设计类型：<%= @order.type_preference %></p>
+	<p>设计类型：<%= @order.preference_type %></p>
 
 	<% case @order.aasm_state %>
 	<% when "order_placed"%>

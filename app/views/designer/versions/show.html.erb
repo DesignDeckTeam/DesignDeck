@@ -1,0 +1,8 @@
+<div class="row">
+  <% @samples.each_with_index do |sample, i| %>
+    <div class="col-md-3">
+      No. <%= i+1 %>
+      <%= render_sample(sample) %>
+    </div>
+  <% end %>
+</div>

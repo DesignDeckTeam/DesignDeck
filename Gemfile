@@ -1,4 +1,4 @@
-source "https://gems.ruby-china.org"
+source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.0.0", ">= 5.0.0.1"
@@ -36,7 +36,10 @@ gem "devise"
 gem "carrierwave"
 gem "mini_magick"
 gem "simple_form"
-gem "pry", :group => :development
+
+gem "nested_form"
+
+gem "pry", group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,8 +1,18 @@
 
 class Version < ApplicationRecord
-  mount_uploader :image_from_designer, ImageFromDesignerUploader
-  mount_uploader :image_from_customer, ImageFromCustomerUploader
   belongs_to :order
+
+  has_many :samples
+
+  accepts_nested_attributes_for :samples
+
+  include AASM
+
+  aasm do
+    state :draft, initial: true
+    state :sample_submitted
+    state :style_decided
+  end
 end
 
 # == Schema Information

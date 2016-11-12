@@ -1,2 +1,0 @@
-module Designer::VersionsHelper
-end
