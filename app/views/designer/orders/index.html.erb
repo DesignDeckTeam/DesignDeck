@@ -1,0 +1,38 @@
+<h2>用户需求单</h2>
+<br><br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>定单号</th>
+      <th>项目主题</th>
+      <th>需求描述</th>
+      <th>订单状态</th>
+      <th>创建时间</th>
+      <th>查看订单</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>
+          <%= order.id %>
+        </td>
+        <td>
+          <%= order.title %>
+        </td>
+        <td>
+          <%= order.description %>
+        </td>
+        <td>
+          <%= order.aasm_state %>
+        </td>
+        <td>
+          <%= order.created_at %>
+        </td>
+        <td>
+          <%= link_to("查看订单", designer_order_path(order), class: "btn btn-primary btn-sm") %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

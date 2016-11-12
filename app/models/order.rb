@@ -15,13 +15,15 @@
 
 class Order < ApplicationRecord
 
+validates :image_from_designer, presence: true
+
 	has_many :versions
 	belongs_to :user
   accepts_nested_attributes_for :versions
 
   include AASM
-  	
-  	
+
+
 
   aasm do
   	state :order_placed, :initial => true

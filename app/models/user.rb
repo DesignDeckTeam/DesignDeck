@@ -31,10 +31,11 @@ class User < ApplicationRecord
 
   has_many :orders
 
-
   def is_user
-  	!is_designer
+    !is_designer
   end
 
-
+  def designer?
+    is_designer
+  end
 end

@@ -1,3 +1,10 @@
+
+class Version < ApplicationRecord
+  mount_uploader :image_from_designer, ImageFromDesignerUploader
+  mount_uploader :image_from_customer, ImageFromCustomerUploader
+  belongs_to :order
+end
+
 # == Schema Information
 #
 # Table name: versions
@@ -12,8 +19,3 @@
 #  comment_from_customer :text
 #  comment_from_designer :text
 #
-
-class Version < ApplicationRecord
-
-	belongs_to :order
-end
