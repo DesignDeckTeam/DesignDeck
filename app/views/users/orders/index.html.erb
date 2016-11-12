@@ -14,7 +14,7 @@
     </tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td>#</td>
+          <td><%= "#{order.id}" %></td>
           <td><%= link_to(order.title, users_order_path(order)) %></td>
           <td><%= order.description %></td>
           <td>

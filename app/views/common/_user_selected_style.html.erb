@@ -1,0 +1,10 @@
+	<div class="row text-center">
+		<% case @order.sample_number %>
+		<% when 1 %>
+			<%= image_tag @order.versions.first.image_from_designer.url(:medium) %>
+		<% when 2 %>
+			<%= image_tag @order.versions.second.image_from_designer.url(:medium) %>
+		<% when 3 %>
+			<%= image_tag @order.versions.third.image_from_designer.url(:medium) %>
+		<% end %>	
+	</div>	

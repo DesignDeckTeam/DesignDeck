@@ -1,0 +1,68 @@
+
+<div class="col-md-12">
+
+<h2 class="text-center">用户订单</h2>
+<br><br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>订单号</th>
+      <th>项目主题</th>
+      <th>需求描述</th>
+      <th>类型</th>
+      <th>用户名</th>
+      <th>创建时间</th>
+      <th>用户样图</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @order.id %></td>
+      <td><%= @order.title %></td>
+      <td><%= @order.description %></td>
+      <td><%= @order.type_preference %></td>
+      <td><%= @order.user.email %></td>
+      <td><%= @order.created_at %></td>
+      <td><%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
+    </tr>
+  </tbody>
+</table>
+
+<br><br><br><br><br>
+
+<div class="well"> 已上传3张方案，正在等待客户选择其中一种 </div>
+<br><br>
+
+<div class="row">
+      <div class="col-md-4">
+      <span>第一张图样</span>
+      <% if @versions.first.present? && @versions.first.has_image_from_designer %>
+        <%= image_tag(@versions.first.image_from_designer.medium.url, class: "thumbnail") %>
+      <% else %>
+        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+      <% end %>
+    </div>
+
+    <div class="col-md-4">
+      <span>第二张图样</span>
+      <% if @versions.second.present? && @versions.second.has_image_from_designer %>
+        <%= image_tag(@versions.second.image_from_designer.medium.url, class: "thumbnail") %>
+      <% else %>
+        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+      <% end %>
+    </div>
+
+
+    <div class="col-md-4">
+      <span>第三张图样</span>
+      <% if @versions.third.present? && @versions.third.has_image_from_designer %>
+        <%= image_tag(@versions.third.image_from_designer.medium.url, class: "thumbnail") %>
+      <% else %>
+        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+      <% end %>
+    </div>
+
+</div>
+
+
+

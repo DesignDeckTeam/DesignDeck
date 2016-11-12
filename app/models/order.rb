@@ -22,8 +22,6 @@ class Order < ApplicationRecord
 
   include AASM
 
-
-
   aasm do
   	state :order_placed, :initial => true
   	state :sample_submitted
@@ -46,6 +44,11 @@ class Order < ApplicationRecord
     event :complete do
       transitions :from => :started, :to => :completed
     end
-
   end
+
+  def has_valid_three_examples?
+    Version.samples_for_order(self).count == 3
+  end
+
+
 end

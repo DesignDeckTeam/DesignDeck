@@ -10,8 +10,6 @@
       <th>需求描述</th>
       <th>类型</th>
       <th>用户名</th>
-      <th>创建时间</th>
-      <th>用户选中的图样</th>
     </tr>
   </thead>
   <tbody>
@@ -19,37 +17,42 @@
       <td><%= @order.id %></td>
       <td><%= @order.title %></td>
       <td><%= @order.description %></td>
-      <td><%= @order.type %></td>
+      <td><%= @order.type_preference %></td>
       <td><%= @order.user.email %></td>
-      <% if @versions.image_from_customer.present? %>
-      <%= image_tag(@versions.image_from_customer.thumb.url, class: "thumbnail") %>
-      <%else %>
-        <td><%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
-      <% end %>
     </tr>
   </tbody>
 </table>
 
 <br><br><br><br><br>
 
-<h3> 上传设计好的图片给用户 </h3>
-<br><br>
-
-<%= simple_form_for [:designer, @order] do |f| %>
-<div class="group">
-  <div class="row">
-
-    <div class="col-md-4">
-        <% if @versions.first.present? %>
-        <%= image_tag(@versions.first.image_from_designer.medium.url, class: "thumbnail") %>
-      <% else %>
-        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-      <% end %>
-      <%= f.input "image1_from_designer", as: :file %>
-    </div>
+<div class="container-fluid text-center">
+  
+  <div class="col-md-6">
+    <h3>用户已选择的样式</h3>
+    <%= render partial: "common/user_selected_style" %>
+    <h4>用户选择的理由</h4>
+    <% sample_version_with_comment = Version.samples_for_order(@order).where.not(comment_from_customer: nil).first %>
+    <h5 class="well"><%= "#{sample_version_with_comment.comment_from_customer}" %></h5>
   </div>
+
+  <div class="col-md-6 text-center">
+    <h3>上传设计好的图片给用户</h3>
+    <%= simple_form_for [:designer, @order] do |f| %>
+    <div class="group">
+      <div class="row">
+
+        <div class="col-md-4">
+          <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+          <%= f.input "image1_from_designer", as: :file %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit "Submit", data: { confirm: "这是第二周的内容...." } %>
+    <% end %>
+
+  </div>
+  
 </div>
 
 
-  <%= f.submit "Submit", data: { confirm: "你确定要提交当前图片吗？" } %>
-<% end %>
+

@@ -5,8 +5,12 @@
     <h4>DesignDeck 为客户、设计师提供无障碍沟通工具，让双方迅速达成共识</h4>
     <h4>省时、省力、省心</h4>
     <br>
-    <% if current_user && !current_user.is_designer %>
-      <%= link_to("查看我的订单", users_orders_path, :class => "btn btn-info") %>
+    <% if current_user %>
+      <% if !current_user.is_designer %>
+        <%= link_to("查看我的订单", users_orders_path, :class => "btn btn-info") %>
+      <% else %>
+        <%= link_to("查看我的订单", designer_orders_path, :class => "btn btn-info") %>
+      <% end %>
     <% else %>
       <%= link_to("立即注册使用", new_user_registration_path, :class => "btn btn-info") %>
     <% end %>

@@ -20,7 +20,7 @@
       <td><%= @order.id %></td>
       <td><%= @order.title %></td>
       <td><%= @order.description %></td>
-      <td><%= @order.type %></td>
+      <td><%= @order.type_preference %></td>
       <td><%= @order.user.email %></td>
       <td><%= @order.created_at %></td>
       <td><%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
@@ -39,7 +39,7 @@
 
     <div class="col-md-4">
       <span>第一张图样</span>
-      <% if @versions.first.present? %>
+      <% if @versions.first.present? && @versions.first.has_image_from_designer %>
         <%= image_tag(@versions.first.image_from_designer.medium.url, class: "thumbnail") %>
       <% else %>
         <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
@@ -49,7 +49,7 @@
 
     <div class="col-md-4">
       <span>第二张图样</span>
-      <% if @versions.second.present? %>
+      <% if @versions.second.present? && @versions.second.has_image_from_designer %>
         <%= image_tag(@versions.second.image_from_designer.medium.url, class: "thumbnail") %>
       <% else %>
         <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
@@ -60,7 +60,7 @@
 
     <div class="col-md-4">
       <span>第三张图样</span>
-      <% if @versions.third.present? %>
+      <% if @versions.third.present? && @versions.third.has_image_from_designer %>
         <%= image_tag(@versions.third.image_from_designer.medium.url, class: "thumbnail") %>
       <% else %>
         <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>

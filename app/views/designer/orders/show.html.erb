@@ -2,7 +2,9 @@
   <div class="col-md-12">
     <% case @order.aasm_state %>
       <% when "order_placed" %>
-        <%= render "common/initial_version" %>
+        <%= render "common/submit_three_samples" %>
+      <% when "sample_submitted" %>
+        <%= render "common/waiting_customer_decision" %>
       <% when "style_decided" %>
         <%= render "common/second_version" %>
       <% when "started" %>

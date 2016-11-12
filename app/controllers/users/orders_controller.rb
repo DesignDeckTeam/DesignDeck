@@ -2,8 +2,6 @@ class Users::OrdersController < ApplicationController
 
   before_action :authenticate_user!
 
-
-
   def index
     @orders = current_user.orders
   end
@@ -23,6 +21,7 @@ class Users::OrdersController < ApplicationController
   end
   def show
     @order = Order.find(params[:id])
+    @versions = @order.versions
   end
 
   def edit
@@ -38,19 +37,16 @@ class Users::OrdersController < ApplicationController
         if @order.sample_number.present?
           @order.decide_style!
           # 如果用户提交了选择的理由
-          comment_from_customer = order_params[:comment_from_customer]
+          if params[:comment_from_customer].present?
+          comment_from_customer = params[:comment_from_customer]
           # 将params中的comment存到相应的version中
-          if order_params[:comment_from_customer].present?
             case @order.sample_number
             when 1
-              @order.versions.first.comment_from_customer = comment_from_customer
-              @order.versions.first.save
+              @order.versions.first.set_comment_from_customer(comment_from_customer)
             when 2
-              @order.versions.second.comment_from_customer = comment_from_customer
-              @order.versions.second.save            
+              @order.versions.second.set_comment_from_customer(comment_from_customer)
             when 3
-              @order.versions.third.comment_from_customer = comment_from_customer  
-              @order.versions.third.save            
+              @order.versions.third.set_comment_from_customer(comment_from_customer)
             end
           end
           redirect_to users_order_path(@order), notice: "已选择方案"
@@ -74,6 +70,6 @@ class Users::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:title, :description, :type_preference, :sample_number, :comment_from_customer)
+    params.require(:order).permit(:title, :description, :type_preference, :sample_number)
   end
 end
