@@ -1,0 +1,37 @@
+<div class="row">
+  <!-- 一句话形容自己就 -->
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <h1>结案速度快三倍</h1>
+    <h4>DesignDeck 为客户、设计师提供无障碍沟通工具，让双方迅速达成共识</h4>
+    <h4>省时、省力、省心</h4>
+    <br>
+    <% if current_user && !current_user.is_designer %>
+      <%= link_to("查看我的订单", users_orders_path, :class => "btn btn-info") %>
+    <% else %>
+      <%= link_to("立即注册使用", new_user_registration_path, :class => "btn btn-info") %>
+    <% end %>
+    
+    <!-- /一句话形容自己 -->
+  </div>
+</div>
+<br>
+<br>
+<br>
+
+  <!-- 使用此服务的好处 -->
+<div class="row">
+  <div class="col-md-4 text-center">
+    <h3>双方便利合作无障碍</h3>
+    <p>我们为您提供一套根据生物学合理制定的，高效结案流程表。</p>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <h3>视觉化沟通，双方理解无偏差</h3>
+    <p>我们提供简单易用高逼格初稿工具组合、快速初稿工具箱，大大降低你的时间成本。</p>
+  </div>
+  <div class="col-md-4 text-center">
+    <h3>迅速解决客户最迫切需求</h3>
+    <p>我们提供有效沟通大套路，利用故事地图故事与客户互动，理清双方思路。</p>
+  </div>
+</div>
+<!-- ／使用此服务的好处 -->

@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110081842) do
+ActiveRecord::Schema.define(version: 20161111073620) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "type_preference"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "aasm_state"
     t.integer  "user_id"
     t.integer  "sample_number"
@@ -46,8 +46,10 @@ ActiveRecord::Schema.define(version: 20161110081842) do
     t.string   "image_from_designer"
     t.string   "image_from_customer"
     t.string   "for_status"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.text     "comment_from_customer"
+    t.text     "comment_from_designer"
   end
 
 end
