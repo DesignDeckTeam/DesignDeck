@@ -2,7 +2,7 @@
 
 <div class="col-md-4 col-md-offset-4">
 
-	<%= simple_form_for [:users, @order] do |f| %>
+	<%= simple_form_for [:account, @order] do |f| %>
 
 		<div class="form-group">
 			<%= f.input :title, input_html: { class: "form-control"}  %>
@@ -26,7 +26,7 @@
 					<%= radio_button_tag "order[type_preference]", "PRESENTATION", checked = true %>
 				<% else %>
 					<%= radio_button_tag "order[type_preference]", "PRESENTATION" %>
-				<% end %>				
+				<% end %>
 			</div>
 			<div class="col-md-4 text-center">
 				<h5>WEB DESIGN</h5>
@@ -34,7 +34,7 @@
 					<%= radio_button_tag "order[type_preference]", "WEBDESIGN", checked = true %>
 				<% else %>
 					<%= radio_button_tag "order[type_preference]", "WEBDESIGN" %>
-				<% end %>								
+				<% end %>
 			</div>
 
 
@@ -47,4 +47,3 @@
 
 	<% end %>
 </div>
-
