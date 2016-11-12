@@ -1,8 +1,5 @@
-class Users::OrdersController < ApplicationController
-
+class Account::OrdersController < ApplicationController
   before_action :authenticate_user!
-
-
 
   def index
     @orders = current_user.orders
@@ -16,11 +13,12 @@ class Users::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     if @order.save
-      redirect_to users_orders_path
+      redirect_to account_orders_path
     else
       render :new
     end
   end
+
   def show
     @order = Order.find(params[:id])
   end
@@ -47,18 +45,18 @@ class Users::OrdersController < ApplicationController
               @order.versions.first.save
             when 2
               @order.versions.second.comment_from_customer = comment_from_customer
-              @order.versions.second.save            
+              @order.versions.second.save
             when 3
-              @order.versions.third.comment_from_customer = comment_from_customer  
-              @order.versions.third.save            
+              @order.versions.third.comment_from_customer = comment_from_customer
+              @order.versions.third.save
             end
           end
-          redirect_to users_order_path(@order), notice: "已选择方案"
+          redirect_to account_order_path(@order), notice: "已选择方案"
           return
         else
-          redirect_to users_order_path(@order), notice: "server receives no sample number"
+          redirect_to account_order_path(@order), notice: "server receives no sample number"
         end
-        redirect_to users_orders_path
+        redirect_to account_orders_path
       else
         render :new
       end
@@ -68,7 +66,7 @@ class Users::OrdersController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-    redirect_to users_orders_path
+    redirect_to account_orders_path
   end
 
   private

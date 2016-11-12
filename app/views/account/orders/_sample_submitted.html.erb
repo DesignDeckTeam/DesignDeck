@@ -19,7 +19,7 @@
 			<% image2 = sample_versions[1].image_from_designer %>
 			<% image3 = sample_versions[2].image_from_designer %>
 
-			<%= simple_form_for [:users, @order] do |f| %>
+			<%= simple_form_for [:account, @order] do |f| %>
 
 			<div class="form-group">
 				<div class="col-md-4 text-center">
@@ -35,9 +35,9 @@
 				<div class="col-md-4 text-center">
 					<%= image_tag(sample_versions[2].image_from_designer.url) %>
 					<%= radio_button_tag "order[sample_number]", 3 %>
-				</div>	
+				</div>
 
-				<%= f.input "order[comment_from_customer]", as: :text %>		
+				<%= f.input "order[comment_from_customer]", as: :text %>
 
 			</div>
 
@@ -48,6 +48,6 @@
 			<% end %>
 
 		<% end %>
-	
+
 	<% end %>
 </div>
