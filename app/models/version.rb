@@ -1,10 +1,13 @@
 
 class Version < ApplicationRecord
-  mount_uploader :image_from_designer, ImageFromDesignerUploader
-  mount_uploader :image_from_customer, ImageFromCustomerUploader
   belongs_to :order
 
   has_many :samples
+
+  accepts_nested_attributes_for :samples
+
+  mount_uploader :image_from_designer, ImageFromDesignerUploader
+  mount_uploader :image_from_customer, ImageFromCustomerUploader
 end
 
 # == Schema Information

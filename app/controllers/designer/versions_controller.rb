@@ -2,6 +2,7 @@ class Designer::VersionsController < ApplicationController
   def new
     @order = Order.find(params[:order_id])
     @version = @order.versions.build
+    @version.samples.build
   end
 
   def create
@@ -9,20 +10,21 @@ class Designer::VersionsController < ApplicationController
     @version = @order.versions.build(version_params)
 
     if @version.save
-      redirect_to designer_order_path(@order)
+      redirect_to designer_order_version_path(@order, @version)
     else
       render :new
     end
   end
 
-  def create_samples
-    # curiurent_order = Order.find_by(id: params[:order_id])
-    # version_one = current_order.versions.build
-    # version_two = current_order.versions.build
-    # version_three = current_order.versions.build
+  def show
+    @order = Order.find(params[:order_id])
+    @version = Version.find(params[:id])
+    @samples = @version.samples
   end
 
+  private
+
   def version_params
-    params.require(:version).permit(sample_attributes: [:image])
+    params.require(:version).permit(samples_attributes: %i(id image _destroy user_id))
   end
 end

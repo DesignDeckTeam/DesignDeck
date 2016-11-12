@@ -1,6 +1,6 @@
 class Sample < ApplicationRecord
   belongs_to :user
-  belongs_to :version
+  belongs_to :version, optional: true
 
   mount_uploader :image, ImageFromDesignerUploader
 end
