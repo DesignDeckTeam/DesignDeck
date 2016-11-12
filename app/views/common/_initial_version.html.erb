@@ -22,7 +22,8 @@
       <td><%= @order.description %></td>
       <td><%= @order.type %></td>
       <td><%= @order.user.email %></td>
-      <td><%#= image_tag(@order.versions.image_from_customer.thumb.url, class: "thumbnail") %>
+      <td><%= @order.created_at %></td>
+      <td><%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %></td>
     </tr>
   </tbody>
 </table>
@@ -35,27 +36,42 @@
 <%= simple_form_for [:designer, @order] do |f| %>
 <div class="group">
   <div class="row">
+
     <div class="col-md-4">
-      <%# if @order.versions.image_from_designer.present? %>
-        <span>第一张图样</span>
+      <span>第一张图样</span>
+      <% if @versions.first.present? %>
+        <%= image_tag(@versions.first.image_from_designer.medium.url, class: "thumbnail") %>
+      <% else %>
         <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-        <%#= image_tag(@order.versions.image_from_designer.medium.url, class: "thumbnail") %>
-      <%# end %>
-      <%= f.input :image_from_designer, as: :file %>
+      <% end %>
+      <%= f.input "image1_from_designer", as: :file %>
     </div>
+
     <div class="col-md-4">
       <span>第二张图样</span>
+      <% if @versions.second.present? %>
+        <%= image_tag(@versions.second.image_from_designer.medium.url, class: "thumbnail") %>
+      <% else %>
         <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-        <%= f.input :image_from_designer, as: :file %>
+      <% end %>
+      <%= f.input "image2_from_designer", as: :file %>
     </div>
+
+
     <div class="col-md-4">
       <span>第三张图样</span>
+      <% if @versions.third.present? %>
+        <%= image_tag(@versions.third.image_from_designer.medium.url, class: "thumbnail") %>
+      <% else %>
         <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-        <%= f.input :image_from_designer, as: :file %>
+      <% end %>
+      <%= f.input "image3_from_designer", as: :file %>
     </div>
+
+
   </div>
 </div>
 
 
-  <%= f.submit "Submit", data: { disable_with: "Submitting..." } %>
+  <%= f.submit "Submit", data: { confirm: "你确定要提交三张样张吗？" } %>
 <% end %>

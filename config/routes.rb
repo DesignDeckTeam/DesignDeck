@@ -14,4 +14,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  root "landing#index"
 end
