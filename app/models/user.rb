@@ -29,4 +29,9 @@ class User < ApplicationRecord
   def designer?
     is_designer
   end
+
+  def is_user
+  	!is_designer
+  end
+
 end

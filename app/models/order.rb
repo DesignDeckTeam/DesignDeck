@@ -2,15 +2,15 @@
 #
 # Table name: orders
 #
-#  id            :integer          not null, primary key
-#  title         :string
-#  description   :text
-#  type          :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  aasm_state    :string
-#  user_id       :integer
-#  sample_number :integer
+#  id              :integer          not null, primary key
+#  title           :string
+#  description     :text
+#  type_preference :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  aasm_state      :string
+#  user_id         :integer
+#  sample_number   :integer
 #
 
 class Order < ApplicationRecord
@@ -18,6 +18,7 @@ class Order < ApplicationRecord
 
 	has_many :versions
 	belongs_to :user
+  accepts_nested_attributes_for :versions
 
   include AASM
 

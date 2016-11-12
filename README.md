@@ -7,9 +7,9 @@
 
 # 开发用帐号
 
-* Admin :
-* User :
+* Admin : designer@designerdeck.com  password: 111111
+* User : user1@designerdeck.com      password: 111111
 
 # 其他
 
-* 小组内成员请登陆 [Tower](http://redmine.growthschool.com/projects/class-02/issues)查看组长分配的项目任务
+* 小组内成员请登陆 [Tower](http://redmine.growthschool.com/projects/team-2-1/issues)查看组长分配的项目任务
