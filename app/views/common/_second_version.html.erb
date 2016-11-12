@@ -19,7 +19,7 @@
       <td><%= @order.id %></td>
       <td><%= @order.title %></td>
       <td><%= @order.description %></td>
-      <td><%= @order.type %></td>
+      <td><%= @order.type_preference %></td>
       <td><%= @order.user.email %></td>
       <% if @versions.image_from_customer.present? %>
       <%= image_tag(@versions.image_from_customer.thumb.url, class: "thumbnail") %>
