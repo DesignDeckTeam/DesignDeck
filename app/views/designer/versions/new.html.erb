@@ -1,0 +1,19 @@
+
+<div class="col-md-12">
+
+
+<br><br><br><br><br>
+
+<h3> 上传三份图片样张给用户 </h3>
+<br><br>
+
+<%= simple_form_for [:designer, @order, @version ] do |f| %>
+  <%= f.fields_for :samples do |builder| %>
+    <%= render "sample_fields", :f => builder %>
+  <% end %>
+
+</div>
+
+
+  <%= f.submit "Submit", data: { confirm: "你确定要提交三张样张吗？" } %>
+<% end %>
