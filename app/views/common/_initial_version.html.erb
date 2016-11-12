@@ -39,32 +39,23 @@
 
     <div class="col-md-4">
       <span>第一张图样</span>
-      <% if @versions.first.present? %>
-        <%= image_tag(@versions.first.image_from_designer.medium.url, class: "thumbnail") %>
-      <% else %>
-        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-      <% end %>
+
+      <%= render_designer_sample(@versions.first) %>
+
+
       <%= f.input "image1_from_designer", as: :file %>
     </div>
 
     <div class="col-md-4">
       <span>第二张图样</span>
-      <% if @versions.second.present? %>
-        <%= image_tag(@versions.second.image_from_designer.medium.url, class: "thumbnail") %>
-      <% else %>
-        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-      <% end %>
+      <%= render_designer_sample(@versions.first) %>
       <%= f.input "image2_from_designer", as: :file %>
     </div>
 
 
     <div class="col-md-4">
       <span>第三张图样</span>
-      <% if @versions.third.present? %>
-        <%= image_tag(@versions.third.image_from_designer.medium.url, class: "thumbnail") %>
-      <% else %>
-        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-      <% end %>
+      <%= render_designer_sample(@versions.first) %>
       <%= f.input "image3_from_designer", as: :file %>
     </div>
 
