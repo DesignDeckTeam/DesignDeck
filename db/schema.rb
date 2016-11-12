@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111073620) do
+ActiveRecord::Schema.define(version: 20161112161959) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "type_preference"
+    t.string   "preference_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "aasm_state"

@@ -5,7 +5,7 @@
 #  id              :integer          not null, primary key
 #  title           :string
 #  description     :text
-#  type_preference :string
+#  preference_type :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  aasm_state      :string
