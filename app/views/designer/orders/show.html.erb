@@ -2,10 +2,10 @@
   <div class="col-md-12">
     <% case @order.aasm_state %>
       <% when "order_placed" %>
-        <%= render "initial_version" %>
+        <%= render "common/initial_version" %>
       <% when "style_decided" %>
-        <%= render "second_version" %>
-      <% when "image_from_designer.present? && image_from_customer.present?" %>
+        <%= render "common/second_version" %>
+      <% when "started" %>
         <%= render "more_version" %>
     <% end %>
   </div>
