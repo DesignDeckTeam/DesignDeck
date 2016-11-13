@@ -20,7 +20,7 @@ class Version < ApplicationRecord
 
   has_many :samples
 
-  accepts_nested_attributes_for :samples
+  accepts_nested_attributes_for :samples, :allow_destroy => true
 
   scope :samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "sample_submitted") }
   scope :decided_samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "style_decided") }
