@@ -1,0 +1,20 @@
+<% selected_version = order.versions.where(aasm_state: "style_decided").first %>
+<% samples  = selected_version.samples %>
+
+<div class="container-fluid">
+
+<div class="row">
+
+	<% samples.each do |sample| %>
+		<div class="col-md-3">
+			<%= render_sample(sample) %>
+		</div>
+	<% end %>
+</div>
+
+<div class="row text-center">
+	<h2>选择理由</h2>
+	<p><%= selected_version.comment_from_customer %></p>
+</div>
+
+</div>

@@ -27,40 +27,17 @@ class Account::OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def update
-    @order = Order.find(params[:id])
+  def choose_style
+    @order = Order.find(params[:order_id])
+    version = Version.find_by(id: style_choose_params[:version_id])
+    version.decide_style!
+    @order.decide_style!
+    version.set_comment_from_customer(style_choose_params[:comment])
+    redirect_to account_order_path(@order), notice: "已选择方案"
+  end
 
-    if @order.sample_submitted?
-      if @order.update(order_params)
-        # 如果涉及到用户选择designer提交的3中风格其中的一个
-        if @order.sample_number.present?
-          @order.decide_style!
-          # 如果用户提交了选择的理由
-          comment_from_customer = order_params[:comment_from_customer]
-          # 将params中的comment存到相应的version中
-          if order_params[:comment_from_customer].present?
-            case @order.sample_number
-            when 1
-              @order.versions.first.comment_from_customer = comment_from_customer
-              @order.versions.first.save
-            when 2
-              @order.versions.second.comment_from_customer = comment_from_customer
-              @order.versions.second.save
-            when 3
-              @order.versions.third.comment_from_customer = comment_from_customer
-              @order.versions.third.save
-            end
-          end
-          redirect_to account_order_path(@order), notice: "已选择方案"
-          return
-        else
-          redirect_to account_order_path(@order), notice: "server receives no sample number"
-        end
-        redirect_to account_orders_path
-      else
-        render :new
-      end
-    end
+
+  def update
   end
 
   def destroy
@@ -74,4 +51,9 @@ class Account::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:title, :description, :preference_type, :sample_number, :comment_from_customer)
   end
+
+  def style_choose_params
+    params.require(:order).permit(:version_id, :comment)
+  end
+
 end
