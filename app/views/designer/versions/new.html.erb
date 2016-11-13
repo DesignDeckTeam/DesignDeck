@@ -5,7 +5,7 @@
     <%= link_to "返回稿件列表", designer_order_path(@order), class: "btn btn-default" %>
 
     <h3>
-        上传三份图片样张给用户
+        上传图片样张给用户
     </h3>
     <br><br>
 
@@ -13,9 +13,9 @@
 
     <div id="samples">
         <%= f.fields_for :samples do |builder| %>
-        <%= render "sample_fields", :f => builder %>
-        <%= f.link_to_remove "Remove", class: "btn btn-xs btn-default" %>
-        <br><br>
+            <%= render "sample_fields", :f => builder %>
+            <%= builder.link_to_remove "Remove", class: "btn btn-xs btn-default" %>
+            <br><br>
         <% end %>
     </div>
 

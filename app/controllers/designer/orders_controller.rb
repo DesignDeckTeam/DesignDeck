@@ -29,7 +29,6 @@ class Designer::OrdersController < ApplicationController
       return
     end
 
-
     if @order.may_submit_sample?
       @order.submit_sample!
       redirect_to designer_order_path(@order), notice: "已向用户提交样本"
