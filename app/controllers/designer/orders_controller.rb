@@ -12,20 +12,26 @@ class Designer::OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
+    # @order = Order.find(params[:id])
 
-    three_image_versions
-    @order.submit_sample!
+    # three_image_versions
+    # @order.submit_sample!
 
-    redirect_to designer_order_path, notice: "Update Success"
+    # redirect_to designer_order_path, notice: "Update Success"
   end
 
 
   def designer_submit_sample
     @order = Order.find(params[:order_id])
+
+    if @order.versions.count < 3
+      redirect_to designer_order_path(@order), alert: "请至少提交3种不同类型的稿件方案供客户选择"
+      return
+    end
+
     if @order.may_submit_sample?
       @order.submit_sample!
-      rredirect_to designer_order_path(@order), notice: "已向用户提交样本"
+      redirect_to designer_order_path(@order), notice: "已向用户提交样本"
     else
       puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!ERROR"
     end
