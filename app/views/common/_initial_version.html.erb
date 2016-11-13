@@ -3,7 +3,21 @@
 
   <div class="btn-group">
     <% @order.versions.each_with_index do |version,i| %>
-      <%= link_to("第 #{i} 稿", designer_order_version_path(@order, version), :class => "btn btn-default") %>
+
+    	<div class="row">
+    		<%= link_to("第 #{i+1} 稿", designer_order_version_path(@order, version), :class => "btn btn-default") %>
+    		<br><br>
+    		<% version.samples.each do |sample| %>
+    			<div class="col-md-4">
+    				<%= render_sample(sample) %>
+    			</div>
+   				
+    		<% end %>
+
+     		
+
+    	</div>
+
     <% end %>
   </div>
 <% end %>

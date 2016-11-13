@@ -28,4 +28,5 @@ end
 #  updated_at            :datetime         not null
 #  comment_from_customer :text
 #  comment_from_designer :text
+#  aasm_state            :string
 #
