@@ -3,6 +3,8 @@ module OrdersHelper
     case @order.aasm_state
     when "order_placed"
       render "common/initial_version"
+    when "sample_submitted"
+      render "waiting_for_customer_decision"
     when "style_decided"
       render "common/second_version"
     when "started"

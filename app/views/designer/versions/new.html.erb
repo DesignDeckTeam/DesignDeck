@@ -2,6 +2,8 @@
 
     <br><br><br><br><br>
 
+    <%= link_to "返回稿件列表", designer_order_path(@order), class: "btn btn-default" %>
+
     <h3>
         上传三份图片样张给用户
     </h3>
@@ -12,13 +14,18 @@
     <div id="samples">
         <%= f.fields_for :samples do |builder| %>
         <%= render "sample_fields", :f => builder %>
+        <%= f.link_to_remove "Remove", class: "btn btn-xs btn-default" %>
+        <br><br>
         <% end %>
     </div>
 
-    <%= f.link_to_add "Add a sample", :samples, :data => { :target => "#samples" }  %>
+    <hr>
+    <%= f.link_to_add "Add a sample", :samples, :data => { :target => "#samples" }, class: "btn btn-default"  %>
+    
 
     <br>
     <br>
-    <%= f.submit "Submit", data: { confirm: "你确定要提交三张样张吗？" } %>
+
+    <%= f.submit "Submit", data: { confirm: "确定要提交样张？" } %>
     <% end %>
 </div>

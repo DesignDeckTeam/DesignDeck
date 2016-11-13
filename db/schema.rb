@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112165451) do
+ActiveRecord::Schema.define(version: 20161112173704) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "title"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20161112165451) do
     t.datetime "updated_at",            null: false
     t.text     "comment_from_customer"
     t.text     "comment_from_designer"
+    t.string   "aasm_state"
   end
 
 end

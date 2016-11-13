@@ -1,3 +1,7 @@
+<h2 class="well text-center">
+	正在等待客户选择方案
+</h2>
+
 
 <% if @order.versions.present? %>
 
@@ -14,8 +18,6 @@
    				
     		<% end %>
 
-     		
-
     	</div>
 
     <% end %>
@@ -23,6 +25,3 @@
 <% end %>
 
 <hr>
-
-<%= link_to("上傳稿件", new_designer_order_version_path(@order), :class => "btn btn-large btn-default") %>
-<%= link_to("提交样张给客户", designer_order_designer_submit_sample_path(@order), :class => "btn btn-large btn-default", style: "margin-left:15px;", method: :post) %>
