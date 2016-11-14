@@ -55,7 +55,7 @@ class Order < ApplicationRecord
     if stage.blank?
       stage = self.stages.build
       stage.save
-      self.current_stage_id = stage.order_id
+      self.current_stage_id = stage.id
       self.save
     end
     stage
