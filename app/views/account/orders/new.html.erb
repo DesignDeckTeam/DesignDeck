@@ -1,17 +1,18 @@
 <div class="container">
 	<%= simple_form_for [:account, @order] do |f| %>
 	<div class="row">
-		<h4>设计类型</h4>
+		<h3>设计类型</h3>
 		<hr>
-		<div class="col-md-4 text-center">
+		<div class="text-center">
+		<div class="col-md-4">
 			<h5>LOGO</h5>
 			<%= radio_button_tag "order[preference_type]", "LOGO" %>
 		</div>
-		<div class="col-md-4 text-center">
+		<div class="col-md-4">
 			<h5>PRESENTATION</h5>
 			<%= radio_button_tag "order[preference_type]", "PRESENTATION", checked = true %>
 		</div>
-		<div class="col-md-4 text-center">
+		<div class="col-md-4">
 			<h5>WEB DESIGN</h5>
 			<%= radio_button_tag "order[preference_type]", "WEBDESIGN" %>
 			<br>
@@ -19,15 +20,15 @@
 			<br>
 		</div>
 	</div>
+	</div>
 
 	<div class="row">
-		<h4>设计信息</h4>
+		<h3>设计信息</h3>
 		<hr>
 		<div class="col-md-12">
-
-			<%= f.input :title, label: "项目名称", input_html: { class: "form-control", placeholder: "Design Deck logo 设计"}  %>
+			<%= f.input :title, label: "项目名称", input_html: { class: "form-control"}  %>
 			<br>
-			<%= f.input :description, label: "设计说明", input_html: { class: "form-control", placeholder: ""}  %>
+			<%= f.input :description, label: "设计说明", input_html: { class: "form-control"}  %>
 			<br>
 			<%= f.input :style_and_regulation, label: "风格 & 规格", input_html: { class: "form-control"} %>
 			<%= f.input :image, label: "设计意向图片上传", as: :file %>
@@ -36,17 +37,30 @@
 		</div>
 	</div>
 
-<div class="row">
-	<h4>订单概要</h4>
-	<hr>
-	<!-- <div class="col-md-12">
-		<tr>
-			<td>价格</td>
-			<td>预计交付时间</td>
-			<td>设计类型</td>
-		</tr> -->
-	   	<%= f.submit "确认付款", disable_with: "Submitting...", class: "btn btn-primary pull-right"  %>
+	<div class="row">
+		<h3>订单概要</h3>
+		<hr>
+		<div class="text-center">
+			<div class="col-md-4">
+				<h4>价格 </h4>
+			</div>
+			<div class="col-md-4">
+				<h4>预计交付时间</h4>
+				 <br><%= f.label Time.now.strftime("%Y年%m月%d日") %>
+			</div>
+			<div class="col-md-4">
+				<h4>设计类型</h4>
+
+			</div>
+		</div>
 	</div>
-</div>
+
+	<div class="row">
+		<br>
+		<br>
+		<div class="col-md-12">
+			<%= f.submit "确认付款", disable_with: "Submitting...", class: "btn btn-primary col-md-4 col-md-offset-4"%>
+		</div>
+	</div>
 	<% end %>
 </div>
