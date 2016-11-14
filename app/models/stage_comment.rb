@@ -1,6 +1,10 @@
 class StageComment < ApplicationRecord
 	belongs_to :stage
 	belongs_to :user
+
+	def set_comment(comment)
+		self.update_columns(content: comment)
+	end
 end
 
 # == Schema Information

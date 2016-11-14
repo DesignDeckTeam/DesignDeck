@@ -1,4 +1,4 @@
-<% selected_version = order.versions.where(aasm_state: "style_decided").first %>
+<% selected_version = order.current_stage.versions.where(aasm_state: "selected").first %>
 <% samples  = selected_version.samples %>
 
 <div class="container-fluid">
@@ -14,7 +14,7 @@
 
 <div class="row text-center">
 	<h2>选择理由</h2>
-	<p><%= selected_version.comment_from_customer %></p>
+	<div class="well"><p><%= order.current_stage.stage_comments.first.content %></p></div>
 </div>
 
 </div>

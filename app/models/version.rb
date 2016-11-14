@@ -22,11 +22,11 @@ class Version < ApplicationRecord
   accepts_nested_attributes_for :samples, :allow_destroy => true
 
   # scope :samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "sample_submitted") }
-  # scope :decided_samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "style_decided") }
+  scope :decided_samples_for_stage, -> (stage) { where(stage_id: stage.id).where(aasm_state: "selected") }
 
-  def set_comment_from_customer(comment)
-    self.update_columns(comment_from_customer: comment)
-  end
+  # def set_comment_from_customer(comment)
+  #   self.update_columns(comment_from_customer: comment)
+  # end
 
 
   include AASM
@@ -36,11 +36,11 @@ class Version < ApplicationRecord
     state :submitted
     state :selected
 
-   	event :submit_sample do
+   	event :submit do
       transitions :from => :draft, :to => :submitted
     end
 
-    event :decide_style do
+    event :select do
       transitions :from => :submitted, :to => :selected
     end
 

@@ -3,23 +3,20 @@
 </h2>
 
 
-<% if @order.versions.present? %>
+<% if @current_stage.versions.present? %>
 
   <div class="container-fluid btn-group">
-    <% @order.versions.each_with_index do |version,i| %>
+    <% @current_stage.versions.each_with_index do |version,i| %>
 
     	<div class="row">
-    		<%= link_to("第 #{i+1} 稿", designer_order_version_path(@order, version), :class => "btn btn-default") %>
+    		<%= link_to("第 #{i+1} 稿", designer_order_stage_version_path(@order, @current_stage, version), :class => "btn btn-default") %>
     		<br><br>
     		<% version.samples.each do |sample| %>
     			<div class="col-md-4">
     				<%= render_sample(sample) %>
-    			</div>
-   				
+    			</div>   				
     		<% end %>
-
     	</div>
-
     <% end %>
   </div>
 <% end %>
