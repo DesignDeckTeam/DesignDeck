@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114064705) do
+ActiveRecord::Schema.define(version: 20161114065633) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20161114064705) do
     t.string   "aasm_state"
     t.integer  "user_id"
     t.integer  "sample_number"
+    t.integer  "current_stage"
   end
 
   create_table "sample_comments", force: :cascade do |t|

@@ -11,6 +11,7 @@
 #  aasm_state      :string
 #  user_id         :integer
 #  sample_number   :integer
+#  current_stage   :integer
 #
 
 require 'test_helper'

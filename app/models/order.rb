@@ -11,6 +11,7 @@
 #  aasm_state      :string
 #  user_id         :integer
 #  sample_number   :integer
+#  current_stage   :integer
 #
 
 class Order < ApplicationRecord
@@ -18,7 +19,7 @@ class Order < ApplicationRecord
 
 	has_many :stages
 	belongs_to :user
-  accepts_nested_attributes_for :stages
+  accepts_nested_attributes_for :stages, :allow_destroy => true
 
   include AASM
 

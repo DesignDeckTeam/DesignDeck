@@ -21,8 +21,8 @@ class Version < ApplicationRecord
 
   accepts_nested_attributes_for :samples, :allow_destroy => true
 
-  scope :samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "sample_submitted") }
-  scope :decided_samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "style_decided") }
+  # scope :samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "sample_submitted") }
+  # scope :decided_samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "style_decided") }
 
   def set_comment_from_customer(comment)
     self.update_columns(comment_from_customer: comment)
