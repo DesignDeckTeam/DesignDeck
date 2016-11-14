@@ -1,10 +1,9 @@
-
 # == Schema Information
 #
 # Table name: versions
 #
 #  id                    :integer          not null, primary key
-#  order_id              :integer
+#  stage_id              :integer
 #  image_from_designer   :string
 #  image_from_customer   :string
 #  for_status            :string
@@ -16,7 +15,7 @@
 #
 
 class Version < ApplicationRecord
-  belongs_to :order
+  belongs_to :stage
 
   has_many :samples
 
@@ -34,15 +33,15 @@ class Version < ApplicationRecord
 
   aasm do
     state :draft, initial: true
-    state :sample_submitted
-    state :style_decided
+    state :submitted
+    state :selected
 
    	event :submit_sample do
-      transitions :from => :draft, :to => :sample_submitted
+      transitions :from => :draft, :to => :submitted
     end
 
     event :decide_style do
-      transitions :from => :sample_submitted, :to => :style_decided
+      transitions :from => :submitted, :to => :selected
     end
 
   end

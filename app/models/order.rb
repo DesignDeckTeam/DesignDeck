@@ -16,35 +16,32 @@
 class Order < ApplicationRecord
 
 
-	has_many :versions
+	has_many :stages
 	belongs_to :user
-  accepts_nested_attributes_for :versions
+  accepts_nested_attributes_for :stages
 
   include AASM
 
-
-
   aasm do
-  	state :order_placed, :initial => true
-  	state :sample_submitted
-  	state :style_decided
-  	state :started
+  	state :placed, :initial => true
+  	state :versions_submitted
+  	state :version_selected
   	state :completed
 
-  	event :submit_sample do
-      transitions :from => :order_placed, :to => :sample_submitted
+  	event :submit_versions do
+      transitions :from => :placed, :to => :versions_submitted
     end
 
-    event :decide_style do
-      transitions :from => :sample_submitted, :to => :style_decided
+    event :select_version do
+      transitions :from => :versions_submitted, :to => :version_selected
     end
 
-    event :start do
-      transitions :from => :style_decided, :to => :started
+    event :start_new_stage do
+      transitions :from => :version_selected, :to => :versions_submitted
     end
 
     event :complete do
-      transitions :from => :started, :to => :completed
+      transitions :from => :versions_submitted, :to => :completed
     end
 
   end

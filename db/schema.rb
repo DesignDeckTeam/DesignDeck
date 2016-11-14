@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112173704) do
+ActiveRecord::Schema.define(version: 20161114064705) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "title"
@@ -23,10 +23,31 @@ ActiveRecord::Schema.define(version: 20161112173704) do
     t.integer  "sample_number"
   end
 
+  create_table "sample_comments", force: :cascade do |t|
+    t.integer  "sample_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "samples", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "version_id"
     t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stage_comments", force: :cascade do |t|
+    t.integer  "stage_id"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stages", force: :cascade do |t|
+    t.integer  "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,7 +71,7 @@ ActiveRecord::Schema.define(version: 20161112173704) do
   end
 
   create_table "versions", force: :cascade do |t|
-    t.integer  "order_id"
+    t.integer  "stage_id"
     t.string   "image_from_designer"
     t.string   "image_from_customer"
     t.string   "for_status"
