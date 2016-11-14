@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post :designer_submit_sample
       resources :versions
     end
-    resources :profile 
+    resources :profiles 
   end
 
   root "landing#index"
