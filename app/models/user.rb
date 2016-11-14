@@ -29,6 +29,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  include Gravtastic
+  gravtastic 
+
   has_many :orders
 
   def is_user
