@@ -3,7 +3,7 @@
 # Table name: versions
 #
 #  id                    :integer          not null, primary key
-#  order_id              :integer
+#  stage_id              :integer
 #  image_from_designer   :string
 #  image_from_customer   :string
 #  for_status            :string
