@@ -10,22 +10,11 @@ class Designer::VersionsController < ApplicationController
     @order = Order.find(params[:order_id])
     @version = @order.versions.build(version_params)
 
-
-
-    if @version.save
-
-      # 不能提交空image的sample
-      # samples = @version.samples
-      # samples.where(image:nil).delete_all
-      # if @version.samples.count == 0
-      #   redirect_to new_designer_order_version_path(@order), alert: "不能提交空图片"
-      #   @version.destroy
-      #   return
-      # end
-
+    if @version.save && @version.samples.count > 0
       @version.submit_sample!
-      redirect_to designer_order_version_path(@order, @version), notice: "成功创建了样张"
+      redirect_to designer_order_version_path(@order, @version), notice: "成功创建了样张"      
     else
+      @version.destroy
       redirect_to new_designer_order_version_path(@order), alert: "不能提交空图片"
     end
 
