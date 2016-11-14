@@ -10,18 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114065633) do
+ActiveRecord::Schema.define(version: 20161114082419) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "preference_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "aasm_state"
     t.integer  "user_id"
     t.integer  "sample_number"
-    t.integer  "current_stage"
+    t.integer  "current_stage_id"
+    t.string   "image"
+    t.text     "style_and_regulation"
+    t.float    "price"
+    t.datetime "deadline"
   end
 
   create_table "sample_comments", force: :cascade do |t|

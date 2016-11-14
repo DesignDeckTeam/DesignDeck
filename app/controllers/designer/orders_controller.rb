@@ -8,16 +8,18 @@ class Designer::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @versions = @order.versions
+    @current_stage = Stage.find_by(id: @order.current_stage_id)
+    if @current_stage.blank?
+      @current_stage = @order.stages.build
+      @current_stage.save
+      @order.current_stage_id = @current_stage.id
+      @order.save
+    end
+   
+    @versions = @current_stage.versions
   end
 
   def update
-    # @order = Order.find(params[:id])
-
-    # three_image_versions
-    # @order.submit_sample!
-
-    # redirect_to designer_order_path, notice: "Update Success"
   end
 
 

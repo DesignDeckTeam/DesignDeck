@@ -2,16 +2,20 @@
 #
 # Table name: orders
 #
-#  id              :integer          not null, primary key
-#  title           :string
-#  description     :text
-#  preference_type :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  aasm_state      :string
-#  user_id         :integer
-#  sample_number   :integer
-#  current_stage   :integer
+#  id                   :integer          not null, primary key
+#  title                :string
+#  description          :text
+#  preference_type      :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  aasm_state           :string
+#  user_id              :integer
+#  sample_number        :integer
+#  current_stage_id     :integer
+#  image                :string
+#  style_and_regulation :text
+#  price                :float
+#  deadline             :datetime
 #
 
 class Order < ApplicationRecord
@@ -20,6 +24,8 @@ class Order < ApplicationRecord
 	has_many :stages
 	belongs_to :user
   accepts_nested_attributes_for :stages, :allow_destroy => true
+
+  # scope :current_stage, -> { Stage.find_by(id: self.current_stage_id) }
 
   include AASM
 

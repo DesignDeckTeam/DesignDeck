@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   namespace :account do
     resources :orders do
       post :choose_style
@@ -10,9 +11,16 @@ Rails.application.routes.draw do
   namespace :designer do
     resources :orders do
       post :designer_submit_sample
-      resources :versions
+      resources :stages do
+        resources :versions
+      end
     end
   end
+  #   resources :orders do
+  #     post :designer_submit_sample
+  #     resources :versions
+  #   end
+  # end
 
   root "landing#index"
 end
