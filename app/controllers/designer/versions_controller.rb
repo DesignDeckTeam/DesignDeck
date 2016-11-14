@@ -2,8 +2,8 @@ class Designer::VersionsController < ApplicationController
 
   def new
     @order = Order.find(params[:order_id])
-    @current_stage = 
-    @version = @order.versions.build
+    @current_stage = Stage.find_by(id: @order.current_stage_id)
+    @version = @current_stage.versions.build
     @version.samples.build
   end
 

@@ -50,6 +50,18 @@ class Order < ApplicationRecord
     event :complete do
       transitions :from => :versions_submitted, :to => :completed
     end
-
   end
+
+  def current_stage
+    stage = Stage.find_by(id: self.current_stage_id)
+    if stage.blank?
+      stage = self.stages.build
+      stage.save
+      self.current_stage_id = stage.order_id
+      self.save
+    end
+    stage
+  end
+
+
 end
