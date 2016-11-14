@@ -2,13 +2,13 @@ module OrdersHelper
   def render_order_step(_order)
     case @order.aasm_state
     when "order_placed"
-      render "common/initial_version"
+      render "user_requirement"
     when "sample_submitted"
       render "waiting_for_customer_decision"
     when "style_decided"
-      render "common/second_version"
+      render "designer_upload_image_to_user"
     when "started"
-      render "more_version"
+      render "completed_design"
      end
   end
 end

@@ -1,7 +1,7 @@
 <div class="row well">
     <!-- 一句话形容自己就 -->
 
-    <div class="col-md-4 col-md-offset-4 text-center ">
+    <div class="col-md-6 col-md-offset-3 text-center ">
 
         <h1>结案速度快三倍</h1>
         <br>
@@ -10,18 +10,14 @@
         <br>
 
         <!-- /一句话形容自己 -->
-    </div>
 
-    <% if current_user  %>
-       <% if !current_user.is_designer %>
-        <%= link_to("查看我的订单", account_orders_path, :class => "btn btn-info") %>
-      <% end %>
-    <% else %>
-        <%= link_to("立即注册使用", new_user_registration_path, :class => "btn btn-info") %>
+        <% if !current_user%>
+          <%= link_to("立即注册使用", new_user_registration_path, :class => "btn btn-info") %>
+        <% elsif !current_user.is_designer%>
+          <%= link_to("查看我的订单", account_orders_path, :class => "btn btn-info") %>
         <% end %>
 
-
-  </div>
+    </div>
 </div>
 
 
