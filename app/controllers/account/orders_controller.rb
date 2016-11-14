@@ -28,6 +28,7 @@ class Account::OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  # 用户选择了一个version，并且给出了理由
   def select_version
     @order = Order.find(params[:order_id])
     @current_stage = @order.current_stage
@@ -35,7 +36,12 @@ class Account::OrdersController < ApplicationController
     version.select!
     @order.select_version!
 
-    binding.pry
+    # 创建新的current_stage
+    @current_stage = @order.stages.build
+    @current_stage.save
+    @order.set_current_stage(@current_stage)    
+
+    # binding.pry
     if select_version_params[:comment].present?
       comment = @current_stage.stage_comments.build
       comment.content = select_version_params[:comment]
@@ -43,6 +49,7 @@ class Account::OrdersController < ApplicationController
       comment.save
       # comment.set_comment(select_version_params[:comment])
     end
+
 
     redirect_to account_order_path(@order), notice: "已选择方案"
   end

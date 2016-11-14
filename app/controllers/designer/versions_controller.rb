@@ -26,6 +26,8 @@ class Designer::VersionsController < ApplicationController
     @samples = @version.samples
   end
 
+  
+
   private
 
   def version_params

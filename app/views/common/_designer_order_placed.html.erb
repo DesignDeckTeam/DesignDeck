@@ -1,22 +1,7 @@
 
-<% if @versions.present? %>
-
-  <div class="container-fluid btn-group">
-    <% @versions.each_with_index do |version,i| %>
-    	<div class="row">
-    		<%= link_to("第 #{i+1} 稿", designer_order_stage_version_path(@order, @current_stage, version), :class => "btn btn-default") %>
-    		<br><br>
-    		<% version.samples.each do |sample| %>
-    			<div class="col-md-4">
-    				<%= render_sample(sample) %>
-    			</div>
-    		<% end %>
-    	</div>
-    <% end %>
-  </div>
-<% end %>
+ <%= render :partial => "common/designer_versions_submitted" %>
 
 <hr>
 
-<%= link_to("上傳稿件", new_designer_order_stage_version_path(@order, @current_stage), :class => "btn btn-large btn-default") %>
-<%= link_to("提交样张给客户", designer_order_designer_submit_sample_path(@order), :class => "btn btn-large btn-default", style: "margin-left:15px;", method: :post) %>
+<%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @current_stage } %>
+

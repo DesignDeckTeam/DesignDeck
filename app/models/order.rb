@@ -25,8 +25,6 @@ class Order < ApplicationRecord
 	belongs_to :user
   accepts_nested_attributes_for :stages, :allow_destroy => true
 
-  # scope :current_stage, -> { Stage.find_by(id: self.current_stage_id) }
-
   include AASM
 
   aasm do
@@ -43,7 +41,7 @@ class Order < ApplicationRecord
       transitions :from => :versions_submitted, :to => :version_selected
     end
 
-    event :start_new_stage do
+    event :submit_new_versions do
       transitions :from => :version_selected, :to => :versions_submitted
     end
 
@@ -62,6 +60,17 @@ class Order < ApplicationRecord
     end
     stage
   end
+
+  def set_current_stage(stage)
+    self.current_stage_id = stage.id
+    self.save
+  end
+
+  def last_selected_version
+    Version.where(stage: self.stages.ids).where(aasm_state: "selected").last
+  end
+
+   
 
 
 end

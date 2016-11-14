@@ -1,20 +1,23 @@
-<% selected_version = order.current_stage.versions.where(aasm_state: "selected").first %>
+<% selected_version = order.last_selected_version %>
 <% samples  = selected_version.samples %>
 
 <div class="container-fluid">
 
-<div class="row">
+	<div class="row">
+		<% samples.each do |sample| %>
+			<div class="col-md-3">
+				<%= render_sample(sample) %>
+			</div>
+		<% end %>
+	</div>
 
-	<% samples.each do |sample| %>
-		<div class="col-md-3">
-			<%= render_sample(sample) %>
-		</div>
-	<% end %>
-</div>
-
-<div class="row text-center">
-	<h2>选择理由</h2>
-	<div class="well"><p><%= order.current_stage.stage_comments.first.content %></p></div>
-</div>
+	<div class="row text-center">
+		<h2>评论</h2>
+		<% order.current_stage.stage_comments.each do |comment| %>
+			<div class="well">
+				<p><%= comment.content %></p>
+			</div>
+		<% end %>
+	</div>
 
 </div>
