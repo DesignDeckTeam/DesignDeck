@@ -1,7 +1,6 @@
 <div class="container">
-	<h2>委托设计</h2>
 	<%= simple_form_for [:account, @order] do |f| %>
-	<div class="col-md-12">
+	<div class="row">
 		<h4>设计类型</h4>
 		<hr>
 		<div class="col-md-4 text-center">
@@ -21,30 +20,33 @@
 		</div>
 	</div>
 
-	<div class="col-md-12">
+	<div class="row">
 		<h4>设计信息</h4>
 		<hr>
-		<%= f.input :title, label: "项目名称", input_html: { class: "form-control"}  %>
-		<br>
-		<%= f.input :description, label: "设计说明", input_html: { class: "form-control"}  %>
-		<br>
-		<%= f.input :style_and_regulation, label: "风格 & 规格", input_html: { class: "form-control"} %>
-		<%= f.input :image, label: "设计意向图片上传", as: :file %>
-		<br>
-		<br>
+		<div class="col-md-12">
+
+			<%= f.input :title, label: "项目名称", input_html: { class: "form-control", placeholder: "Design Deck logo 设计"}  %>
+			<br>
+			<%= f.input :description, label: "设计说明", input_html: { class: "form-control", placeholder: ""}  %>
+			<br>
+			<%= f.input :style_and_regulation, label: "风格 & 规格", input_html: { class: "form-control"} %>
+			<%= f.input :image, label: "设计意向图片上传", as: :file %>
+			<br>
+			<br>
+		</div>
 	</div>
 
-	<div class="col-md-12">
-		<h4>订单概要</h4>
-		<hr>
+<div class="row">
+	<h4>订单概要</h4>
+	<hr>
+	<!-- <div class="col-md-12">
 		<tr>
 			<td>价格</td>
 			<td>预计交付时间</td>
 			<td>设计类型</td>
-		</tr>
-	  <div class="form-action">
+		</tr> -->
 	   	<%= f.submit "确认付款", disable_with: "Submitting...", class: "btn btn-primary pull-right"  %>
-	  </div>
 	</div>
+</div>
 	<% end %>
 </div>
