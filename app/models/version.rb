@@ -1,10 +1,9 @@
-
 # == Schema Information
 #
 # Table name: versions
 #
 #  id                    :integer          not null, primary key
-#  order_id              :integer
+#  stage_id              :integer
 #  image_from_designer   :string
 #  image_from_customer   :string
 #  for_status            :string
@@ -16,33 +15,33 @@
 #
 
 class Version < ApplicationRecord
-  belongs_to :order
+  belongs_to :stage
 
   has_many :samples
 
   accepts_nested_attributes_for :samples, :allow_destroy => true
 
-  scope :samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "sample_submitted") }
-  scope :decided_samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "style_decided") }
+  # scope :samples_for_order, -> (order) { where(order_id: order.id).where(aasm_state: "sample_submitted") }
+  scope :decided_samples_for_stage, -> (stage) { where(stage_id: stage.id).where(aasm_state: "selected") }
 
-  def set_comment_from_customer(comment)
-    self.update_columns(comment_from_customer: comment)
-  end
+  # def set_comment_from_customer(comment)
+  #   self.update_columns(comment_from_customer: comment)
+  # end
 
 
   include AASM
 
   aasm do
     state :draft, initial: true
-    state :sample_submitted
-    state :style_decided
+    state :submitted
+    state :selected
 
-   	event :submit_sample do
-      transitions :from => :draft, :to => :sample_submitted
+   	event :submit do
+      transitions :from => :draft, :to => :submitted
     end
 
-    event :decide_style do
-      transitions :from => :sample_submitted, :to => :style_decided
+    event :select do
+      transitions :from => :submitted, :to => :selected
     end
 
   end

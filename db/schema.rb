@@ -16,17 +16,43 @@ ActiveRecord::Schema.define(version: 20161114091220) do
     t.string   "title"
     t.text     "description"
     t.string   "preference_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "aasm_state"
     t.integer  "user_id"
     t.integer  "sample_number"
+    t.integer  "current_stage_id"
+    t.string   "image"
+    t.text     "style_and_regulation"
+    t.float    "price"
+    t.datetime "deadline"
+  end
+
+  create_table "sample_comments", force: :cascade do |t|
+    t.integer  "sample_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "samples", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "version_id"
     t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stage_comments", force: :cascade do |t|
+    t.integer  "stage_id"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stages", force: :cascade do |t|
+    t.integer  "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,7 +79,7 @@ ActiveRecord::Schema.define(version: 20161114091220) do
   end
 
   create_table "versions", force: :cascade do |t|
-    t.integer  "order_id"
+    t.integer  "stage_id"
     t.string   "image_from_designer"
     t.string   "image_from_customer"
     t.string   "for_status"

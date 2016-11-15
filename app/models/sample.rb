@@ -16,6 +16,7 @@
 class Sample < ApplicationRecord
   belongs_to :user
   belongs_to :version, optional: true
+  has_many :sample_comments
 
   mount_uploader :image, ImageFromDesignerUploader
 

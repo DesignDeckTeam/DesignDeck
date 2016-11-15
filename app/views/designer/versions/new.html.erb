@@ -4,12 +4,10 @@
 
     <%= link_to "返回稿件列表", designer_order_path(@order), class: "btn btn-default" %>
 
-    <h3>
-        上传图片样张给用户
-    </h3>
+    <h3>上传图片样张给用户</h3>
     <br><br>
 
-    <%= simple_nested_form_for [:designer, @order, @version ] do |f| %>
+    <%= simple_nested_form_for [:designer, @order, @current_stage, @version ] do |f| %>
 
     <div id="samples">
         <%= f.fields_for :samples do |builder| %>
@@ -22,7 +20,6 @@
     <hr>
     <%= f.link_to_add "Add a sample", :samples, :data => { :target => "#samples" }, class: "btn btn-default"  %>
     
-
     <br>
     <br>
 
