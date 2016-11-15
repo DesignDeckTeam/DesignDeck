@@ -1,9 +1,12 @@
 
 
 
-<%= simple_form_for @user, url: designer_profile_path(@user), html: {method: :put} do |f| %>
+<%= simple_form_for @user, url: designer_profile_path(@user) do |f| %>
   <%= f.input :name, label: '请输入你的真实姓名：', error: '必须输入姓名，不能为空' %>
+  <br>
   <%= f.input :designer_intro, label: '请输入简介：' %>
-  <%= f.input :designer_production_image, :as => :file %>
-  <%= f.button :submit %>
+  <br>
+  <%= f.file_field :designer_products, as: :file, :multiple => true %>
+  <br>
+  <%= f.button :submit, '更新帐户信息' %>
 <% end %>

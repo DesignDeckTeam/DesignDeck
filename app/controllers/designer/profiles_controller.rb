@@ -12,6 +12,7 @@ class Designer::ProfilesController < ApplicationController
 
   def update
     @user = current_user
+  
     if @user.update(user_params)
       redirect_to designer_profiles_path
     else
@@ -22,6 +23,6 @@ class Designer::ProfilesController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:name, :designer_intro, :designer_production_image)
+    params.require(:user).permit(:name, :designer_intro, {designer_products: []})
   end
 end
