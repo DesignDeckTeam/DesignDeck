@@ -1,13 +1,15 @@
 class Designer::OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :designer_required
-  before_action :get_current_order, only: [:show]
+  # before_action :get_current_order, only: [:show]
 
   def index
     @orders = Order.available_for(current_user)
   end
 
   def show
+    @order = Order.find(params[:id])
+    @current_stage = @order.current_stage
     @versions = @current_stage.versions
   end
 
@@ -52,10 +54,10 @@ class Designer::OrdersController < ApplicationController
 
   private
 
-  def get_current_order
-    @order = Order.find(params[:id])
-    @current_stage = @order.current_stage
-  end
+  # def get_current_order
+  #   @order = Order.find(params[:id])
+  #   @current_stage = @order.current_stage
+  # end
 
 
 end
