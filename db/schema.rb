@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20161115073919) do
   create_table "sample_comments", force: :cascade do |t|
     t.integer  "sample_id"
     t.integer  "user_id"
-    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -82,8 +81,13 @@ ActiveRecord::Schema.define(version: 20161115073919) do
 
   create_table "versions", force: :cascade do |t|
     t.integer  "stage_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "image_from_designer"
+    t.string   "image_from_customer"
+    t.string   "for_status"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.text     "comment_from_customer"
+    t.text     "comment_from_designer"
     t.string   "aasm_state"
   end
 
