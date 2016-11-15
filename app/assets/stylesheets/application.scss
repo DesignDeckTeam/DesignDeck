@@ -16,3 +16,24 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.button-diy {
+  // box-sizing: border-box;
+  // background-color: #f2f2f2;
+  // margin: 15px;
+  // padding: 120px;
+  // border-style: solid;
+  // border-color: #cccccc;
+  // border: 1px solid #cccccc
+}
+
+.button-height{
+  height: 250px;
+}
+.project-new{
+  height: 250px;
+}
+
+.blue-btn :hover{
+  background-color: #f1f1f1;
+}
