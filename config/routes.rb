@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         resources :versions
       end
     end
+    resources :profiles 
   end
   #   resources :orders do
   #     post :designer_submit_sample

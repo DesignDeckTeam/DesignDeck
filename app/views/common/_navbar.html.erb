@@ -24,6 +24,7 @@
                         <li class="divider"> </li>
                         <% if current_user.designer? %>
                           <li> <%= link_to("Designer 后台", designer_orders_path)%></li>
+                          <li> <%= link_to("帐户信息", designer_profiles_path) %>
                         <% end %>
                         <li> <%= link_to("登出", destroy_user_session_path, method: :delete) %> </li>
                     </ul>
