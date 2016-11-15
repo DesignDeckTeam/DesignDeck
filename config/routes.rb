@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :designer do
     resources :orders do
-      post :designer_submit_sample
+      post :submit_versions
       resources :stages do
         resources :versions
       end
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :profiles 
   end
   #   resources :orders do
-  #     post :designer_submit_sample
+  #     post :submit_versions
   #     resources :versions
   #   end
   # end

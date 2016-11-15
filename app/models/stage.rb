@@ -1,4 +1,15 @@
 class Stage < ApplicationRecord
+  include AASM
+
+  aasm do
+  	state :open, initial: true
+  	state :closed
+
+  	event :close do
+  		transitions :from => :open, :to => :closed
+  	end
+  	
+  end
 	belongs_to :order
 	has_many :stage_comments
 	has_many :versions
@@ -12,4 +23,5 @@ end
 #  order_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  aasm_state :string
 #

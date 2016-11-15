@@ -10,14 +10,25 @@ class Designer::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @current_stage = @order.current_stage
+
+    # binding.pry
+
+    case @order.aasm_state
+    when "version_selected"
+      if @order.stages.last.closed?
+        @current_stage = @order.new_stage
+      end
+    end
+
     @versions = @current_stage.versions
+  
   end
 
   def update
   end
 
 
-  def designer_submit_sample
+  def submit_versions
 
     @order = Order.find(params[:order_id])
     @current_stage = @order.current_stage
@@ -33,6 +44,7 @@ class Designer::OrdersController < ApplicationController
     if @order.set_designer?(current_user) || @order.designer_id == current_user.id
 
       # order状态转换的限制 placed -> submitted || selected -> submitted
+      binding.pry
       if @order.may_submit_initial_versions?
         @order.submit_initial_versions!
       elsif @order.may_submit_new_versions?
