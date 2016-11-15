@@ -3,6 +3,7 @@ class CreateSampleComments < ActiveRecord::Migration[5.0]
     create_table :sample_comments do |t|
       t.integer :sample_id
       t.integer :user_id
+      t.text :content
 
       t.timestamps
     end

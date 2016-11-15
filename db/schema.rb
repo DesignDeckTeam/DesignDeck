@@ -20,17 +20,18 @@ ActiveRecord::Schema.define(version: 20161115093250) do
     t.datetime "updated_at",           null: false
     t.string   "aasm_state"
     t.integer  "user_id"
-    t.integer  "sample_number"
     t.integer  "current_stage_id"
     t.string   "image"
     t.text     "style_and_regulation"
     t.float    "price"
     t.datetime "deadline"
+    t.integer  "designer_id"
   end
 
   create_table "sample_comments", force: :cascade do |t|
     t.integer  "sample_id"
     t.integer  "user_id"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20161115093250) do
     t.integer  "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "aasm_state"
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,13 +83,8 @@ ActiveRecord::Schema.define(version: 20161115093250) do
 
   create_table "versions", force: :cascade do |t|
     t.integer  "stage_id"
-    t.string   "image_from_designer"
-    t.string   "image_from_customer"
-    t.string   "for_status"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.text     "comment_from_customer"
-    t.text     "comment_from_designer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "aasm_state"
   end
 

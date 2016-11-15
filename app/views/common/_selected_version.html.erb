@@ -13,7 +13,7 @@
 
 	<div class="row text-center">
 		<h2>评论</h2>
-		<% order.current_stage.stage_comments.each do |comment| %>
+		<% order.stages.closed.last.stage_comments.each do |comment| %>
 			<div class="well">
 				<p><%= comment.content %></p>
 			</div>
