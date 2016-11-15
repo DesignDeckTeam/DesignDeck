@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
 	<!-- 一定要有3张sample -->
-	<% if Version.decided_samples_for_stage(@current_stage).any? %>
+	<% if Version.decided_version_for_stage(@current_stage).any? %>
 		<div class="well text-center">
 			<p>已选择设计师的初步方案，等待设计提交初稿</p>
 		</div>
