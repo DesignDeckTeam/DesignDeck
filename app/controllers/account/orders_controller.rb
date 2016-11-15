@@ -20,8 +20,17 @@ class Account::OrdersController < ApplicationController
   end
 
   def show
+    # binding.pry
+
     @order = Order.find(params[:id])
-    @current_stage = @order.current_stage
+    @stage = @order.current_stage
+    case @order.aasm_state
+    when "versions_submitted"
+      @stage = @order.stages.last
+    else
+      @stage = @order.stages.closed.last
+    end
+    # @current_stage = @order.current_stage
   end
 
   def edit
@@ -29,27 +38,26 @@ class Account::OrdersController < ApplicationController
   end
 
   # 用户选择了一个version，并且给出了理由
+  # 一定是在submitted的状态下运行
   def select_version
+
+    binding.pry
+
     @order = Order.find(params[:order_id])
-    @current_stage = @order.current_stage
+    @stage = @order.stages.last
+    @stage.close!
     version = Version.find_by(id: select_version_params[:version_id])
     version.select!
     @order.select_version!
 
-    # 创建新的current_stage
-    @current_stage = @order.stages.build
-    @current_stage.save
-    @order.set_current_stage(@current_stage)    
-
     # binding.pry
     if select_version_params[:comment].present?
-      comment = @current_stage.stage_comments.build
+      comment = @stage.stage_comments.build
       comment.content = select_version_params[:comment]
       comment.user = current_user
       comment.save
       # comment.set_comment(select_version_params[:comment])
     end
-
 
     redirect_to account_order_path(@order), notice: "已选择方案"
   end

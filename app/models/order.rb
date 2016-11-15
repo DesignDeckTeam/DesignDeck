@@ -55,11 +55,16 @@ class Order < ApplicationRecord
   def current_stage
     stage = Stage.find_by(id: self.current_stage_id)
     if stage.blank?
-      stage = self.stages.build
-      stage.save
-      self.current_stage_id = stage.id
-      self.save
+      stage = new_stage
     end
+    stage
+  end
+
+  def new_stage
+    stage = self.stages.build
+    stage.save
+    self.current_stage_id = stage.id
+    self.save
     stage
   end
 
