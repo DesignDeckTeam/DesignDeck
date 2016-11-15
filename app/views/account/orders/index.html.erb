@@ -1,36 +1,42 @@
+<div class="container">
+  <h3>您的所有订单</h3>
+  <hr>
+  <div class="row">
+    <div class="col-md-3">
+      <a href='<%= new_account_order_path %>'>
 
-<div class="col-md-12">
-  <div class="pull-right">
-    <%= link_to("委托设计", new_account_order_path, :class => "btn btn-default") %>
+      <%#= link_to new_account_order_path do %>
+        <button class="btn btn-primary btn-block">
+
+        <div class="project-new">
+          <h4><span class="glyphicon glyphicon-plus"></span></h4>
+           添加设计委托
+         </div>
+       </button>
+       </a>
+       <%# end %>
+     </div>
+    <% @orders.each do |order| %>
+    <%= link_to account_order_path(order) do %>
+    <div class="col-md-3 blue-btn">
+      <div class="thumbnail">
+        <div class="button-height text-center">
+          <h4><%= order.title %></h4>
+          <hr>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <p><%= order.created_at %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+    </div>
   </div>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <td>#</td>
-        <td>Title</td>
-        <td>Description</td>
-      </tr>
-    </thead>
-    </tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td>#</td>
-          <td><%= link_to(order.title, account_order_path(order)) %></td>
-          <td><%= order.description %></td>
-          <td>
-            <% if current_user %>
-              <%= link_to "Show", account_order_path(order), class: "btn btn-sm btn-default" %>
-              <%= link_to("Edit", edit_account_order_path(order), class: "btn btn-sm btn-default") %>
-              <%= link_to("Delete", account_order_path(order), class: "btn btn-sm btn-default", method: :delete, data: {confirm: "Are you sure?"}) %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-
-
-
 </div>
