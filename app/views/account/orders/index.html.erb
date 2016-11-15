@@ -6,22 +6,27 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <td>#</td>
-        <td>Title</td>
-        <td>Description</td>
+        <td>订单号</td>
+        <td>用户名</td>
+        <td>产品</td>
+        <td>描述</td>
+        <td>稿件采编</td>
+
       </tr>
     </thead>
     </tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td>#</td>
+          <td><%= order.id %></td>
+          <td><%= order.user_id %></td>
           <td><%= link_to(order.title, account_order_path(order)) %></td>
           <td><%= order.description %></td>
+          <td><%= order.current_stage_id %></td>
+
           <td>
             <% if current_user %>
-              <%= link_to "Show", account_order_path(order), class: "btn btn-sm btn-default" %>
-              <%= link_to("Edit", edit_account_order_path(order), class: "btn btn-sm btn-default") %>
-              <%= link_to("Delete", account_order_path(order), class: "btn btn-sm btn-default", method: :delete, data: {confirm: "Are you sure?"}) %>
+              <%= link_to("订单展示", account_order_path(order), class: "btn btn-sm btn-default") %>
+              <%= link_to("删除订单", account_order_path(order), class: "btn btn-sm btn-default", method: :delete, data: {confirm: "你确定要删除此订单吗"}) %>
             <% end %>
           </td>
         </tr>

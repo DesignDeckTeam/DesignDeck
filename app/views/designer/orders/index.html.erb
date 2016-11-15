@@ -8,6 +8,7 @@
       <th>需求描述</th>
       <th>订单状态</th>
       <th>创建时间</th>
+      <td>截止日期</td>
       <th>查看订单</th>
     </tr>
   </thead>
@@ -29,6 +30,7 @@
         <td>
           <%= order.created_at %>
         </td>
+        <td><%= order.deadline %></td>
         <td>
           <%= link_to("查看订单", designer_order_path(order), class: "btn btn-primary btn-sm") %>
         </td>

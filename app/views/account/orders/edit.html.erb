@@ -5,14 +5,14 @@
 	<%= simple_form_for [:account, @order] do |f| %>
 
 		<div class="form-group">
-			<%= f.input :title, input_html: { class: "form-control"}  %>
+			<%= f.input :title, label: '名称', input_html: { class: "form-control"}  %>
 			<br>
-			<%= f.input :description, input_html: { class: "form-control"}  %>
+			<%= f.input :description, label: '描述', input_html: { class: "form-control"}  %>
 			<br>
 
 			<h4>请选择您需要的作品类型</h4>
 			<div class="col-md-4 text-center">
-				<h5>LOGO</h5>
+				<h5>商标</h5>
 				<% if @order.preference_type == "LOGO" %>
 					<%= radio_button_tag "order[preference_type]", "LOGO", checked = true %>
 				<% else %>
@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="col-md-4 text-center">
-				<h5>PRESENTATION</h5>
+				<h5>产品介绍</h5>
 				<% if @order.preference_type == "PRESENTATION" %>
 					<%= radio_button_tag "order[preference_type]", "PRESENTATION", checked = true %>
 				<% else %>
@@ -29,7 +29,7 @@
 				<% end %>
 			</div>
 			<div class="col-md-4 text-center">
-				<h5>WEB DESIGN</h5>
+				<h5>网页设计</h5>
 				<% if @order.preference_type == "WEBDESIGN" %>
 					<%= radio_button_tag "order[preference_type]", "WEBDESIGN", checked = true %>
 				<% else %>
@@ -42,7 +42,7 @@
 		</div>
 
   		<div class="form-action">
-   			<%= f.submit "Submit", disable_with: "Submitting...", class: "btn btn-primary pull-right"  %>
+   			<%= f.submit "提交需求", disable_with: "Submitting...", class: "btn btn-primary pull-right"  %>
     	</div>
 
 	<% end %>

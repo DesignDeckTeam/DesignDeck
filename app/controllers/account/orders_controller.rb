@@ -1,5 +1,6 @@
 class Account::OrdersController < ApplicationController
   before_action :authenticate_user!
+  layout "account.order"
 
   def index
     @orders = current_user.orders
@@ -39,7 +40,7 @@ class Account::OrdersController < ApplicationController
     # 创建新的current_stage
     @current_stage = @order.stages.build
     @current_stage.save
-    @order.set_current_stage(@current_stage)    
+    @order.set_current_stage(@current_stage)
 
     # binding.pry
     if select_version_params[:comment].present?

@@ -1,6 +1,9 @@
-<div class="well">
+
     <h4>已提交的稿件</h4>
-</div>
+    <br>
+
+
+
 
 
 <% if @current_stage.versions.present? %>
@@ -14,7 +17,7 @@
     		<% version.samples.each do |sample| %>
     			<div class="col-md-4">
     				<%= render_sample(sample) %>
-    			</div>   				
+    			</div>
     		<% end %>
     	</div>
     <% end %>
