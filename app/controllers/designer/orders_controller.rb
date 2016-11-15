@@ -30,9 +30,9 @@ class Designer::OrdersController < ApplicationController
     # 确认当前order没有被别人接过
     if @order.set_designer?(current_user) || @order.designer_id == current_user.id
 
-      # order状态转换的限制 submitted -> selected || selected -> submitted
-      if @order.may_submit_versions?
-        @order.submit_versions!
+      # order状态转换的限制 placed -> submitted || selected -> submitted
+      if @order.may_submit_initial_versions?
+        @order.submit_initial_versions!
       elsif @order.may_submit_new_versions?
         @order.submit_new_versions!
       else

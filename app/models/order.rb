@@ -35,7 +35,7 @@ class Order < ApplicationRecord
   	state :version_selected
   	state :completed
 
-  	event :submit_versions do
+  	event :submit_initial_versions do
       transitions :from => :placed, :to => :versions_submitted
     end
 
