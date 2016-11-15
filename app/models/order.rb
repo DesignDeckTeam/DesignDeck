@@ -10,12 +10,12 @@
 #  updated_at           :datetime         not null
 #  aasm_state           :string
 #  user_id              :integer
-#  sample_number        :integer
 #  current_stage_id     :integer
 #  image                :string
 #  style_and_regulation :text
 #  price                :float
 #  deadline             :datetime
+#  designer_id          :integer
 #
 
 class Order < ApplicationRecord
@@ -24,6 +24,8 @@ class Order < ApplicationRecord
 	has_many :stages
 	belongs_to :user
   accepts_nested_attributes_for :stages, :allow_destroy => true
+
+  scope :available_for, -> (user){ where("designer_id is null OR designer_id = ?", user.id) }
 
   include AASM
 
@@ -69,6 +71,16 @@ class Order < ApplicationRecord
   def last_selected_version
     Version.where(stage: self.stages.ids).where(aasm_state: "selected").last
   end
+
+  def set_designer?(designer)
+    if self.designer_id.blank?
+      self.update_columns(designer_id: designer.id) 
+      true
+    else
+      false
+    end
+  end
+
 
    
 
