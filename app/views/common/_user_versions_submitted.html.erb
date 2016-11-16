@@ -12,7 +12,7 @@
 	<% else %>
 		<div class="well text-center">
 			<p>选择设计师提交的方案</p>
-		</div>	
+		</div>
 		<% submitted_versions = @stage.versions %>
 
 		<%= form_tag account_order_select_version_path(@order), method: :post do %>
@@ -32,10 +32,10 @@
 							<%= radio_button_tag "order[version_id]", version.id, checked = true %>
 						</div>
 					</div>
-					
+
 					<hr>
 				<% end %>
-				
+
 				<br>
 				<h4>请输入选择这个稿件的理由</h4>
 				<%= text_area_tag "order[comment]" %>
