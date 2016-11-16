@@ -34,6 +34,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   mount_uploaders :designer_products, DesignerProductsUploader
 
+  acts_as_messageable
 
   serialize :designer_products, JSON
 
