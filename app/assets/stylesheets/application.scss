@@ -26,6 +26,9 @@
   // border-color: #cccccc;
   // border: 1px solid #cccccc
 }
+.navbar-diy{
+  box-shadow: 0px 15px 10px 15px #000;
+}
 
 .button-height{
   height: 250px;
@@ -42,4 +45,24 @@
 }
 .font-gray2{
   color: #bfbfbf;
+}
+.onepage{
+  height: 750px;
+}
+.onepage-bg{
+  height: 800px;
+  width: 100%;
+  position: absolute; //绝对定位，如果删除，图片会在内容下面承载页面。
+  background-position: center center;
+  background-size: cover; //屏幕缩小时，图片不压缩。
+}
+#onepagebg{
+  background-image: url("https://ooo.0o0.ooo/2016/11/16/582c1468947dc.jpg");
+}
+.headh1content{
+  margin-top: 400px;
+  line-height: 75px; //行间距
+}
+.title-text{
+  margin-left: 50px;
 }
