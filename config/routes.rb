@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   namespace :designer do
     resources :orders do
       post :submit_versions
+      post :pick_order
       resources :stages do
         resources :versions
       end
     end
     resources :profiles 
   end
+
   #   resources :orders do
   #     post :submit_versions
   #     resources :versions
