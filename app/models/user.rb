@@ -19,6 +19,7 @@
 #  name                      :string
 #  designer_intro            :text
 #  designer_production_image :string
+#  designer_products         :string
 #
 # Indexes
 #
@@ -31,7 +32,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  mount_uploader :designer_production_image, ImageUploader
+  mount_uploaders :designer_products, ImageUploader
+
+  serialize :designer_products, JSON
 
   include Gravtastic
   gravtastic

@@ -41,7 +41,7 @@ class Account::OrdersController < ApplicationController
   # 一定是在submitted的状态下运行
   def select_version
 
-    binding.pry
+    # binding.pry
 
     @order = Order.find(params[:order_id])
     @stage = @order.stages.last

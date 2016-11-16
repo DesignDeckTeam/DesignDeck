@@ -44,7 +44,7 @@ class Designer::OrdersController < ApplicationController
     if @order.set_designer?(current_user) || @order.designer_id == current_user.id
 
       # order状态转换的限制 placed -> submitted || selected -> submitted
-      binding.pry
+      # binding.pry
       if @order.may_submit_initial_versions?
         @order.submit_initial_versions!
       elsif @order.may_submit_new_versions?
