@@ -35,33 +35,7 @@
 			<%= f.input :image, label: "设计意向图片上传", as: :file %>
 			<br>
 			<br>
-		</div>
-	</div>
-
-	<div class="row">
-		<h3>订单概要</h3>
-		<hr>
-		<div class="text-center font-gray">
-			<div class="col-md-4">
-				<h4>价格 </h4>
-				¥2000
-			</div>
-			<div class="col-md-4">
-				<h4>预计交付时间</h4>
-				 <%= f.label Time.now.strftime("%Y年%m月%d日") %>
-			</div>
-			<div class="col-md-4">
-				<h4>设计类型</h4>
-				LOGO
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<br>
-		<br>
-		<div class="col-md-12">
-			<%= f.submit "确认付款", disable_with: "Submitting...", class: "btn btn-primary col-md-4 col-md-offset-4"%>
+			<%= f.button :submit, "提交委托设计" %>
 		</div>
 	</div>
 	<% end %>
