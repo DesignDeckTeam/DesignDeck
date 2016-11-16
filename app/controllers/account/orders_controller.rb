@@ -75,7 +75,7 @@ class Account::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:title, :description, :preference_type, :comment_from_customer)
+    params.require(:order).permit(:title, :description, :preference_type, :comment_from_customer, :image)
   end
 
   def select_version_params

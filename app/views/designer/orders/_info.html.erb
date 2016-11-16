@@ -2,8 +2,10 @@
   <h2>用户订单</h2>
   <hr>
   <div class="row">
-    <div class="col-md-2">
-      <%= image_tag("http://placehold.it/150x150&text=No Pic", class: "thumbnail") %>
+    <div class="col-md-3">
+      <% if order.image.present? %>
+        <%= image_tag(order.image.thumb.url) %>
+      <% end %>
     </div>
     <div class="col-md-4 font-gray">
       <h3><%= order.title %></h3>
@@ -15,3 +17,4 @@
     </div>
   </div>
 </div>
+<br><br>

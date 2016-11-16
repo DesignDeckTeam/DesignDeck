@@ -19,7 +19,7 @@
 #
 
 class Order < ApplicationRecord
-
+	mount_uploader :image, ImageUploader
 
 	has_many :stages
 	belongs_to :user
@@ -79,7 +79,7 @@ class Order < ApplicationRecord
 
   def set_designer?(designer)
     if self.designer_id.blank?
-      self.update_columns(designer_id: designer.id) 
+      self.update_columns(designer_id: designer.id)
       true
     else
       false
@@ -87,7 +87,7 @@ class Order < ApplicationRecord
   end
 
 
-   
+
 
 
 end
