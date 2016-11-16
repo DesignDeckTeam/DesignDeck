@@ -38,7 +38,7 @@ class Designer::OrdersController < ApplicationController
       @current_stage = @order.current_stage
       redirect_to designer_order_path(@order), notice: "获得了这个订单"
     else
-      redirect_to designer_order_path(@order), alert: "发生了不应该发生的错误"
+      redirect_to designer_orders_path, alert: "抢单失败"
     end
   end
 
