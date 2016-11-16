@@ -2,7 +2,7 @@
 
 <!-- 检测到designer已经提交3张sample时，提供一个可以选择其中一个sample的页面 -->
 
-<div class="container-fluid">
+<!-- <div class="container-fluid"> -->
 
 	<!-- 一定要有3张sample -->
 	<% if Version.decided_version_for_stage(@stage).any? %>
@@ -10,9 +10,9 @@
 			<p>已选择设计师的初步方案，等待设计提交初稿</p>
 		</div>
 	<% else %>
-		<div class="well text-center">
-			<p>选择设计师提交的方案</p>
-		</div>
+
+			<h4>选择设计师提交的方案</h4>
+	 <hr>
 		<% submitted_versions = @stage.versions %>
 
 		<%= form_tag account_order_select_version_path(@order), method: :post do %>
@@ -37,9 +37,12 @@
 				<% end %>
 
 				<br>
-				<h4>请输入选择这个稿件的理由</h4>
-				<%= text_area_tag "order[comment]" %>
+				<h4>选择理由</h4>
+				<%= simple_form_for "order[comment]" do |f| %>
 
+			  <%= f.input :description %>
+				<!-- <%= text_area_tag "order[comment]" %> -->
+         <% end %>
 			</div>
 
 	  		<div class="form-action">
