@@ -2,11 +2,24 @@ module OrdersHelper
   def render_order_step(_order, _user)
 
     case @order.aasm_state
+
     when "placed"
       if _user.designer?
         render "common/designer_order_placed"
       else
         render "common/user_order_placed"
+      end
+    when "paid"
+      if _user.designer?
+        render "common/designer_order_paid"
+      else
+        render "common/user_order_paid"
+      end
+    when "picked"
+      if _user.designer?
+        render "common/designer_order_picked"
+      else
+        render "common/user_order_picked"
       end
     when "versions_submitted"
       if _user.designer?
