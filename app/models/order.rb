@@ -19,7 +19,7 @@
 #
 
 class Order < ApplicationRecord
-
+	mount_uploader :image, ImageUploader
 
 	has_many :stages
 	belongs_to :user
@@ -98,7 +98,7 @@ class Order < ApplicationRecord
   end
 
 
-   
+
 
 
 end
