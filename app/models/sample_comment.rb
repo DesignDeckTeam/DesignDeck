@@ -10,7 +10,6 @@ end
 #  id         :integer          not null, primary key
 #  sample_id  :integer
 #  user_id    :integer
-#  content    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
