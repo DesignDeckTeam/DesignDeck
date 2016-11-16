@@ -37,13 +37,15 @@
 				<% end %>
 				
 				<br>
-				<h4>请输入选择这个稿件的理由</h4>
-				<%= text_area_tag "order[comment]" %>
-
+				<h4>评论</h4>
+				<%= text_area_tag "order[comment]", nil, class: "form-control", style: "width:100%; min-height:200px;" %>
+				<br>
+				<hr>
 			</div>
 
 	  		<div class="form-action">
-	   			<%= submit_tag "Submit", disable_with: "Submitting...", class: "btn btn-primary pull-right" %>
+	   			<%= submit_tag "需要设计师更新", disable_with: "Submitting...", class: "btn btn-primary pull-right" %>
+	   			<%= submit_tag "确认为最终稿", disable_with: "Submitting...", class: "btn btn-success pull-left" %>
 	    	</div>
 
 		<% end %>

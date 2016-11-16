@@ -45,10 +45,11 @@ class Account::OrdersController < ApplicationController
 
     @order = Order.find(params[:order_id])
     @stage = @order.stages.last
+
     @stage.close!
+    
     version = Version.find_by(id: select_version_params[:version_id])
     version.select!
-    @order.select_version!
 
     # binding.pry
     if select_version_params[:comment].present?
@@ -56,10 +57,16 @@ class Account::OrdersController < ApplicationController
       comment.content = select_version_params[:comment]
       comment.user = current_user
       comment.save
-      # comment.set_comment(select_version_params[:comment])
     end
 
-    redirect_to account_order_path(@order), notice: "已选择方案"
+    if params[:commit] == "确认为最终稿"
+      @order.complete!
+      redirect_to account_order_path(@order), notice: "已完成订单"
+    else
+      @order.select_version!
+      redirect_to account_order_path(@order), notice: "已选择方案"
+    end
+    
   end
 
 
