@@ -1,6 +1,13 @@
 class Account::OrdersController < ApplicationController
   before_action :authenticate_user!
 
+  def pay_with_alipay
+    @order = Order.find(params[:order_id])
+    @order.pay!
+
+    redirect_to account_order_path(@order), notice: "使用支付宝成功完成付款"
+  end
+
   def index
     @orders = current_user.orders
   end
@@ -13,7 +20,7 @@ class Account::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     if @order.save
-      redirect_to account_orders_path
+      redirect_to account_order_path(@order)
     else
       render :new
     end

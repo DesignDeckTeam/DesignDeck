@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :orders do
+      post :pay_with_alipay
       post :select_version
     end
   end
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
         resources :versions
       end
     end
-    resources :profiles 
+    resources :profiles
   end
 
   #   resources :orders do
