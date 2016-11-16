@@ -4,7 +4,7 @@
   </div>
 <hr>
   <% if @order.stages.last.versions.present? %>
-    <% @current_stage.versions.each_with_index do |version,i| %>
+    <% @versions.each_with_index do |version,i| %>
   <div class="row">
     <!-- <div class="col-md-12"> -->
 
@@ -26,3 +26,5 @@
    <% end %>
   <% end %>
 </div>
+
+

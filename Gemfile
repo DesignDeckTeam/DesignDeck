@@ -44,6 +44,7 @@ gem "nested_form"
 gem "pry", group: :development
 
 gem "gravtastic" #gravatar
+gem 'mailboxer', github: 'mailboxer/mailboxer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

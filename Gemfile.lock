@@ -7,6 +7,14 @@ GIT
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
 
+GIT
+  remote: git://github.com/mailboxer/mailboxer.git
+  revision: 0e41d6a4aa02eb6e74300e3a985a5c3c18a3c297
+  specs:
+    mailboxer (0.14.0)
+      carrierwave (>= 0.5.8)
+      rails (>= 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -230,6 +238,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  mailboxer!
   mini_magick
   nested_form
   pry
