@@ -26,9 +26,23 @@
   // border-color: #cccccc;
   // border: 1px solid #cccccc
 }
+.container-diy{
+  // margin: auto;
+  // width: 1144px
+}
+.navbar-diy{
+  // height: 60px;
+  box-shadow: 0px 0px 10px #bfbfbf; //x坐标 y坐标 模糊程度 颜色
+}
+.navbar-logo{
+  margin-left: 100px;
+}
 
 .button-height{
   height: 250px;
+}
+.navbar-right li{
+  margin-right: 100px;
 }
 .project-new{
   height: 250px;
@@ -42,4 +56,57 @@
 }
 .font-gray2{
   color: #bfbfbf;
+}
+.onepage{
+  height: 750px;
+}
+.onepage-bg{
+  height: 800px;
+  width: 100%;
+  position: absolute; //绝对定位，如果删除，图片会在内容下面承载页面。
+  background-position: center center;
+  background-size: cover; //屏幕缩小时，图片不压缩。
+}
+#onepagebg{
+  background-image: url("https://ooo.0o0.ooo/2016/11/16/582c1468947dc.jpg");
+}
+.onepage0{
+  height: 400px;
+  // background-color: #5c9cfb;
+}
+.onepage-bg0{
+  height: 450px;
+  width: 100%;
+  position: absolute;
+  background-position: center center;
+  background-size: cover;
+}
+#onepagebg1{
+  background-image: url("https://ooo.0o0.ooo/2016/11/16/582c6517ddf8f.jpg")
+}
+.headh1content{
+  margin-top: 300px;
+  line-height: 75px; //行间距
+}
+.headfontsize h1{
+  font-size: 50pt;
+  // color: #333;
+  // margin-bottom: 50px;
+}
+.headfontsize h4{
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.title-text{
+  // margin-left: 0px;
+}
+.text-top-diy{
+  margin-top: 200px;
+}
+.text-top-diy h3{
+  font-size: 28pt;
+  color: #666;
+}
+.text-top-diy p{
+  color: #ccc;
 }

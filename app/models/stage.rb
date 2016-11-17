@@ -16,6 +16,10 @@ class Stage < ApplicationRecord
 	belongs_to :order
 	has_many :stage_comments
 	has_many :versions
+
+
+
+
 end
 
 # == Schema Information

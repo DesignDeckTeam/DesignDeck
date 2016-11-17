@@ -1,0 +1,25 @@
+
+<div class="row">
+	
+	<!-- t370: 使用conversation显示comments -->
+	<% if stage.conversation.present? %>
+		<h2 class="text-center">评论</h2>	
+		<% stage.conversation.messages.each do |message| %>
+
+			<% if message.sender == current_user %>
+				<p align="right" style="color: grey;"><%= "#{message.sender.email}: " %></p>
+				<div class="well" align="right" style="background: #92E649;">
+					
+					<p align="right" style="font-size: 1.2em; font-weight: bold;"><%=  "#{message.body}" %></p>					
+				</div>					
+			<% else %>
+				<p style="color: grey;"><%= "#{message.sender.email}: " %></p>
+				<div class="well">
+					<p style="font-size: 1.2em; font-weight: bold;"><%=  "#{message.body}" %></p>
+				</div>				
+			<% end %>
+
+		<% end %>		
+	<% end %>
+
+</div>

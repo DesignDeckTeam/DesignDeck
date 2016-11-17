@@ -1,11 +1,9 @@
-<div class="container">
-  <div class="well">
-  <h4 class="text-center">已提交的方案 供用户选择</h4>
-  </div>
+
+
 <hr>
   <% if @order.stages.last.versions.present? %>
     <% @versions.each_with_index do |version,i| %>
-  <div class="row">
+    <div class="row">
     <!-- <div class="col-md-12"> -->
 
       <div class="col-md-2">
@@ -22,9 +20,12 @@
         </div>
         <% end %>
       </div>
+
     </div>
    <% end %>
+
+   <%= render :partial => "common/show_messages", locals: {stage: @order.stages.last} %>
+   
   <% end %>
-</div>
 
 

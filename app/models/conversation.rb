@@ -9,9 +9,10 @@ end
 #
 # Table name: mailboxer_conversations
 #
-#  id         :integer          not null, primary key
-#  subject    :string           default("")
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  stage_id   :integer
+#  id                    :integer          not null, primary key
+#  subject               :string           default("")
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  conversationable_id   :integer
+#  conversationable_type :string
 #
