@@ -19,24 +19,34 @@
 #
 
 class Order < ApplicationRecord
-
+	mount_uploader :image, ImageUploader
 
 	has_many :stages
 	belongs_to :user
   accepts_nested_attributes_for :stages, :allow_destroy => true
 
-  scope :available_for, -> (user){ where("designer_id is null OR designer_id = ?", user.id) }
+  scope :available_for, -> (user){ where("(designer_id is null AND aasm_state != 'placed') OR designer_id = ?", user.id) }
 
   include AASM
 
   aasm do
   	state :placed, :initial => true
+    state :paid
+    state :picked
   	state :versions_submitted
   	state :version_selected
   	state :completed
 
+    event :pay do
+      transitions :from => :placed, :to => :paid
+    end
+
+    event :pick do
+      transitions :paid => :placed, :to => :picked
+    end
+
   	event :submit_initial_versions do
-      transitions :from => :placed, :to => :versions_submitted
+      transitions :from => :picked, :to => :versions_submitted
     end
 
     event :select_version do
@@ -78,8 +88,9 @@ class Order < ApplicationRecord
   end
 
   def set_designer?(designer)
-    if self.designer_id.blank?
+    if self.designer_id.blank? && self.may_pick?
       self.update_columns(designer_id: designer.id) 
+      self.pick!
       true
     else
       false
@@ -87,7 +98,7 @@ class Order < ApplicationRecord
   end
 
 
-   
+
 
 
 end

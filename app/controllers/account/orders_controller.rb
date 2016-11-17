@@ -1,6 +1,13 @@
 class Account::OrdersController < ApplicationController
   before_action :authenticate_user!
 
+  def pay_with_alipay
+    @order = Order.find(params[:order_id])
+    @order.pay!
+
+    redirect_to account_order_path(@order), notice: "使用支付宝成功完成付款"
+  end
+
   def index
     @orders = current_user.orders
   end
@@ -13,7 +20,7 @@ class Account::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     if @order.save
-      redirect_to account_orders_path
+      redirect_to account_order_path(@order)
     else
       render :new
     end
@@ -45,10 +52,11 @@ class Account::OrdersController < ApplicationController
 
     @order = Order.find(params[:order_id])
     @stage = @order.stages.last
+
     @stage.close!
+    
     version = Version.find_by(id: select_version_params[:version_id])
     version.select!
-    @order.select_version!
 
     # binding.pry
     if select_version_params[:comment].present?
@@ -56,10 +64,16 @@ class Account::OrdersController < ApplicationController
       comment.content = select_version_params[:comment]
       comment.user = current_user
       comment.save
-      # comment.set_comment(select_version_params[:comment])
     end
 
-    redirect_to account_order_path(@order), notice: "已选择方案"
+    if params[:commit] == "确认为最终稿"
+      @order.complete!
+      redirect_to account_order_path(@order), notice: "已完成订单"
+    else
+      @order.select_version!
+      redirect_to account_order_path(@order), notice: "已选择方案"
+    end
+    
   end
 
 
@@ -75,7 +89,7 @@ class Account::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:title, :description, :preference_type, :comment_from_customer)
+    params.require(:order).permit(:title, :description, :preference_type, :comment_from_customer, :image)
   end
 
   def select_version_params

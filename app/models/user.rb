@@ -32,7 +32,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  mount_uploaders :designer_products, ImageUploader
+  mount_uploaders :designer_products, DesignerProductsUploader
+
+  acts_as_messageable
 
   serialize :designer_products, JSON
 

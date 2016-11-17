@@ -1,3 +1,32 @@
-		<div class="well text-center">
-			<h3>正待等待设计师完成初步方案</h3>
-		</div>
+<%= simple_form_for [:account, @order] do |f| %>
+<div class="row">
+  <h3>订单概要</h3>
+  <hr>
+  <div class="text-center font-gray">
+    <div class="col-md-4">
+      <h4>价格 </h4>
+      ¥2000
+    </div>
+    <div class="col-md-4">
+      <h4>预计交付时间</h4>
+       <%= f.label Time.now.strftime("%Y年%m月%d日") %>
+    </div>
+    <div class="col-md-4">
+      <h4>设计类型</h4>
+      LOGO
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <br>
+  <br>
+  <div class="col-md-12 text-center">
+    <% if @order.aasm_state = "placed" %>
+      <%= link_to("使用支付宝付款", account_order_pay_with_alipay_path(@order), :method => :post, :class => "btn btn-danger") %>
+    <% else %>
+      <p class="text-center">此订单已完成付款</p>
+    <% end %>
+  </div>
+</div>
+<% end %>
