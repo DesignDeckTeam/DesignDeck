@@ -43,7 +43,7 @@
           <%= order.preference_type %>
         </td>
         <td width="10%">
-          <%= order.created_at %>
+          <%= order.created_at.strftime("%Y年%m月%d日%H:%M") %>
         </td>
         <td>
           <%= link_to("查看订单", designer_order_path(order), class: "btn btn-primary btn-sm") %>

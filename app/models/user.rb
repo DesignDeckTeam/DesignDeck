@@ -57,11 +57,11 @@ class User < ApplicationRecord
                                             created_at: message_timestamp,
                                             updated_at: message_timestamp).build
 
-    # conversation.update_attributes(:conversationable, resource)
     conversation.update_attribute(:conversationable_id, resource.id)
     conversation.update_attribute(:conversationable_type, resource.class)
 
-
+    # recommended by Xdite
+    # conversation.conversationable_id = resource
     conversation.save
 
     message.deliver false, sanitize_text

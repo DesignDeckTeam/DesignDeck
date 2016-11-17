@@ -1,5 +1,7 @@
 <div class="container">
 	<br>
-	<%= render :partial => "common/order_info", :locals => { order: order } %>
+	<% unless order.placed? && !current_user.designer? %>
+		<%= render :partial => "common/order_info", :locals => { order: order } %>
+	<% end %>
 	<%= render_order_step(order, user) %>
 </div>

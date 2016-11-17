@@ -3,29 +3,32 @@
 	<!-- t370: 使用conversation显示comments -->
 	<% if stage.conversation.present? %>
 
-		<h2>评论</h2>
-		<div class="well">
+		<div class="container-fluid">
+			<h2>评论</h2>
+			<div class="well">
 
-			
-			<% stage.conversation.messages.each do |message| %>
+				
+				<% stage.conversation.messages.each do |message| %>
 
-				<div class="row" style="margin-left: 15px; margin-right: 15px;">
-	 				<% if message.sender == current_user %>
-						<p align="right" style="color: grey;"><%= "#{message.sender.email}: " %></p>
-						<div class="well" align="right" style="background: #92E649;float: right;">					
-							<p align="right" style="font-size: 1.2em; font-weight: bold;"><%=  "#{message.body}" %></p>					
-						</div>					
-					<% else %>
-						<p style="color: grey;"><%= "#{message.sender.email}: " %></p>
-						<div class="well" style="float: left;">
-							<p style="font-size: 1.2em; font-weight: bold;"><%=  "#{message.body}" %></p>
-						</div>				
-					<% end %>
-	 			</div>
+					<div class="row" style="margin-left: 15px; margin-right: 15px;">
+		 				<% if message.sender == current_user %>
+							<p align="right" style="color: grey;"><%= "#{message.sender.email}: " %></p>
+							<div class="well" align="right" style="background: #92E649;float: right;">					
+								<p align="right" style="font-size: 1.2em; font-weight: bold;"><%=  "#{message.body}" %></p>					
+							</div>					
+						<% else %>
+							<p style="color: grey;"><%= "#{message.sender.email}: " %></p>
+							<div class="well" style="float: left;">
+								<p style="font-size: 1.2em; font-weight: bold;"><%=  "#{message.body}" %></p>
+							</div>				
+						<% end %>
+		 			</div>
 
-			<% end %>		
+				<% end %>		
 
-		</div>	
+			</div>				
+		</div>
+
 			
 	<% end %>
 

@@ -111,6 +111,48 @@
   color: #ccc;
 }
 
+.cart{
+  background-color: #eeeeee;
+  padding: 70px;
+}
+.cart-image{
+  margin: 25px 0px 15px 15px;
+}
+.cart-info{
+  // height: 240px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 10px #bfbfbf; //x坐标 y坐标 模糊程度 颜色
+}
+.cart-info h3{
+  margin-top: 30px;
+  color: #666666;
+}
+.checkout-button{
+  height: 65px;
+  margin-top: 40px;
+}
+.cart-text{
+  margin-top: 30px;
+  color: #666666;
+}
+.cart-text2 p{
+  color: #bfbfbf;
+}
+.cart-text2 hr{
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+.text-time{
+  margin-top: 50px;
+  color: #666666;
+}
+.text-time hr{
+  border-top: 1px solid #bfbfbf; //hr 的颜色设置
+}
+.text-time h4{
+  margin-bottom: 20px;
+}
+
 .landing-form-hight{
   height: 400px;
 }

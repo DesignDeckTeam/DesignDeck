@@ -3,9 +3,8 @@
   <hr>
   <div class="row">
     <div class="col-md-3">
-      <a href='<%= new_account_order_path %>'>
-
-      <%#= link_to new_account_order_path do %>
+      <!-- <a href='<%= new_account_order_path %>'> -->
+      <%= link_to new_account_order_path do %>
         <button class="btn btn-primary btn-block">
 
         <div class="project-new">
@@ -14,7 +13,7 @@
          </div>
        </button>
        </a>
-       <%# end %>
+       <% end %>
      </div>
     <% @orders.each do |order| %>
     <%= link_to account_order_path(order) do %>
