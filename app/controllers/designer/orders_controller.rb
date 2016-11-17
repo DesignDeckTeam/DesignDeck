@@ -55,7 +55,6 @@ class Designer::OrdersController < ApplicationController
       redirect_to designer_order_path(@order), alert: "请至少提交3种不同类型的稿件方案供客户选择"
       return
     end
-
       # binding.pry
     if @order.may_submit_initial_versions?
       @order.submit_initial_versions!
