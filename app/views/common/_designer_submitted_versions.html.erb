@@ -1,7 +1,12 @@
 <!-- designer提交的versions, 供designer提交客户之前的预览 -->
 
 <div class="container-fluid">
-  <h2>提交新的稿件</h2>
+  <% if@order.versions_submitted? %>
+    <h2>已提交的稿件</h2>
+  <% else %>
+    <h2>提交新的稿件</h2>
+  <% end %>
+  
 </div>
 
 
@@ -27,14 +32,12 @@
         <button class="btn btn-default pull-right" style="height: 40px; width: 40px; border-radius: 20px; background-color: #69B5FD; color: white;" disabled: "disabled" >
           <%= "#{i+1}" %>
         </button>
-      </div>      
-         
+      </div>
+
     </div>
    <% end %>
 
-   
+
   </div>
 </div>
 <% end %>
-
- 
