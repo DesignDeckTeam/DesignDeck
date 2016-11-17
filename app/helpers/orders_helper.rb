@@ -24,17 +24,33 @@ module OrdersHelper
     when "versions_submitted"
       if _user.designer?
         render "common/designer_versions_submitted"
-      else 
+      else
         render "common/user_versions_submitted"
       end
     when "version_selected"
       if _user.designer?
         render "common/designer_version_selected"
-      else 
+      else
         render "common/user_version_selected"
-      end      
+      end
     when "completed"
       render "common/completed"
-    end    
+    end
+  end
+
+  def all_user_order_aasm_state
+    case order.aasm_state
+    when "paid"
+      已付款
+    when "picked"
+      已接单
+    when "versions_submitted"
+      已提交
+    when "version_selected"
+      已确认
+    when "completed"
+      已完成
+    end
+
   end
 end
