@@ -12,26 +12,4 @@
 	</div>
 
 	<%= render :partial => "common/show_messages", locals: {stage: order.stages.closed.last} %>	
-
-	<% if false %>
-		<div class="row">
-		<h2 class="text-center">评论</h2>
-		<!-- t370: 使用conversation显示comments -->
-		<% order.stages.closed.last.conversation.messages.each do |message| %>
-			<div class="well">
-				<% if message.sender == current_user %>
-					<div align="right">
-						<p class="text-align: right"><%= "#{message.sender.email}: " %></p>
-						<p align="right" style="font-size: 1.2em; font-weight: bold;"><%=  "#{message.body}" %></p>					
-					</div>					
-				<% else %>
-					<p><%= "#{message.sender.email}: " %></p>
-					<p style="font-size: 1.2em; font-weight: bold;"><%=  "#{message.body}" %></p>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
-	<% end %>
-
-	
 </div>
