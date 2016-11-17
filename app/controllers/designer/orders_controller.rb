@@ -55,7 +55,7 @@ class Designer::OrdersController < ApplicationController
     minimum_versions_count = @order.aasm_state == "picked" ? 1 : 1
 
     if @current_stage.versions.count < minimum_versions_count
-      redirect_to designer_order_path(@order), alert: "请至少提交3种不同类型的稿件方案供客户选择"
+      redirect_to designer_order_path(@order), alert: "请提交稿件方案供客户选择"
       return
     end
       # binding.pry
