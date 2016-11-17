@@ -3,13 +3,13 @@
   <h2 class= "well text-center">帐户信息</h2>
     <div class="row">
       <div class="col-md-3">
-        <%= image_tag current_user.gravatar_url(:size => 200) %>
+        <%= image_tag current_user.gravatar_url(:size => 150, :default => 'http://ww3.sinaimg.cn/large/65e4f1e6jw1f9v9lylcsmj20460463ye.jpg') %>
       </div>
-      <div class="col-md-7 thumbnail">
+      <div class="col-md-7">
         <h4>姓名：<%= @users.name %></h4>
         <h4>邮箱：<%= @users.email %></h4>
         <h4>简介：</h4>
-        <p class="thumbnail"><%= @users.designer_intro %><p>
+        <%= @users.designer_intro %>
       </div>
       <div class="col-md-2 pull-right">
         <%= link_to("编辑帐户信息",edit_designer_profile_path(current_user), class: "btn bt-sm btn-default") %>
@@ -19,7 +19,7 @@
 
    <br><br>
 
-   <h2 class="text-center"><u> 作品展示 </h2>
+   <h3 class="well text-center"> 作品展示 </h3>
 
    <br><br>
 

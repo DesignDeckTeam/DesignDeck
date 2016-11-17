@@ -11,13 +11,5 @@
 		<% end %>
 	</div>
 
-	<div class="row text-center">
-		<h2>评论</h2>
-		<% order.stages.closed.last.stage_comments.each do |comment| %>
-			<div class="well">
-				<p><%= comment.content %></p>
-			</div>
-		<% end %>
-	</div>
-
+	<%= render :partial => "common/show_messages", locals: {stage: order.stages.closed.last} %>	
 </div>

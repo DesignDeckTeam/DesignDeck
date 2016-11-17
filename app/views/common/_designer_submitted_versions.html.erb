@@ -1,0 +1,40 @@
+<!-- designer提交的versions, 供designer提交客户之前的预览 -->
+
+<div class="container-fluid">
+  <h2>提交新的稿件</h2>
+</div>
+
+
+<% if @order.stages.last.versions.present? %>
+
+<div class="container-fluid">
+  <div class="well">
+
+    <% @versions.each_with_index do |version,i| %>
+    <div class="row">
+
+      <div class="col-md-11">
+
+        <% version.samples.each do |sample| %>
+          <div class="col-md-3">
+            <%= link_to(render_sample(sample), designer_order_stage_version_path(@order, @order.stages.last, version)) %>
+          </div>
+        <% end %>
+
+      </div>
+
+      <div class="col-md-1">
+        <button class="btn btn-default pull-right" style="height: 40px; width: 40px; border-radius: 20px; background-color: #69B5FD; color: white;" disabled: "disabled" >
+          <%= "#{i+1}" %>
+        </button>
+      </div>      
+         
+    </div>
+   <% end %>
+
+   
+  </div>
+</div>
+<% end %>
+
+ 

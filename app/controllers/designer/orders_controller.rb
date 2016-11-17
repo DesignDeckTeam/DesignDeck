@@ -48,11 +48,14 @@ class Designer::OrdersController < ApplicationController
 
     @order = Order.find(params[:order_id])
     @current_stage = @order.current_stage
+    comment = comment_param[:comment]
 
-    minimum_versions_count = @order.aasm_state == "picked" ? 3 : 1
+    # binding.pry
+
+    minimum_versions_count = @order.aasm_state == "picked" ? 1 : 1
 
     if @current_stage.versions.count < minimum_versions_count
-      redirect_to designer_order_path(@order), alert: "请至少提交3种不同类型的稿件方案供客户选择"
+      redirect_to designer_order_path(@order), alert: "请提交稿件方案供客户选择"
       return
     end
       # binding.pry
@@ -64,6 +67,15 @@ class Designer::OrdersController < ApplicationController
       redirect_to designer_order_path(@order), alert: "发生了不应该发生的错误"
       return
     end
+
+    # 添加评论
+    # binding.pry
+    if @current_stage.conversation.blank?
+      current_user.send_message(@order.user, comment, "stage#{@current_stage.id} conversation", @current_stage)
+    else
+      current_user.reply_to_conversation(@current_stage.conversation, comment)
+    end
+
     redirect_to designer_order_path(@order), notice: "已向用户提交样本"     
     
   end
@@ -77,10 +89,9 @@ class Designer::OrdersController < ApplicationController
 
   end
 
-  # def get_current_order
-  #   @order = Order.find(params[:id])
-  #   @current_stage = @order.current_stage
-  # end
+  def comment_param
+    params.require(:order).permit(:comment)
+  end
 
 
 end

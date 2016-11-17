@@ -24,17 +24,19 @@ module OrdersHelper
     when "versions_submitted"
       if _user.designer?
         render "common/designer_versions_submitted"
-      else 
+      else
         render "common/user_versions_submitted"
       end
     when "version_selected"
       if _user.designer?
         render "common/designer_version_selected"
-      else 
+      else
         render "common/user_version_selected"
-      end      
+      end
     when "completed"
       render "common/completed"
-    end    
+    end
   end
+
+  
 end

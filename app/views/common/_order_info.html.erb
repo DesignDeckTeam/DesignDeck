@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>委托设计单</h2>
+  <hr>
+  <div class="row">
+    <div class="col-md-3">
+      <% if order.image.present? %>
+        <%= image_tag(order.image.thumb.url) %>
+      <% end %>
+    </div>
+    <div class="col-md-4 font-gray">
+      <h3><%= order.title %></h3>
+      <p><%= order.description %></p>
+      <p class="font-gray2"><%= "于" + order.created_at.strftime("%Y年%m月%d日 %H:%M") + "生成"%></p>
+    </div>
+    <div class="col-md-2 col-md-offset-3">
+      <h5 class="font-gray">设计样式：<%= order.preference_type %></h5>
+    </div>
+  </div>
+</div>
+<br><br>
+<hr>

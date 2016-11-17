@@ -1,4 +1,7 @@
 class Stage < ApplicationRecord
+
+  has_one :conversation, as: :conversationable
+
   include AASM
 
   aasm do
@@ -13,6 +16,10 @@ class Stage < ApplicationRecord
 	belongs_to :order
 	has_many :stage_comments
 	has_many :versions
+
+
+
+
 end
 
 # == Schema Information

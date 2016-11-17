@@ -87,6 +87,10 @@ class Order < ApplicationRecord
     Version.where(stage: self.stages.ids).where(aasm_state: "selected").last
   end
 
+  def designer
+    User.find_by(id:self.designer_id)
+  end
+
   def set_designer?(designer)
     if self.designer_id.blank? && self.may_pick?
       self.update_columns(designer_id: designer.id) 

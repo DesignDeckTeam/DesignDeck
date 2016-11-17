@@ -1,0 +1,27 @@
+<div class="container">
+<div class="row">
+    <div class="col-md-12 devise-diy-shin">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="well">
+                <!-- <div class="landing-form-hight"> -->
+                    <h2 class="text-center">登录页面</h2>
+                    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div class="form-inputs">
+                        <%= f.input :email, label: "📮邮箱", required: false, autofocus: true %>
+                        <%= f.input :password, label: "🔑密码", required: false %>
+                        <%= f.input :remember_me, label: "记住密码", as: :boolean if devise_mapping.rememberable? %>
+                    </div>
+
+                    <div class="form-actions">
+                        <%= f.button :submit, "登入", class: "btn-primary" %>
+                        <%= render "devise/shared/links" %>
+                    </div>
+                    <% end %>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

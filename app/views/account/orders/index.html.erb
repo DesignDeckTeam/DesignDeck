@@ -20,7 +20,7 @@
     <div class="col-md-3 blue-btn">
       <div class="thumbnail">
         <div class="button-height text-center">
-          <h4><%= order.title %></h4>
+          <h4><%= truncate(order.title, length:10) %></h4>
           <hr>
           <br>
           <br>
@@ -30,7 +30,7 @@
           <br>
           <br>
           <br>
-          <p><%= order.created_at %></p>
+          <p><%= order.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
         </div>
       </div>
     </div>
