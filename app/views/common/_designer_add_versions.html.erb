@@ -1,2 +1,12 @@
-<%= link_to("上傳稿件", new_designer_order_stage_version_path(order, order.current_stage), :class => "btn btn-large btn-default") %>
-<%= link_to("提交样张给客户", designer_order_submit_versions_path(order), :class => "btn btn-large btn-default", style: "margin-left:15px;", method: :post) %>
+
+<div class="container-fluid">
+	<%= link_to("添加稿件", new_designer_order_stage_version_path(order, order.current_stage), :class => "btn btn-large btn-primary") %>
+
+
+	<%= form_tag designer_order_submit_versions_path(order) do -%>
+	  <%= render :partial => "common/comment_area" %>
+	  <%= submit_tag '发送稿件和评论给客户', :class => "btn btn-large btn-success pull-right" %>
+	<% end -%>
+</div>
+
+	

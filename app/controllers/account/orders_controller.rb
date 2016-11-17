@@ -59,11 +59,20 @@ class Account::OrdersController < ApplicationController
     version.select!
 
     # binding.pry
+    # 在当前的stage中加conversation
     if select_version_params[:comment].present?
-      comment = @stage.stage_comments.build
-      comment.content = select_version_params[:comment]
-      comment.user = current_user
-      comment.save
+      # 获取conversation
+      if @stage.conversation.blank?
+        current_user.send_message(@order.designer, select_version_params[:comment], "stage#{@stage.id} conversation", @stage)
+      else
+        current_user.reply_to_conversation(@stage.conversation, select_version_params[:comment])
+      end
+
+
+      # comment = @stage.stage_comments.build
+      # comment.content = select_version_params[:comment]
+      # comment.user = current_user
+      # comment.save
     end
 
     if params[:commit] == "确认为最终稿"
