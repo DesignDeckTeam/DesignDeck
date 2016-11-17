@@ -1,7 +1,12 @@
 <!-- designer提交的versions, 供designer提交客户之前的预览 -->
 
 <div class="container-fluid">
-  <h2>提交新的稿件</h2>
+  <% if@order.versions_submitted? %>
+    <h2>已提交的稿件</h2>
+  <% else %>
+    <h2>提交新的稿件</h2>
+  <% end %>
+  
 </div>
 
 
