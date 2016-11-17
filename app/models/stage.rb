@@ -1,4 +1,7 @@
 class Stage < ApplicationRecord
+
+  has_one :conversation, as: :conversationable
+
   include AASM
 
   aasm do
