@@ -5,11 +5,11 @@
       <div class="col-md-3">
         <%= image_tag current_user.gravatar_url(:size => 200) %>
       </div>
-      <div class="col-md-7 thumbnail">
+      <div class="col-md-7">
         <h4>姓名：<%= @users.name %></h4>
         <h4>邮箱：<%= @users.email %></h4>
         <h4>简介：</h4>
-        <p class="thumbnail"><%= @users.designer_intro %><p>
+        <p><%= @users.designer_intro %><p>
       </div>
       <div class="col-md-2 pull-right">
         <%= link_to("编辑帐户信息",edit_designer_profile_path(current_user), class: "btn bt-sm btn-default") %>
