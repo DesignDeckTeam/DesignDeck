@@ -1,14 +1,8 @@
 
 
 
-<div class="well text-center">
-  <h3>用户已选择好方案</h3>
-</div>
- <%= render :partial => "common/selected_version", :locals => { order: @order } %>
- <%= render :partial => "common/designer_versions_submitted" %>
-
-<h3> 上传设计好的图片给用户 </h3>
-
+<h2 class="text-center">用户选择的方案</h2>
+<%= render partial: "common/selected_version", :locals => { order: @order } %>
+<%= render partial: "common/designer_versions_submitted" %>
 <%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @order.stages.closed.last } %>
-
 <br><br>
