@@ -1,5 +1,8 @@
 <div class="container">
 	<br>
-	<%= render :partial => "designer/orders/info", :locals => { order: order } %>
-	<!-- <%= render_order_step(order, user) %> -->
+	<% if current_user.is_designer %>
+		<%= render :partial => "designer/orders/info", :locals => { order: order } %>
+	<% else %>
+		<%= render_order_step(order, user) %>
+	<% end %>
 </div>
