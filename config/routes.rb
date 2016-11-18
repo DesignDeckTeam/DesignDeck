@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'designers/show'
+
   devise_for :users
 
   namespace :account do
@@ -19,6 +21,8 @@ Rails.application.routes.draw do
     end
     resources :profiles
   end
+
+  resources :designers, only: [:show, :edit, :update]
 
   #   resources :orders do
   #     post :submit_versions

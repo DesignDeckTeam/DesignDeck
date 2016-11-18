@@ -20,6 +20,7 @@
 #  designer_intro            :text
 #  designer_production_image :string
 #  designer_products         :string
+#  token                     :string
 #
 # Indexes
 #
