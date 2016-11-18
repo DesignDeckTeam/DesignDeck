@@ -20,6 +20,7 @@
 #  designer_intro            :text
 #  designer_production_image :string
 #  designer_products         :string
+#  token                     :string
 #
 # Indexes
 #
@@ -35,6 +36,8 @@ class User < ApplicationRecord
   mount_uploaders :designer_products, DesignerProductsUploader
 
   acts_as_messageable
+
+  before_create :generate_token
 
   serialize :designer_products, JSON
 
@@ -67,11 +70,17 @@ class User < ApplicationRecord
     message.deliver false, sanitize_text
   end
 
-  def is_user
+  def is_user?
     !is_designer
   end
 
   def designer?
     is_designer
+  end
+
+  private
+
+  def generate_token
+    self.token = SecureRandom.uuid
   end
 end
