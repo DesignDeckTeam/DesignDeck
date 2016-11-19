@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20161118135235) do
   create_table "sample_comments", force: :cascade do |t|
     t.integer  "sample_id"
     t.integer  "user_id"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -114,21 +115,22 @@ ActiveRecord::Schema.define(version: 20161118135235) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                     default: "", null: false
+    t.string   "encrypted_password",        default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",             default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.boolean  "is_designer"
     t.string   "name"
     t.text     "designer_intro"
+    t.string   "designer_production_image"
     t.string   "designer_products"
     t.string   "token"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -137,13 +139,8 @@ ActiveRecord::Schema.define(version: 20161118135235) do
 
   create_table "versions", force: :cascade do |t|
     t.integer  "stage_id"
-    t.string   "image_from_designer"
-    t.string   "image_from_customer"
-    t.string   "for_status"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.text     "comment_from_customer"
-    t.text     "comment_from_designer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "aasm_state"
   end
 
