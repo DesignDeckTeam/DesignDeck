@@ -1,6 +1,16 @@
 <% selected_version = order.last_selected_version %>
 <% samples  = selected_version.samples %>
 
+
+<!-- 显示最新一个stage的评论，还是显示最后一条closed的stage的评论 -->
+<% if order.stages.last.conversation.present? %>
+	<% stage = order.stages.last %>
+<% else %>
+	<% stage = order.stages.closed.last %>
+<% end %>
+
+
+
 <div class="container-fluid">
 
 	<div class="row">
@@ -10,6 +20,7 @@
 			</div>
 		<% end %>
 	</div>
-
-	<%= render :partial => "common/show_messages", locals: {stage: order.stages.closed.last} %>	
+	<h2>评论</h2>
+	<%= render :partial => "common/show_messages", locals: {stage: stage} %>
+	<%= link_to "查看所有对话记录", conversations_for_order_path(stage.order), class: "btn btn-success pull-right" %>
 </div>

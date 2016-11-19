@@ -32,8 +32,9 @@
 					</div>
 					<hr>
 				<% end %>
-
+				<h2>评论</h2>
 				<%= render :partial => "common/show_messages", locals: {stage: @order.stages.last} %>
+				<%= link_to "查看所有对话记录", conversations_for_order_path(stage.order), class: "btn btn-success" %>
 
 				<br>
 				<%= render :partial => "common/comment_area" %>
