@@ -26,18 +26,7 @@
           <%= order.description %>
         </td>
         <td width="10%">
-          <% case order.aasm_state %>
-          <% when "paid" %>
-            <p> 已付款 </p>
-          <% when "picked" %>
-            <p> 已接单 </p>
-          <% when "versions_submitted" %>
-            <p> 已提交 </p>
-          <% when "version_selected" %>
-            <p> 已确认 </p>
-          <% when "completed" %>
-            <p> 已完成 </p>
-          <% end %>
+          <%= render partial: "common/order_state_translate", locals: {order: order} %>
         </td>
         <td>
           <%= order.preference_type %>
