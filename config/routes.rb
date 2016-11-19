@@ -19,7 +19,6 @@ Rails.application.routes.draw do
         resources :versions
       end
     end
-    resources :profiles
   end
 
   resources :designers, only: [:show, :edit, :update]
