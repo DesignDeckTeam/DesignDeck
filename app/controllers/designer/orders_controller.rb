@@ -48,7 +48,6 @@ class Designer::OrdersController < ApplicationController
 
     @order = Order.find(params[:order_id])
     @current_stage = @order.current_stage
-    comment = comment_param[:comment]
 
     # binding.pry
 
@@ -58,7 +57,7 @@ class Designer::OrdersController < ApplicationController
       redirect_to designer_order_path(@order), alert: "请提交稿件方案供客户选择"
       return
     end
-      # binding.pry
+
     if @order.may_submit_initial_versions?
       @order.submit_initial_versions!
     elsif @order.may_submit_new_versions?
@@ -70,11 +69,10 @@ class Designer::OrdersController < ApplicationController
 
     # 添加评论
     # binding.pry
-    if @current_stage.conversation.blank?
-      current_user.send_message(@order.user, comment, "stage#{@current_stage.id} conversation", @current_stage)
-    else
-      current_user.reply_to_conversation(@current_stage.conversation, comment)
-    end
+    # 在当前的stage中加conversation
+    
+    comment = comment_param[:comment]
+    send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment)
 
     redirect_to designer_order_path(@order), notice: "已向用户提交样本"     
     

@@ -1,9 +1,14 @@
+<br>
+<br>
+
+
 <div class="container-fluid">
 
-	<%= link_to "返回稿件列表", designer_order_path(@order), class: "btn btn-default pull-left" %>
+	<div class="container-fluid">
+    <%= link_to "返回稿件列表", designer_order_path(@order), class: "btn btn-default pull-left" %>
+  </div> 
 	<br>
-	<br>
-	<br>
+
 
   <% @samples.each_with_index do |sample, i| %>
     <div class="col-md-3">
