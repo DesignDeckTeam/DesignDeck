@@ -22,5 +22,5 @@
 	</div>
 	<h2>评论</h2>
 	<%= render :partial => "common/show_messages", locals: {stage: stage} %>
-	<%= link_to "查看所有对话记录", conversations_for_order_path(stage.order), class: "btn btn-success pull-right" %>
+	<%= render :partial => "common/check_all_messages_button", locals: {order: stage.order} %>
 </div>

@@ -9,10 +9,11 @@ class Designer::OrdersController < ApplicationController
     @orders = Order.available_for(current_user)
   end
 
+
+  # 如果user已经选择了提交的version，designer打开show页面时就生成新的一个stage
   def show
     @order = Order.find(params[:id])
-
-    # 如果user已经选择了提交的version，designer打开show页面时就生成新的一个stage
+    
     case @order.aasm_state
     when "version_selected"
       if @order.stages.last.closed?
