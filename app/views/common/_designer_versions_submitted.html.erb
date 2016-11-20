@@ -4,7 +4,6 @@
 <%= render :partial => "common/designer_submitted_versions" %>
 
 <h2>评论</h2>
-<%= render :partial => "common/check_all_messages_button", locals: {order: @order.stages.last.order} %>
 <%= render :partial => "common/show_messages", locals: {stage: @order.stages.last} %>
 
 <%= form_tag designer_order_submit_additional_comment_path(@order) do -%>

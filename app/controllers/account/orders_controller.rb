@@ -1,6 +1,8 @@
 class Account::OrdersController < ApplicationController
   before_action :authenticate_user!
 
+  layout "order_nav"
+
   def pay_with_alipay
     @order = Order.find(params[:order_id])
     @order.pay!

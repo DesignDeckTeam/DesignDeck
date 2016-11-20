@@ -1,7 +1,34 @@
-<div class="container">
-	<br>
-	<% unless order.placed? && !current_user.designer? %>
-		<%= render :partial => "common/order_info", :locals => { order: order } %>
-	<% end %>
-	<%= render_order_step(order, user) %>
+
+<% if false %>
+	<div class="container">
+		<br>
+		<% unless order.placed? && !current_user.designer? %>
+			<%= render :partial => "common/order_info", :locals => { order: order } %>
+		<% end %>
+		<%= render_order_step(order, user) %>
+	</div>
+<% end %>
+	
+
+
+<ul class="nav nav-tabs nav-justified">                
+    <li><a data-toggle="tab" href="#order_info">订单</a></li>
+    <li class="active"><a data-toggle="tab" href="#stages">作品</a></li>
+    <li><a data-toggle="tab" href="#conversation">对话</a></li>  
+</ul>
+
+<div class="tab-content">
+    <div id="order_info" class="tab-pane fade">
+        <% unless order.placed? && !current_user.designer? %>
+			<%= render :partial => "common/order_info", :locals => { order: order } %>
+		<% end %>
+    </div>
+
+    <div id="stages" class="tab-pane fade in active">
+        <%= render_order_step(order, user) %>
+    </div>
+
+    <div id="conversation" class="tab-pane fade">
+        <%= render :partial => "common/conversation_for_order", :locals => { order: @order } %>
+    </div>
 </div>
