@@ -3,3 +3,11 @@
 </div>
 
 <%= render :partial => "common/selected_version", :locals => { :order => @order } %>
+
+	
+<%= form_tag account_order_submit_additional_comment_path(@order) do -%>
+<%= render :partial => "common/comment_area" %>
+	<div class="container-fluid">		
+	  	<%= submit_tag '补充评论', :class => "btn btn-lg btn-success pull-right" %>	
+	</div>
+<% end -%>	

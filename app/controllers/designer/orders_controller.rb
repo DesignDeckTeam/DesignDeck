@@ -2,6 +2,8 @@ class Designer::OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :designer_required
 
+  layout "order_nav"
+
   # 不能让其他designer查看到不属于自己的order
   # before_action :allow_legal_designers
 
@@ -9,11 +11,11 @@ class Designer::OrdersController < ApplicationController
     @orders = Order.available_for(current_user)
   end
 
+
+  # 如果user已经选择了提交的version，designer打开show页面时就生成新的一个stage
   def show
     @order = Order.find(params[:id])
-
-    # binding.pry
-
+    
     case @order.aasm_state
     when "version_selected"
       if @order.stages.last.closed?
@@ -27,6 +29,17 @@ class Designer::OrdersController < ApplicationController
 
   def update
   end
+
+  def submit_additional_comment
+    @order = Order.find(params[:order_id])
+    @stage = @order.stages.last
+    send_message_to_resource(current_user, 
+                             @order.user, @stage, 
+                             "stage#{@stage.id} conversation", 
+                             comment_param[:comment])    
+    
+    redirect_to designer_order_path(@order), notice: "已发送评论"
+  end  
 
 
   # order必须是在paid的状态下
@@ -48,7 +61,6 @@ class Designer::OrdersController < ApplicationController
 
     @order = Order.find(params[:order_id])
     @current_stage = @order.current_stage
-    comment = comment_param[:comment]
 
     # binding.pry
 
@@ -58,7 +70,7 @@ class Designer::OrdersController < ApplicationController
       redirect_to designer_order_path(@order), alert: "请提交稿件方案供客户选择"
       return
     end
-      # binding.pry
+
     if @order.may_submit_initial_versions?
       @order.submit_initial_versions!
     elsif @order.may_submit_new_versions?
@@ -68,13 +80,10 @@ class Designer::OrdersController < ApplicationController
       return
     end
 
-    # 添加评论
-    # binding.pry
-    if @current_stage.conversation.blank?
-      current_user.send_message(@order.user, comment, "stage#{@current_stage.id} conversation", @current_stage)
-    else
-      current_user.reply_to_conversation(@current_stage.conversation, comment)
-    end
+    # 在当前的stage中加conversation
+    
+    comment = comment_param[:comment]
+    send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment)
 
     redirect_to designer_order_path(@order), notice: "已向用户提交样本"     
     

@@ -1,6 +1,8 @@
 class Account::OrdersController < ApplicationController
   before_action :authenticate_user!
 
+  layout "order_nav"
+
   def pay_with_alipay
     @order = Order.find(params[:order_id])
     @order.pay!
@@ -24,6 +26,18 @@ class Account::OrdersController < ApplicationController
     else
       render :new
     end
+  end
+
+
+  def submit_additional_comment
+    @order = Order.find(params[:order_id])
+    @stage = @order.stages.last
+    send_message_to_resource(current_user, 
+                             @order.designer, @stage, 
+                             "stage#{@stage.id} conversation", 
+                             comment_param[:comment])    
+    
+    redirect_to account_order_path(@order), notice: "已发送评论"
   end
 
   def show
@@ -51,6 +65,12 @@ class Account::OrdersController < ApplicationController
     # binding.pry
 
     @order = Order.find(params[:order_id])
+
+    unless @order.versions_submitted?
+      redirect_to account_order_path, alert: "当前订单状态不是submitted"
+      return
+    end
+
     @stage = @order.stages.last
 
     @stage.close!
@@ -58,22 +78,11 @@ class Account::OrdersController < ApplicationController
     version = Version.find_by(id: select_version_params[:version_id])
     version.select!
 
-    # binding.pry
     # 在当前的stage中加conversation
-    if select_version_params[:comment].present?
-      # 获取conversation
-      if @stage.conversation.blank?
-        current_user.send_message(@order.designer, select_version_params[:comment], "stage#{@stage.id} conversation", @stage)
-      else
-        current_user.reply_to_conversation(@stage.conversation, select_version_params[:comment])
-      end
-
-
-      # comment = @stage.stage_comments.build
-      # comment.content = select_version_params[:comment]
-      # comment.user = current_user
-      # comment.save
-    end
+    send_message_to_resource(current_user, 
+                             @order.designer, @stage, 
+                             "stage#{@stage.id} conversation", 
+                             select_version_params[:comment])
 
     if params[:commit] == "确认为最终稿"
       @order.complete!
@@ -103,6 +112,10 @@ class Account::OrdersController < ApplicationController
 
   def select_version_params
     params.require(:order).permit(:version_id, :comment)
+  end
+
+  def comment_param
+    params.require(:order).permit(:comment)
   end
 
 

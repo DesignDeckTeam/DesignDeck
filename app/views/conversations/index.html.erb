@@ -1,0 +1,12 @@
+
+
+<div class="container-fluid">
+	<h2>全部评论</h2>
+</div>
+
+<div class="container-fluid">
+	<% @stages.each do |stage| %>
+	<%= render partial: "common/show_messages", locals: {stage: stage} %>
+	<% end %>
+</div>
+	
