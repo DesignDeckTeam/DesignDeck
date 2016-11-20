@@ -4,7 +4,7 @@
 <%= render :partial => "common/designer_submitted_versions" %>
 
 <h2>评论</h2>
-<%= link_to "查看所有对话记录", conversations_for_order_path(@order.stages.last.order), class: "btn btn-success pull-right" %>
+<%= render :partial => "common/check_all_messages_button", locals: {order: @order.stages.last.order} %>
 <%= render :partial => "common/show_messages", locals: {stage: @order.stages.last} %>
 
 <%= form_tag designer_order_submit_additional_comment_path(@order) do -%>
