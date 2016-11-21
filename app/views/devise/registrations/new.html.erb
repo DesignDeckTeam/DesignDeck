@@ -13,7 +13,10 @@
                             <%= f.input :email, label: "📮邮箱", required: true, autofocus: true %>
                             <%= f.input :password, label: "🔑密码", required: true, hint: ("至少#{@minimum_password_length} 个字母" if @minimum_password_length) %>
                             <%= f.input :password_confirmation, label: "确认密码", required: true %>
-                            <%= f.select :role, 选择角色: User.roles.keys.to_a %>
+                            <%= f.radio_button(:role, "用户") %>
+                            <%= label(:role, "用户注册") %>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <%= f.radio_button(:role, "设计师") %>
+                            <%= label(:role, "设计师注册") %>
                         </div>
                         <br>
 
