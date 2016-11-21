@@ -13,7 +13,9 @@
                             <%= f.input :email, label: "📮邮箱", required: true, autofocus: true %>
                             <%= f.input :password, label: "🔑密码", required: true, hint: ("至少#{@minimum_password_length} 个字母" if @minimum_password_length) %>
                             <%= f.input :password_confirmation, label: "确认密码", required: true %>
+                            <%= f.select :role, 选择角色: User.roles.keys.to_a %>
                         </div>
+                        <br>
 
                         <div class="form-actions">
                             <%= f.button :submit, "注册" %>
