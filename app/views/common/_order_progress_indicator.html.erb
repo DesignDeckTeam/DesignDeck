@@ -1,0 +1,16 @@
+
+<div class="container text-center">
+	<br><br>
+	<% case order.aasm_state %>
+	<% when "placed"%>
+		<%= image_tag("progress1.png", style: "width: 80%;") %>
+	<% when "paid"%>
+		<%= image_tag("progress2.png", style: "width: 80%;") %>
+	<% when "picked", 
+			"versions_submitted", 
+			"version_selected" %>
+		<%= image_tag("progress3.png", style: "width: 80%;") %>
+	<% when "completed"%>
+		<%= image_tag("progress4.png", style: "width: 80%;") %>
+	<% end %>
+</div>

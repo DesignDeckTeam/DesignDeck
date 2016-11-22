@@ -1,29 +1,35 @@
 
 
-<% if order.placed? && !current_user.designer? %>
+<% if order.placed? || order.paid? || order.picked? %>
     <%= render_order_step(order, user) %>
 <% else %>
-    <ul class="nav nav-tabs nav-justified">                
-        <li><a data-toggle="tab" href="#order_info">订单</a></li>
-        <li class="active"><a data-toggle="tab" href="#stages">作品</a></li>
-        <li><a data-toggle="tab" href="#conversation">对话</a></li>  
-    </ul>
+    <div class="container">
 
-    <div class="tab-content">
-        <div id="order_info" class="tab-pane fade">
-            <% unless order.placed? && !current_user.designer? %>
-                <%= render :partial => "common/order_info", :locals => { order: order } %>
-            <% end %>
-        </div>
+        <br>
+        <br>
+        <br>
+        
+        <ul class="nav nav-tabs nav-justified">                
+            <li><a data-toggle="tab" href="#order_info">订单</a></li>
+            <li class="active"><a data-toggle="tab" href="#stages">作品</a></li>
+            <li><a data-toggle="tab" href="#conversation">对话</a></li>  
+        </ul>
 
-        <div id="stages" class="tab-pane fade in active">
-            <%= render_order_step(order, user) %>
-        </div>
+        <div class="tab-content">
+            <div id="order_info" class="tab-pane fade">
+                <%= render partial: "common/order_info", :locals => { order: order } %>
+            </div>
 
-        <div id="conversation" class="tab-pane fade">
-            <%= render :partial => "common/conversation_for_order", :locals => { order: @order } %>
+            <div id="stages" class="tab-pane fade in active">
+                <%= render_order_step(order, user) %>
+            </div>
+
+            <div id="conversation" class="tab-pane fade">
+                <%= render partial: "common/conversation_for_order", :locals => { order: @order } %>
+            </div>
         </div>
     </div>
+    
 
 <% end %>
 

@@ -70,6 +70,23 @@ class Order < ApplicationRecord
     stage
   end
 
+  def state_cn
+    case self.aasm_state
+    when "placed"
+      return "已下单"
+    when "paid"
+      return "已付款"
+    when "picked"
+      return "已接单" 
+    when "versions_submitted"
+      return "已提交"
+    when "version_selected"
+      return "已确认"
+    when "completed"
+      return "已完成"
+    end
+  end
+
   def new_stage
     stage = self.stages.build
     stage.save

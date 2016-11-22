@@ -1,4 +1,5 @@
 module OrdersHelper
+
   def render_order_step(_order, _user)
 
     case @order.aasm_state
@@ -38,5 +39,21 @@ module OrdersHelper
     end
   end
 
+  def render_additional_comment_if_necessary(order)
+
+    if current_user.is_user? && order.version_selected? 
+      render partial: "common/add_comment", locals: { path: account_order_submit_additional_comment_path(order), button_text: "补充评论" }
+    elsif current_user.designer? && order.versions_submitted?
+      render partial: "common/add_comment", locals: { path: designer_order_submit_additional_comment_path(order), button_text: "补充评论" }
+    end
+
+  end
+
   
+
+
+
+
+
+
 end
