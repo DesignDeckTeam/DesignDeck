@@ -28,6 +28,15 @@
   // border-color: #cccccc;
   // border: 1px solid #cccccc
 }
+#text-and-botton-bule{
+  color: #4687f4;
+}
+#text-and-botton-gray{
+  color: #bfbfbf;
+}
+#text-and-botton-gray :hover{
+  color: #4687f4;
+}
 .btn-primary-diy{
   color: #333;
   background-color: #fff;
@@ -41,11 +50,13 @@
   // width: 1144px
 }
 .add-praject-button{
-  width: 200px;
+  width: 150px;
   height: 43px;
+  margin: 40px;
   border: 2px solid #4687f4; //全站所有蓝色色号
-  color: #444444;
+  color: #ffffff;
   margin-top: 12px;
+  background-color: #4687f4;
 }
 
 .project p{
@@ -66,6 +77,9 @@
   height: 223px;
   border: 2px dashed #ccc;
 }
+#shadow-over :hover{
+  background-color:#fff;
+}
 
 .navbar-diy{
   height: 70px;
@@ -73,6 +87,7 @@
 }
 .navbar-logo-diy{
   margin-top: 13px;
+  margin-left: 30px;
   font-size: 20pt;
 }
 .button-height{
@@ -81,7 +96,9 @@
 .navbar-right li{
   margin-right: 100px;
 }
-
+.login-diy{
+color: #666;
+  }
 
 // .blue-btn :hover{
 //   background-color: #f1f1f1;
