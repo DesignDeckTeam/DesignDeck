@@ -1,34 +1,31 @@
-<nav class="navbar-diy" role="navigation">
-    <div class="container-fluid">
+<nav class="row navbar-diy">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand navbar-logo" href="/">DesignDeck</a>
+        <div class="col-md-2 text-right navbar-logo-diy">
+            <a id="text-and-botton-bule" href="/" style="text-decoration: none;">DesignDeck</a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+        <div class="col-md-1 col-md-offset-6 login-diy dropdown">
                 <% if !current_user %>
-                  <li><%= link_to("注册", new_user_registration_path) %> </li>
-                  <li><%= link_to("登入", new_user_session_path) %></li>
+                <div class="text-right">
+                  <h5><%= link_to("注册", new_user_registration_path, style: "text-decoration: none") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= link_to("登入", new_user_session_path, style: "text-decoration: none") %></h5>
+                </div>
                 <% else %>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Hi!, <%= current_user.email %>
-                        <b class="caret"></b>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none">
+                       <h5 id="text-and-botton-gray"><%= current_user.email %></h5>
+                        <!-- <b class="caret"></b> -->
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu text-right" id="shadow-over">
                       <li><%= link_to "进入订单页面", account_orders_path %></li>
                       <li class="divider"> </li>
                       <% if current_user.designer? %>
-                        <li> <%= link_to("Designer 后台", designer_orders_path)%></li>
-                        <li> <%= link_to("帐户信息", designer_path(current_user.token)) %>
+                      <li> <%= link_to("Designer 后台", designer_orders_path)%></li>
+                      <li> <%= link_to("帐户信息", designer_path(current_user.token)) %>
                       <% end %>
                       <li> <%= link_to("登出", destroy_user_session_path, method: :delete) %> </li>
                     </ul>
-                  </li>
                 <% end %> 
-            </ul>
+
         </div>
         <!-- /.navbar-collapse -->
     </div>
