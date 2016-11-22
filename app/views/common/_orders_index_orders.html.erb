@@ -1,0 +1,23 @@
+<tr>
+  <td width="8%">
+    <%= order.id %>
+  </td>
+  <td width="15%">
+    <%= order.title %>
+  </td>
+  <td>
+    <%= order.description %>
+  </td>
+  <td width="10%">
+    <%= render partial: "common/order_state_translate", locals: {order: order} %>
+  </td>
+  <td width="10%">
+    <%= order.preference_type %>
+  </td>
+  <td width="15%">
+    <%= order.created_at.strftime("%Y年%m月%d日%H:%M") %>
+  </td>
+  <td width="5%">
+    <%= link_to("查看订单", designer_order_path(order), class: "btn btn-primary btn-sm") %>
+  </td>
+</tr>

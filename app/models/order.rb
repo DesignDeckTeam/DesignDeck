@@ -93,7 +93,7 @@ class Order < ApplicationRecord
 
   def set_designer?(designer)
     if self.designer_id.blank? && self.may_pick?
-      self.update_columns(designer_id: designer.id) 
+      self.update_columns(designer_id: designer.id)
       self.pick!
       true
     else

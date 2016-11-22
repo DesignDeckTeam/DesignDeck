@@ -15,7 +15,7 @@ class Designer::OrdersController < ApplicationController
   # 如果user已经选择了提交的version，designer打开show页面时就生成新的一个stage
   def show
     @order = Order.find(params[:id])
-    
+
     case @order.aasm_state
     when "version_selected"
       if @order.stages.last.closed?
@@ -24,7 +24,7 @@ class Designer::OrdersController < ApplicationController
     end
 
     @versions = @order.current_stage.versions
-  
+
   end
 
   def update
@@ -33,13 +33,13 @@ class Designer::OrdersController < ApplicationController
   def submit_additional_comment
     @order = Order.find(params[:order_id])
     @stage = @order.stages.last
-    send_message_to_resource(current_user, 
-                             @order.user, @stage, 
-                             "stage#{@stage.id} conversation", 
-                             comment_param[:comment])    
-    
+    send_message_to_resource(current_user,
+                             @order.user, @stage,
+                             "stage#{@stage.id} conversation",
+                             comment_param[:comment])
+
     redirect_to designer_order_path(@order), notice: "已发送评论"
-  end  
+  end
 
 
   # order必须是在paid的状态下
@@ -81,12 +81,12 @@ class Designer::OrdersController < ApplicationController
     end
 
     # 在当前的stage中加conversation
-    
+
     comment = comment_param[:comment]
     send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment)
 
-    redirect_to designer_order_path(@order), notice: "已向用户提交样本"     
-    
+    redirect_to designer_order_path(@order), notice: "已向用户提交样本"
+
   end
 
 

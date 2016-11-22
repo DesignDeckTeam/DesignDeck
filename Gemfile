@@ -41,6 +41,8 @@ gem "simple_form"
 
 gem "nested_form"
 
+gem "will_paginate"
+
 gem "pry", group: :development
 
 gem "gravtastic" #gravatar

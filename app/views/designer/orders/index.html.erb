@@ -1,44 +1,43 @@
 
 <div class="container">
-<h2>所有用户订单</h2>
-<br><br>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>单号</th>
-      <th>项目名称</th>
-      <th>设计说明</th>
-      <th>订单状态</th>
-      <th>设计类型</th>
-      <th>创建时间</th>
-    </tr>
-  </thead>
+
+<h3>当前的订单</h3>
+<br>
+<table class="responstable">
+  <%= render "common/orders_index_title" %>
   <tbody>
     <% @orders.each do |order| %>
-      <tr>
-        <td width="5%">
-          <%= order.id %>
-        </td>
-        <td width="15%">
-          <%= order.title %>
-        </td>
-        <td>
-          <%= order.description %>
-        </td>
-        <td width="10%">
-          <%= render partial: "common/order_state_translate", locals: {order: order} %>
-        </td>
-        <td>
-          <%= order.preference_type %>
-        </td>
-        <td width="10%">
-          <%= order.created_at.strftime("%Y年%m月%d日%H:%M") %>
-        </td>
-        <td>
-          <%= link_to("查看订单", designer_order_path(order), class: "btn btn-primary btn-sm") %>
-        </td>
-      </tr>
+      <% if order.aasm_state != "paid" && order.aasm_state != "completed" %>
+        <%= render partial: "common/orders_index_orders", locals: {order: order} %>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-</div>
+<br>
+
+<h3>新的订单</h3>
+<br>
+<table class="responstable">
+  <%= render "common/orders_index_title" %>
+  <tbody>
+    <% @orders.each do |order| %>
+      <% if order.aasm_state == "paid" %>
+        <%= render partial: "common/orders_index_orders", locals: {order: order} %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<h3>已完成的订单</h3>
+<br>
+<table class="responstable">
+  <%= render "common/orders_index_title" %>
+  <tbody>
+    <% @orders.each do |order| %>
+      <% if order.aasm_state == "completed" %>
+        <%= render partial: "common/orders_index_orders", locals: {order: order} %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
