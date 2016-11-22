@@ -1,5 +1,7 @@
 
-<%= render partial: "common/order_info", locals: {order: @order} %>
+<div class="container">
+	<%= render partial: "common/order_info", locals: {order: @order} %>
+</div>
 
 <div class="container text-center">
 	<%= link_to "接这一单", designer_order_pick_order_path(@order), method: :post, class: "btn btn-success btn-lg" %>
