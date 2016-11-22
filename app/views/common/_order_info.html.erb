@@ -1,15 +1,18 @@
-  <h2>订单信息</h2>
+  
+<h2>订单信息</h2>
+<div class="well">
+  
   <div class="row">
 
     <div class="col-md-3">
       <% if order.image.present? %>
         <%= image_tag(order.image.thumb.url) %>
       <% else %>
-        <%= image_tag "http://us.123rf.com/450wm/valex113/valex1131504/valex113150400035/39341511-a-a-a-se-sa-a-a-as-e-cs-c-e-a-aoe-i-oea-za-e-a-a-c-a-aoe-cs-e-e-a-fc-a-efoea-e-e-cs-a-a-i-oea-a-i-oe.jpg", style:"width: 150px; height: 150px;" %>
+        <%= image_tag "http://us.123rf.com/450wm/bokmok/bokmok1510/bokmok151000122/46179387-a-c-a-a-i-oec-e-a-aoe.jpg", style:"width: 100%;" %>
       <% end %>
     </div>
 
-    <div class="col-md-4 font-gray">
+    <div class="col-md-6 font-gray">
       <h3><%= order.title %></h3>
       <p><%= order.description %></p>
       <p class="font-gray2"><%= "于" + order.created_at.strftime("%Y年%m月%d日 %H:%M") + "生成"%></p>
@@ -17,11 +20,13 @@
     </div>
 
     <% if order.designer.present? && current_user.is_user? %>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <%= link_to "查看设计师信息", designer_path(order.designer.token), class: "btn btn-default pull-right" %>
       </div>      
     <% end %>
 
   </div>
-  <hr>
+</div>
+<hr>
+
 

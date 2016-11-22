@@ -1,7 +1,9 @@
 
 
-<h2>最近对话</h2>
-
+<br>
+<div class="container-fluid well text-center" style="margin-bottom: 0;">
+	<h4><%= "最近对话" %></h4>
+</div>
 <% order.stages.last(2).each do |stage| %>
 <%= render partial: "common/show_messages", locals: {stage: stage} %>
 <% end %>

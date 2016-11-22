@@ -95,6 +95,10 @@ class Order < ApplicationRecord
     stage
   end
 
+  def created_time
+    
+  end
+
   def set_current_stage(stage)
     self.current_stage_id = stage.id
     self.save

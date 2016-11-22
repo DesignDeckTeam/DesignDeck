@@ -1,4 +1,3 @@
-<br>
 
 <!-- t370: 使用conversation显示comments -->
 <% if stage.conversation.present? %>
@@ -12,6 +11,9 @@
 					<p align="right" class="message-sender-name">
 						<%= "#{message.sender.email}: " %>
 					</p>
+					<p align="right" class="message-sender-name">
+						<%= "#{std_time(message.created_at)} " %>
+					</p>
 					<div class="message-right-box">	
 						<div class="well" style="background-color: #6BC9CA;">
 							<p class="message-right-content"><%=  "#{message.body}" %></p>
@@ -20,6 +22,7 @@
 
 				<% else %>
 					<p class="message-sender-name"><%= "#{message.sender.email}: " %></p>
+					<p class="message-sender-name"><%= "#{std_time(message.created_at)}: " %></p>
 					<div class="well message-left" style="float: left;">
 						<p><%= "#{message.body}" %></p>
 					</div>				
