@@ -1,11 +1,11 @@
-<div class="container">
   <h2>订单信息</h2>
-  <hr>
   <div class="row">
 
     <div class="col-md-3">
       <% if order.image.present? %>
         <%= image_tag(order.image.thumb.url) %>
+      <% else %>
+        <%= image_tag "http://us.123rf.com/450wm/valex113/valex1131504/valex113150400035/39341511-a-a-a-se-sa-a-a-as-e-cs-c-e-a-aoe-i-oea-za-e-a-a-c-a-aoe-cs-e-e-a-fc-a-efoea-e-e-cs-a-a-i-oea-a-i-oe.jpg", style:"width: 150px; height: 150px;" %>
       <% end %>
     </div>
 
@@ -22,8 +22,6 @@
       </div>      
     <% end %>
 
-  
   </div>
   <hr>
 
-</div>
