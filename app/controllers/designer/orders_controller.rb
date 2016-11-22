@@ -9,6 +9,9 @@ class Designer::OrdersController < ApplicationController
 
   def index
     @orders = Order.available_for(current_user)
+    @current_orders = @orders.where.not(aasm_state: "paid").where.not(aasm_state: "completed")
+    @new_orders = @orders.where(aasm_state: "paid")
+    @completed_orders = @orders.where(aasm_state: "completed")
   end
 
 

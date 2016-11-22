@@ -1,12 +1,12 @@
 <% case order.aasm_state %>
 <% when "paid" %>
-  <p> 已付款 </p>
+  <span> 已付款 </span>
 <% when "picked" %>
-  <p> 已接单 </p>
+  <span> 已接单 </span>
 <% when "versions_submitted" %>
-  <p> 已提交 </p>
+  <span> 已提交 </span>
 <% when "version_selected" %>
-  <p> 已确认 </p>
+  <span> 已确认 </span>
 <% when "completed" %>
-  <p> 已完成 </p>
+  <span> 已完成 </span>
 <% end %>

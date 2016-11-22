@@ -1,43 +1,15 @@
 
 <div class="container">
+  <br>
+  <h3>当前的订单</h3>
+  <%= render partial: "common/designer_orders_table", locals: {orders: @current_orders} %>
+  <br>
 
-<h3>当前的订单</h3>
-<br>
-<table class="responstable">
-  <%= render "common/orders_index_title" %>
-  <tbody>
-    <% @orders.each do |order| %>
-      <% if order.aasm_state != "paid" && order.aasm_state != "completed" %>
-        <%= render partial: "common/orders_index_orders", locals: {order: order} %>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-<br>
+  <h3>新的订单</h3>
+  <%= render partial: "common/designer_orders_table", locals: {orders: @new_orders} %>
+  <br>
 
-<h3>新的订单</h3>
-<br>
-<table class="responstable">
-  <%= render "common/orders_index_title" %>
-  <tbody>
-    <% @orders.each do |order| %>
-      <% if order.aasm_state == "paid" %>
-        <%= render partial: "common/orders_index_orders", locals: {order: order} %>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-<br>
+  <h3>已完成的订单</h3>
+  <%= render partial: "common/designer_orders_table", locals: {orders: @completed_orders} %>
 
-<h3>已完成的订单</h3>
-<br>
-<table class="responstable">
-  <%= render "common/orders_index_title" %>
-  <tbody>
-    <% @orders.each do |order| %>
-      <% if order.aasm_state == "completed" %>
-        <%= render partial: "common/orders_index_orders", locals: {order: order} %>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+</div>
