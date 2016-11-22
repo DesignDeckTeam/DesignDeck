@@ -70,6 +70,23 @@ class Order < ApplicationRecord
     stage
   end
 
+	def state_cn
+		case self.aasm_state
+		when "placed"
+			return "待付款"
+		when "paid"
+			return "等待设计师回复"
+		when "picked"
+			return "项目进行中"
+		when "versions_submitted"
+			return "项目进行中"
+		when "version_selected"
+			return "项目进行中"
+		when "completed"
+			return "已完成"
+		end
+	end
+
   def new_stage
     stage = self.stages.build
     stage.save
@@ -93,16 +110,12 @@ class Order < ApplicationRecord
 
   def set_designer?(designer)
     if self.designer_id.blank? && self.may_pick?
-      self.update_columns(designer_id: designer.id) 
+      self.update_columns(designer_id: designer.id)
       self.pick!
       true
     else
       false
     end
   end
-
-
-
-
 
 end

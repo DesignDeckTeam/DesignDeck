@@ -28,7 +28,11 @@
   // border-color: #cccccc;
   // border: 1px solid #cccccc
 }
-
+.btn-primary-diy{
+  color: #333;
+  background-color: #fff;
+  // border-color: #4687f4;
+}
 .login-diy{
   margin-top: 15px;
 }
@@ -37,10 +41,32 @@
   // width: 1144px
 }
 .add-praject-button{
+  width: 200px;
   height: 43px;
   border: 2px solid #4687f4; //全站所有蓝色色号
-  color: #333;
+  color: #444444;
+  margin-top: 12px;
 }
+
+.project p{
+  margin-top: 10px;
+  font-size: 10pt;
+}
+.project-img{
+  position: relative;
+    height: 80px;
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    background-size: cover;
+    background-position: center center;
+}
+
+.project-new{
+  height: 223px;
+  border: 2px dashed #ccc;
+}
+
 .navbar-diy{
   height: 70px;
   box-shadow: 0px 0px 10px #bfbfbf; //x坐标 y坐标 模糊程度 颜色
@@ -49,22 +75,17 @@
   margin-top: 13px;
   font-size: 20pt;
 }
-.add-praject-button{
-  margin-top: 13px;
-}
 .button-height{
-  height: 250px;
+  height: 223px;
 }
 .navbar-right li{
   margin-right: 100px;
 }
-.project-new{
-  height: 250px;
-}
 
-.blue-btn :hover{
-  background-color: #f1f1f1;
-}
+
+// .blue-btn :hover{
+//   background-color: #f1f1f1;
+// }
 .font-gray{
   color: #666;
 }
