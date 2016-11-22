@@ -71,7 +71,7 @@ class User < ApplicationRecord
     conversation.update_attribute(:conversationable_type, resource.class)
 
     # recommended by Xdite
-    # conversation.conversationable_id = resource
+    # conversation.conversationable = resource
     conversation.save
 
     message.deliver false, sanitize_text

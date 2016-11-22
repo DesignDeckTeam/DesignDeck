@@ -1,5 +1,11 @@
 
-<%= render :partial => "common/designer_versions_submitted" %>
 
-<%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @current_stage } %>
+<%= render partial: "common/order_info", locals: {order: @order} %>
+
+<div class="container">
+	<%= render partial: "common/designer_submitted_versions" %>
+	<%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @current_stage } %>
+</div>
+
+
 
