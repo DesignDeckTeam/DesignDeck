@@ -21,7 +21,7 @@ class DesignersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :designer_intro, {designer_products: []})
+    params.require(:user).permit(:name, :designer_intro, {designer_products: []}, :talent)
   end
 
   def get_designer_by_token

@@ -1,44 +1,54 @@
 
+
 <div class="container">
-  <h2 class= "well text-center">设计师信息</h2>
+  <h2>设计师信息</h2>
+  <div class="well Designer-profile">
+
   <br>
 
     <div class="row">
 
       <div class="col-md-3">
-        <%= image_tag @designer.gravatar_url(:size => 150, :default => 'http://ww3.sinaimg.cn/large/65e4f1e6jw1f9v9lylcsmj20460463ye.jpg') %>
+
+
+        <%= image_tag @designer.gravatar_url(:size => 200 , :default => 'http://ww3.sinaimg.cn/large/65e4f1e6jw1fa12342uz5j205k05kt8n.jpg') %>
+
+
       </div>
+
 
       <div class="col-md-7">
         <h4>姓名：<%= @designer.name %></h4>
         <h4>邮箱：<%= @designer.email %></h4>
-        <h4>简介：</h4>
-        <%= @designer.designer_intro %>
+        <h4>简介：<%= @designer.designer_intro %> </h4>
+        <h4>专长：<%= @designer.talent %></h4>
       </div>
-      
+
       <!-- 只有设计师本人可以编辑自己的信息 -->
 	  <% if @designer.token == current_user.token %>
       	<div class="col-md-2">
-       		<%= link_to("编辑帐户信息",edit_designer_path(current_user.token), class: "btn bt-sm btn-default pull-right") %>
-      	</div>	  	
+       		<%= link_to("编辑帐户信息",edit_designer_path(current_user.token), class: "btn bt-sm btn-primary pull-right") %>
+      	</div>
 	  <% end %>
 
 
     </div>
 
-
+</div>
 
    <br><br><br>
 
-   <h2 class="well text-center"> 作品展示 </h2>
-
+   <h2> 作品展示 </h2>
+   <hr>
    <br>
 
    <div class="row">
    <% @designer.designer_products.each do |f| %>
      <div class="col-md-4 text-center">
+       <img class="top, bottom">
        <%= image_tag f.medium.url, style: "width:100%;"%>
-     </div>
+        </img>
+        </div>
    <% end %>
    </div>
  </div>

@@ -21,6 +21,7 @@
 #  designer_products      :string
 #  token                  :string
 #  role                   :integer
+#  talent                 :string
 #
 # Indexes
 #
