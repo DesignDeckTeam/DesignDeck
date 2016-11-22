@@ -1,16 +1,14 @@
-<nav class="navbar-diy" role="navigation">
-    <div class="container-fluid">
+<nav class="row navbar-diy">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand navbar-logo" href="/">DesignDeck</a>
+        <div class="col-md-2 text-right navbar-logo-diy">
+            <a class="" href="/" style="text-decoration: none;">DesignDeck</a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+
+        <div class="col-md-7 text-right login-diy">
                 <% if !current_user %>
-                  <li><%= link_to("注册", new_user_registration_path) %> </li>
-                  <li><%= link_to("登入", new_user_session_path) %></li>
+                  <h5><%= link_to("注册", new_user_registration_path, style: "text-decoration: none") %>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= link_to("登入", new_user_session_path, style: "text-decoration: none") %><h5>
                 <% else %>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -28,7 +26,10 @@
                     </ul>
                   </li>
                 <% end %> 
-            </ul>
+        </div>
+        <div class="col-md-1 text-center add-praject-button">
+          <h4>Add a Project</h4>
+
         </div>
         <!-- /.navbar-collapse -->
     </div>
