@@ -1,14 +1,4 @@
 
 <!-- designer在order是submitted的状态下需要显示的内容 -->
 
-<%= render :partial => "common/designer_submitted_versions" %>
-
-<h2>评论</h2>
-<%= render :partial => "common/show_messages", locals: {stage: @order.stages.last} %>
-
-<%= form_tag designer_order_submit_additional_comment_path(@order) do -%>
-<%= render :partial => "common/comment_area" %>
-	<div class="container-fluid">		
-	  	<%= submit_tag '补充评论', :class => "btn btn-lg btn-success pull-right" %>	
-	</div>
-<% end -%>	
+<%= render partial: "common/designer_submitted_versions" %>

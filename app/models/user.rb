@@ -2,25 +2,25 @@
 #
 # Table name: users
 #
-#  id                        :integer          not null, primary key
-#  email                     :string           default(""), not null
-#  encrypted_password        :string           default(""), not null
-#  reset_password_token      :string
-#  reset_password_sent_at    :datetime
-#  remember_created_at       :datetime
-#  sign_in_count             :integer          default(0), not null
-#  current_sign_in_at        :datetime
-#  last_sign_in_at           :datetime
-#  current_sign_in_ip        :string
-#  last_sign_in_ip           :string
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  is_designer               :boolean
-#  name                      :string
-#  designer_intro            :text
-#  designer_production_image :string
-#  designer_products         :string
-#  token                     :string
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  is_designer            :boolean
+#  name                   :string
+#  designer_intro         :text
+#  designer_products      :string
+#  token                  :string
+#  role                   :integer
 #
 # Indexes
 #
@@ -29,6 +29,13 @@
 #
 
 class User < ApplicationRecord
+  enum role: {用户: 0, 设计师: 1 }
+  after_initialize :set_default_role, :if => :new_record?
+
+  def set_default_role
+    self.role ||= :用户
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -64,7 +71,7 @@ class User < ApplicationRecord
     conversation.update_attribute(:conversationable_type, resource.class)
 
     # recommended by Xdite
-    # conversation.conversationable_id = resource
+    # conversation.conversationable = resource
     conversation.save
 
     message.deliver false, sanitize_text

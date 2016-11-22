@@ -1,13 +1,7 @@
 
-<div class="container-fluid">
-	<%= link_to("添加稿件", new_designer_order_stage_version_path(order, order.current_stage), :class => "btn btn-primary") %>
-</div>
 
-<%= form_tag designer_order_submit_versions_path(order) do -%>
-  <%= render :partial => "common/comment_area" %>
-  <div class="container-fluid">
-  	<%= submit_tag '发送稿件和评论给客户', :class => "btn btn-lg btn-success pull-right" %>
-  </div>	
-<% end -%>
-
-	
+<h2>添加新的稿件</h2>
+<br>
+<%= link_to("添加稿件", new_designer_order_stage_version_path(order, order.current_stage), class: "btn btn-primary") %>
+<hr>
+<%= render partial: "common/add_comment", locals: { path: designer_order_submit_versions_path(order), button_text: "发送稿件和评论给客户" } %>

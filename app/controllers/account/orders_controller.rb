@@ -1,7 +1,7 @@
 class Account::OrdersController < ApplicationController
   before_action :authenticate_user!
 
-  layout "order_nav"
+  layout "order_nav", only: :show
 
   def pay_with_alipay
     @order = Order.find(params[:order_id])
@@ -43,6 +43,7 @@ class Account::OrdersController < ApplicationController
   def show
     # binding.pry
 
+
     @order = Order.find(params[:id])
     @stage = @order.current_stage
     case @order.aasm_state
@@ -57,6 +58,8 @@ class Account::OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
   end
+
+  
 
   # 用户选择了一个version，并且给出了理由
   # 一定是在submitted的状态下运行

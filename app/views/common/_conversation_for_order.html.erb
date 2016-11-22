@@ -1,12 +1,11 @@
 
 
-<div class="container-fluid">
-	<h2>全部评论</h2>
+<br>
+<div class="container-fluid well text-center" style="margin-bottom: 0;">
+	<h4><%= "最近对话" %></h4>
 </div>
+<% order.stages.last(2).each do |stage| %>
+<%= render partial: "common/show_messages", locals: {stage: stage} %>
+<% end %>
 
-<div class="container-fluid">
-	<% order.stages.each do |stage| %>
-	<%= render partial: "common/show_messages", locals: {stage: stage} %>
-	<% end %>
-</div>
-	
+<%= render_additional_comment_if_necessary(order) %>

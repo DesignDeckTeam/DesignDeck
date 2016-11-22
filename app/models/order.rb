@@ -70,22 +70,22 @@ class Order < ApplicationRecord
     stage
   end
 
-	def state_cn
-		case self.aasm_state
-		when "placed"
-			return "待付款"
-		when "paid"
-			return "等待设计师接受订单"
-		when "picked"
-			return "项目进行中"
-		when "versions_submitted"
-			return "项目进行中"
-		when "version_selected"
-			return "项目进行中"
-		when "completed"
-			return "已完成"
-		end
-	end
+  def state_cn
+    case self.aasm_state
+    when "placed"
+      return "已下单"
+    when "paid"
+      return "已付款"
+    when "picked"
+      return "已接单" 
+    when "versions_submitted"
+      return "已提交"
+    when "version_selected"
+      return "已确认"
+    when "completed"
+      return "已完成"
+    end
+  end
 
   def new_stage
     stage = self.stages.build
@@ -93,6 +93,10 @@ class Order < ApplicationRecord
     self.current_stage_id = stage.id
     self.save
     stage
+  end
+
+  def created_time
+    
   end
 
   def set_current_stage(stage)
