@@ -75,7 +75,7 @@ class Order < ApplicationRecord
 		when "placed"
 			return "待付款"
 		when "paid"
-			return "等待设计师回复"
+			return "等待设计师接受订单"
 		when "picked"
 			return "项目进行中"
 		when "versions_submitted"
