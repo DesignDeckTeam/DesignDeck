@@ -1,3 +1,8 @@
 
-<h2 class="text-center">接受订单</h2>
-<%= link_to "接受订单", designer_order_pick_order_path(@order), method: :post, class: "btn btn-default" %>
+<%= render partial: "common/order_info", locals: {order: @order} %>
+
+<div class="container text-center">
+	<%= link_to "接这一单", designer_order_pick_order_path(@order), method: :post, class: "btn btn-success btn-lg" %>
+</div>
+
+

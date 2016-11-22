@@ -17,6 +17,88 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.progress-indicator {
+  width: 80%;
+}
+
+
+/********************************************************************/
+/*** PANEL PRIMARY ***/
+
+.panel.with-nav-tabs .panel-heading{
+    padding: 5px 5px 0 5px;
+}
+.panel.with-nav-tabs .nav-tabs{
+  border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+  margin-bottom: -1px;
+}
+
+
+.with-nav-tabs.panel-primary .nav-tabs > li > a,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+}
+.with-nav-tabs.panel-primary .nav-tabs > .open > a,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+  color: #fff;
+  background-color: #3071a9;
+  border-color: transparent;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+  color: #428bca;
+  background-color: #fff;
+  border-color: #428bca;
+  border-bottom-color: transparent;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+    background-color: #428bca;
+    border-color: #3071a9;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+    color: #fff;   
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+    background-color: #3071a9;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+    background-color: #4a9fe9;
+}
+
+/********************************************************************/
+
+
+
+
+/*
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus, 
+.nav-tabs > li.active > a:hover { 
+  background-color: #0096FF; 
+  color: white; 
+  border-color: transparent;
+}
+*/
+
+
+.version-indicator {
+  height: 40px; 
+  width: 40px; 
+  border-radius: 20px; 
+  background-color: #69B5FD; 
+  color: white;
+}
+
 .button-diy {
   // box-sizing: border-box;
   // background-color: #f2f2f2;
@@ -67,9 +149,11 @@
   background-position: center center;
   background-size: cover; //屏幕缩小时，图片不压缩。
 }
+
 #onepagebg{
   background-image: url("https://ooo.0o0.ooo/2016/11/16/582c1468947dc.jpg");
 }
+
 .onepage0{
   height: 400px;
   // background-color: #5c9cfb;

@@ -6,16 +6,13 @@
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag :defaults, "nested_form" %>
-
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-
     </head>
 
     <body>
 
         <%= render "common/navbar" %>
         <%= render "common/flashes" %>
+        <%= render partial: "common/order_progress_indicator", locals: {order: @order} %>
 
         <br><br>
 

@@ -2,7 +2,7 @@ class Designer::OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :designer_required
 
-  layout "order_nav"
+  layout "order_nav", only: :show
 
   # 不能让其他designer查看到不属于自己的order
   # before_action :allow_legal_designers

@@ -1,1 +1,10 @@
-<h2 class="text-center">已付款 等待设计师回复</h2>
+
+
+<div class="container">
+	<%= render partial: "common/order_info", locals: {order: @order} %>
+</div>
+
+<div class="container text-center">
+	<%= image_tag "user_order_paid.png", style: "width:40%;" %>
+</div>
+
