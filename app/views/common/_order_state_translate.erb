@@ -1,12 +1,16 @@
 <% case order.aasm_state %>
 <% when "paid" %>
-  <span> 已付款 </span>
+<div style="background-image:url('https://ooo.0o0.ooo/2016/11/23/58352fa7e3a0e.png')"
+class="project-img"></div>
 <% when "picked" %>
-  <span> 已接单 </span>
+  <div style="background-image:url('https://ooo.0o0.ooo/2016/11/23/583535f71d4c7.png')"
+  class="project-img"></div>
 <% when "versions_submitted" %>
-  <span> 已提交 </span>
+<div style="background-image:url('https://ooo.0o0.ooo/2016/11/23/583535f71d4c7.png')"
+class="project-img"></div>
 <% when "version_selected" %>
-  <span> 已确认 </span>
+<div style="background-image:url('https://ooo.0o0.ooo/2016/11/23/583535f71d4c7.png')"
+class="project-img"></div>
 <% when "completed" %>
-  <span> 已完成 </span>
+  <p> 已完成 </p>
 <% end %>
