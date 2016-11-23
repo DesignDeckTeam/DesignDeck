@@ -1,0 +1,2 @@
+module Account::SamplesHelper
+end
