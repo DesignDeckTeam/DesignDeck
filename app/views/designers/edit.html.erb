@@ -1,15 +1,27 @@
-
-
 <div class="container">
-  <h2> 编辑帐户信息 </h2>
-  <br>
-  <%= simple_form_for @designer, url: designer_path(@designer.token) do |f| %>
-    <%= f.input :name, label: '请输入你的真实姓名：', error: '必须输入姓名，不能为空' %>
-    <br>
-    <%= f.input :designer_intro, label: '请输入简介：' %>
-    <br>
-    <%= f.file_field :designer_products, as: :file, :multiple => true %>
-    <br>
-    <%= f.button :submit, '更新帐户信息' %>
-  <% end %>
+    <div class="well Designer-profile">
+        <h2>
+            编辑帐户信息
+        </h2>
+        <br>
+
+        <%= simple_form_for @designer, url: designer_path(@designer.token) do |f| %>
+
+        <%= f.input :name, label: '姓名：', error: '必须输入姓名，不能为空' %>
+        <br>
+        <%= f.input :designer_intro, label: '简介:' %>
+        <br>
+        <%= f.input :talent, label: '专长'%>
+
+        <br>
+
+        <span class="fileUpload btn bt-sm btn-default">
+            <label for="">
+            <%= f.file_field :designer_products, as: :file, :multiple => true, :class => "upload"%>
+            </label>
+        </span>
+        <%= f.button :submit, '更新设计师信息', class: "btn bt-sm btn-primary pull-right" %>
+      </div>
+    <% end %>
+
 </div>
