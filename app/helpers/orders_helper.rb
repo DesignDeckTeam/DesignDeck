@@ -35,12 +35,16 @@ module OrdersHelper
         render "common/user_version_selected"
       end
     when "completed"
-      render "common/completed"
+      if _user.designer?
+        render "common/designer_order_completed"
+      else
+        render "common/user_order_completed"
+      end
     end
   end
 
   def render_additional_comment_if_necessary(order)
-    if current_user.is_user? && order.version_selected? 
+    if current_user.is_user? && order.version_selected?
       render partial: "common/add_comment", locals: { path: account_order_submit_additional_comment_path(order), button_text: "补充评论" }
     elsif current_user.designer? && order.versions_submitted?
       render partial: "common/add_comment", locals: { path: designer_order_submit_additional_comment_path(order), button_text: "补充评论" }
@@ -52,7 +56,7 @@ module OrdersHelper
     time.strftime("%Y年%m月%d日 %H:%M")
   end
 
-  
+
 
 
 
