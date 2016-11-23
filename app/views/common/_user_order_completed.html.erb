@@ -1,1 +1,5 @@
-<h2 class="text-center">等待设计师上传最终稿件</h2>
+<% if @order.attachment.present? %>
+  <%= link_to("下载最终稿件", @order.attachment_url) %></h2>
+<% else %>
+  <h2 class="text-center">等待设计师上传最终稿件</h2>
+<% end %>
