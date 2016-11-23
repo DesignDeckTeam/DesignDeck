@@ -16,10 +16,14 @@
 #  price                :float
 #  deadline             :datetime
 #  designer_id          :integer
+#  product_quantity     :integer          default(1)
+#  total_price          :integer
 #
 
 class Order < ApplicationRecord
 	mount_uploader :image, ImageUploader
+
+	validates :title, :description, presence: true
 
 	has_many :stages
 	belongs_to :user
@@ -77,7 +81,7 @@ class Order < ApplicationRecord
     when "paid"
       return "已付款"
     when "picked"
-      return "已接单" 
+      return "已接单"
     when "versions_submitted"
       return "已提交"
     when "version_selected"
@@ -96,7 +100,7 @@ class Order < ApplicationRecord
   end
 
   def created_time
-    
+
   end
 
   def set_current_stage(stage)

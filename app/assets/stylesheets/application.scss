@@ -19,6 +19,10 @@
 
 //#4687f4 全站蓝色色号
 
+.total_price {
+  font-size: 15pt
+}
+
 .progress-indicator {
   width: 80%;
 }
@@ -65,7 +69,7 @@
     border-color: #3071a9;
 }
 .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
-    color: #fff;   
+    color: #fff;
 }
 .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
 .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
@@ -84,20 +88,20 @@
 
 /*
 .nav-tabs > li.active > a,
-.nav-tabs > li.active > a:focus, 
-.nav-tabs > li.active > a:hover { 
-  background-color: #0096FF; 
-  color: white; 
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  background-color: #0096FF;
+  color: white;
   border-color: transparent;
 }
 */
 
 
 .version-indicator {
-  height: 40px; 
-  width: 40px; 
-  border-radius: 20px; 
-  background-color: #69B5FD; 
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: #69B5FD;
   color: white;
 }
 

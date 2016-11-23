@@ -16,6 +16,8 @@
 #  price                :float
 #  deadline             :datetime
 #  designer_id          :integer
+#  product_quantity     :integer          default(1)
+#  total_price          :integer
 #
 
 require 'test_helper'
