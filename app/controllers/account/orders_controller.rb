@@ -32,11 +32,11 @@ class Account::OrdersController < ApplicationController
   def submit_additional_comment
     @order = Order.find(params[:order_id])
     @stage = @order.stages.last
-    send_message_to_resource(current_user, 
-                             @order.designer, @stage, 
-                             "stage#{@stage.id} conversation", 
-                             comment_param[:comment])    
-    
+    send_message_to_resource(current_user,
+                             @order.designer, @stage,
+                             "stage#{@stage.id} conversation",
+                             comment_param[:comment])
+
     redirect_to account_order_path(@order), notice: "已发送评论"
   end
 
@@ -59,7 +59,7 @@ class Account::OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  
+
 
   # 用户选择了一个version，并且给出了理由
   # 一定是在submitted的状态下运行
@@ -77,14 +77,14 @@ class Account::OrdersController < ApplicationController
     @stage = @order.stages.last
 
     @stage.close!
-    
+
     version = Version.find_by(id: select_version_params[:version_id])
     version.select!
 
     # 在当前的stage中加conversation
-    send_message_to_resource(current_user, 
-                             @order.designer, @stage, 
-                             "stage#{@stage.id} conversation", 
+    send_message_to_resource(current_user,
+                             @order.designer, @stage,
+                             "stage#{@stage.id} conversation",
                              select_version_params[:comment])
 
     if params[:commit] == "确认为最终稿"
@@ -94,7 +94,7 @@ class Account::OrdersController < ApplicationController
       @order.select_version!
       redirect_to account_order_path(@order), notice: "已选择方案"
     end
-    
+
   end
 
 
@@ -110,7 +110,7 @@ class Account::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:title, :description, :preference_type, :comment_from_customer, :image)
+    params.require(:order).permit(:title, :description, :preference_type, :comment_from_customer, :image, :product_quantity)
   end
 
   def select_version_params

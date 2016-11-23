@@ -16,11 +16,14 @@
 #  price                :float
 #  deadline             :datetime
 #  designer_id          :integer
+#  product_quantity     :integer          default(1)
+#  total_price          :integer
 #  attachment           :string
 #
 
 class Order < ApplicationRecord
 	mount_uploader :image, ImageUploader
+	validates :title, :description, presence: true
 	mount_uploader :attachment, AttachmentUploader
 	
 	has_many :stages

@@ -23,6 +23,10 @@
 
 // #4687f4 全站蓝色色号
 
+.total_price {
+  font-size: 15pt
+}
+
 .progress-indicator {
   width: 80%;
 }
@@ -86,16 +90,15 @@
 
 
 
-
-// .nav-tabs > li.active > a,
-// .nav-tabs > li.active > a:focus,
-// .nav-tabs > li.active > a:hover {
-//   background-color: #0096FF;
-//   color: white;
-//   border-color: transparent;
-// }
-
-
+/*
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  background-color: #0096FF;
+  color: white;
+  border-color: transparent;
+}
+*/
 
 .version-indicator {
   height: 40px;
