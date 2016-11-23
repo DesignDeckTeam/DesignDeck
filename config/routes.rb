@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users
 
   namespace :account do
@@ -9,7 +10,8 @@ Rails.application.routes.draw do
       post :submit_additional_comment
     end
 
-    resources :samples, only: [:show, :edit]
+    resources :samples, only: [:show, :edit, :update]
+    resources :versions, only: [:show]
 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -21,6 +21,8 @@
 //= require_tree .
 //= require_self
 
+// $(document).on('turbolinks:load', func);
+
 (function ( $ ) {
 
 	$.TextOver = function(obj, options) {
@@ -38,7 +40,7 @@
 			top: 0,
 			left: 0,
 			background: 'none',
-			color: '#ffffff',
+			color: 'black',
 			'font-size': '24px',
 			padding: '2px',
 			height: '24px',
@@ -119,7 +121,6 @@
         removeTextArea = function(index) {
         	$(messages[index]).remove();
         	messages.splice(index, 1);
-
         };
 
         removeEmpty = function() {
@@ -128,7 +129,6 @@
         			removeTextArea(i);
         		}
         	});
-  
         };
 
         handleEsc = function(e) {
@@ -138,21 +138,17 @@
         	}
         };
 
-
-
         $(obj).click(newTextArea);
         $(document).keydown(handleEsc);
 	};
  
     $.fn.TextOver = function(options, callback) {
  
-
         api = $.TextOver(this, options);
         if ($.isFunction(callback)) callback.call(api);
  
         // Return "this" so the object is chainable (jQuery-style)
     	return this;
- 
     };
  
 }(jQuery));
@@ -161,19 +157,40 @@
 
 jQuery(function($){
 
-var textover_api;
+    var textover_api;
+    // How easy is this??
+    $('#target').TextOver({}, function() {
+      textover_api = this;
+    });
 
-// How easy is this??
-$('#target').TextOver({}, function() {
-  textover_api = this;
-});
 
-$('#show').click(function () {
-  html = '';
-  $.each(textover_api.getData(), function() {
-    html += 'Text &raquo; ' + this.text + ' Left &raquo; ' + this.left + ' Top &raquo; ' + this.top + '<br />';
-  });
-  $('#data').html(html).show();
-});
+    $('#show').click(function () {
+      html = '';
+      comments_array = [];
+
+
+      $.each(textover_api.getData(), function() {
+        html += 'Text &raquo; ' + this.text + ' Left &raquo; ' + this.left + ' Top &raquo; ' + this.top + '<br />';
+        comment = {};
+        comment.text = this.text;
+        comment.left = this.left;
+        comment.top = this.top;
+        comments_array.push(comment);
+      });
+
+      // $('#data').html(html).show();
+      // alert(html);
+
+      var id = $(this).attr("number");
+
+      $.ajax({
+        url : "/account/samples/" + id,
+        type : "put",
+        data : { data_value: JSON.stringify(comments_array) }
+      });
+
+      return false;
+
+    });
 
 });
