@@ -29,6 +29,7 @@
 #
 
 class User < ApplicationRecord
+  validates_length_of :designer_intro, :maximum => 100 # 最多 500
   enum role: {用户: 0, 设计师: 1 }
   after_initialize :set_default_role, :if => :new_record?
 
