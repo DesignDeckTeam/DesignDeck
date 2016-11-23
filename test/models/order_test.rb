@@ -16,6 +16,7 @@
 #  price                :float
 #  deadline             :datetime
 #  designer_id          :integer
+#  attachment           :string
 #
 
 require 'test_helper'

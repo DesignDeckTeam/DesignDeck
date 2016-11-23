@@ -16,6 +16,7 @@
 #  price                :float
 #  deadline             :datetime
 #  designer_id          :integer
+#  attachment           :string
 #
 
 class Order < ApplicationRecord
@@ -75,13 +76,13 @@ class Order < ApplicationRecord
     when "placed"
       return "已下单"
     when "paid"
-      return "已付款"
+      return "等待设计师接单"
     when "picked"
-      return "已接单" 
+      return "项目进行中"
     when "versions_submitted"
-      return "已提交"
+      return "项目进行中"
     when "version_selected"
-      return "已确认"
+      return "项目进行中"
     when "completed"
       return "已完成"
     end
@@ -96,7 +97,7 @@ class Order < ApplicationRecord
   end
 
   def created_time
-    
+
   end
 
   def set_current_stage(stage)
