@@ -21,7 +21,8 @@
 
 class Order < ApplicationRecord
 	mount_uploader :image, ImageUploader
-
+	mount_uploader :attachment, AttachmentUploader
+	
 	has_many :stages
 	belongs_to :user
   accepts_nested_attributes_for :stages, :allow_destroy => true

@@ -102,7 +102,7 @@ class Designer::OrdersController < ApplicationController
   end
 
   def comment_param
-    params.require(:order).permit(:comment)
+    params.require(:order).permit(:comment, :attachment)
   end
 
 
