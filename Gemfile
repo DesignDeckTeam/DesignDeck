@@ -33,7 +33,7 @@ gem "bootstrap-sass"
 gem "aasm"
 gem "annotate"
 gem "devise"
-
+gem "font-awesome-rails"
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 # gem 'carrierwave'
 gem "mini_magick"
