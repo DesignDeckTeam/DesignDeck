@@ -1,9 +1,11 @@
 <% if @order.attachment.present? %>
   <h2 class="text-center">订单已完成</h2>
+  <h4><%= link_to("下载当前稿件", @order.attachment_url, download: "") %></h4>
 <% else %>
   <h2 class="text-center">需要设计师提交最终稿</h2>
-  <%= simple_form_for [:designer, @order] do |f|%>
-    <%= f.input :attachment %>
-    <%= f.submit "发送" %>
-  <% end %>
+<% end %>
+<hr>
+<%= simple_form_for [:designer, @order] do |f|%>
+  <%= f.input :attachment, label: "上传稿件" %>
+  <%= f.submit "发送" %>
 <% end %>

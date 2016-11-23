@@ -1,6 +1,6 @@
 <% if @order.attachment.present? %>
-  <i class="fa fa-paperclip"></i>
-  <%= link_to("下载最终稿件", @order.attachment_url) %></h2>
+  <!-- <i class="fa fa-paperclip"></i> -->
+  <h2 class="text-center"><%= link_to("下载最终稿件", @order.attachment_url, download: "")%></h2>
 <% else %>
   <h2 class="text-center">等待设计师上传最终稿件</h2>
 <% end %>
