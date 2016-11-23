@@ -31,7 +31,11 @@ class Designer::OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+    @order.update(attachment_param)
+    redirect_to designer_order_path
   end
+
 
   def submit_additional_comment
     @order = Order.find(params[:order_id])
@@ -103,6 +107,10 @@ class Designer::OrdersController < ApplicationController
 
   def comment_param
     params.require(:order).permit(:comment)
+  end
+
+  def attachment_param
+    params.require(:order).permit(:attachment)
   end
 
 

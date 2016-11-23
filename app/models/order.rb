@@ -16,11 +16,16 @@
 #  price                :float
 #  deadline             :datetime
 #  designer_id          :integer
+#  product_quantity     :integer          default(1)
+#  total_price          :integer
+#  attachment           :string
 #
 
 class Order < ApplicationRecord
 	mount_uploader :image, ImageUploader
-
+	validates :title, :description, presence: true
+	mount_uploader :attachment, AttachmentUploader
+	
 	has_many :stages
 	belongs_to :user
   accepts_nested_attributes_for :stages, :allow_destroy => true
@@ -75,13 +80,13 @@ class Order < ApplicationRecord
     when "placed"
       return "已下单"
     when "paid"
-      return "已付款"
+      return "等待设计师接单"
     when "picked"
-      return "已接单" 
+      return "项目进行中"
     when "versions_submitted"
-      return "已提交"
+      return "项目进行中"
     when "version_selected"
-      return "已确认"
+      return "项目进行中"
     when "completed"
       return "已完成"
     end
@@ -96,7 +101,7 @@ class Order < ApplicationRecord
   end
 
   def created_time
-    
+
   end
 
   def set_current_stage(stage)
