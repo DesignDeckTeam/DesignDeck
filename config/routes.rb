@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       post :select_version
       post :submit_additional_comment
     end
+
+    resources :samples, only: [:show, :edit]
+
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
