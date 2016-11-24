@@ -8,6 +8,12 @@ module ImagesHelper
     end
   end
 
+
+  def render_note_indicator(sample)
+    if sample.conversations.any?                       
+      link_to "!", "#", class: "btn btn-danger noted-indicator text-center"
+    end
+  end
   
   def render_sample_with_link(sample)
     if sample.image.present?
