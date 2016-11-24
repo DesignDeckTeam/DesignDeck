@@ -21,7 +21,8 @@ class Account::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user = current_user
-  
+
+    design_total_price
 
     if @order.save
       redirect_to account_order_path(@order)
@@ -123,5 +124,14 @@ class Account::OrdersController < ApplicationController
     params.require(:order).permit(:comment)
   end
 
+  def design_total_price
+    if @order.preference_type == "LOGO商标"
+      @order.total_price = @order.product_quantity * 2000
+    elsif @order.preference_type == "PPT演示文稿"
+      @order.total_price = @order.product_quantity * 500
+    else
+      @order.total_price = @order.product_quantity * 1000
+    end
+  end
 
 end
