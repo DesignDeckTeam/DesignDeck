@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-create_account = User.create([email: 'designer@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'true', role: "设计师"])
-create_account = User.create([email: 'mapuying@gmail.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: "设计师"])
-create_account = User.create([email: 'user1@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: "用户"])
-create_account = User.create([email: 'user2@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: "用户"])
-create_account = User.create([email: 'admin@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: "管理员"])
+create_account = User.create([email: 'designer@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'true', role: 1])
+create_account = User.create([email: 'mapuying@gmail.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 1])
+create_account = User.create([email: 'user1@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 0])
+create_account = User.create([email: 'user2@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 0])
+create_account = User.create([email: 'admin@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 2])
 
 
 

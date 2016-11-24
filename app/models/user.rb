@@ -29,7 +29,7 @@
 #
 
 class User < ApplicationRecord
-  enum role: {用户: 0, 设计师: 1 }
+  enum role: {用户: 0, 设计师: 1, 管理员: 2 }
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
@@ -78,12 +78,27 @@ class User < ApplicationRecord
   end
 
   def is_user?
-    !is_designer
+    # !is_designer
+    self.role == "用户"
   end
 
   def designer?
-    is_designer
+    # is_designer
+    self.role == "设计师"
   end
+
+  def qualified_designer?
+    self.role == "设计师" && self.is_designer
+  end
+
+  def unqualified_designer?
+    self.role == "设计师" && !self.is_designer
+  end
+
+  def admin?
+    self.role == "管理员"
+  end
+
 
   private
 
