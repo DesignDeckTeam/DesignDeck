@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def designer_required
-    if !current_user.designer?
-      redirect_to "/"
+    if !current_user.qualified_designer?
+      redirect_to "/", notice: "您没有此权限"
     end
   end
 

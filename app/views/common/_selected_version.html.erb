@@ -15,6 +15,11 @@
 		<% samples.each do |sample| %>
 			<div class="col-md-3">
 				<%= render_sample_with_link(sample) %>
+            	<% if sample.conversations.any? %>                      
+                	<button class="btn btn-danger noted-indicator text-center" disabled: "disabled" >
+            			<%= "!" %>
+          			</button>
+              	<% end %>
 			</div>
 		<% end %>
 	</div>
