@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    resources :users
+    resources :users do
+      post :approve_designer
+    end
+
     resources :orders
   end
 

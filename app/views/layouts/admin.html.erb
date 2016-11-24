@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DesignDeck</title>
+        <title>Admin 后台</title>
         <%= csrf_meta_tags %>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,6 +12,7 @@
     <body>
       <div class="container-fluid">
         <%= render "common/navbar" %>
+        <%= render "common/flashes" %>
         <div class="row">
           <div class="col-md-2">
             <br><br>
@@ -23,6 +24,7 @@
           <div class="col-md-10">
             <%= yield %>
           </div>
+          <%= render "common/footer" %>
         </div>
       </div>
     </body>

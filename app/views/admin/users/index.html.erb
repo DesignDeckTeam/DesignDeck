@@ -1,0 +1,53 @@
+<div class="container">
+  <br>
+<h3>设计师管理</h3>
+<br>
+<table class="responstable">
+  <thead>
+    <tr>
+      <th>用户ID</th>
+      <th>姓  名</th>
+      <th>邮  箱</th>
+      <th>角  色</th>
+      <th>状  态</th>
+      <th>查  看</th>
+      <th>审  批</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= user.id %>
+      </td>
+      <td>
+        <%= user.name %>
+      </td>
+      <td>
+        <%= user.email %>
+      </td>
+      <td>
+        <%= user.role %>
+      </td>
+      <td>
+        <% if user.qualified_designer? %>
+          已通过审核
+        <% else %>
+          等待审核
+        <% end %>
+      </td>
+      <td>
+        <%= link_to("查看设计师信息", designer_path(user.token), :class => "btn btn-primary") %>
+      </td>
+      <td>
+        <% if user.unqualified_designer? %>
+          <%= link_to("批准成为设计师", admin_user_approve_designer_path(user), :method => :post, :class => "btn btn-danger") %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>
+</div>
