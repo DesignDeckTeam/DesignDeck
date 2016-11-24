@@ -54,7 +54,7 @@ class User < ApplicationRecord
 
   has_many :orders
 
-  def send_message(recipients, msg_body, subject, resource, sanitize_text = true, attachment = nil, message_timestamp = Time.now)
+  def send_message(recipients, msg_body, subject, resource, x_position_in_sample = 0, y_position_in_sample = 0, sanitize_text = true, attachment = nil, message_timestamp = Time.now)
     conversation = Mailboxer::ConversationBuilder.new(subject: subject,
                                                created_at: message_timestamp,
                                                updated_at: message_timestamp).build
@@ -70,6 +70,9 @@ class User < ApplicationRecord
 
     conversation.update_attribute(:conversationable_id, resource.id)
     conversation.update_attribute(:conversationable_type, resource.class)
+
+    conversation.update_attribute(:x_position_in_sample, x_position_in_sample)
+    conversation.update_attribute(:y_position_in_sample, y_position_in_sample)
 
     # recommended by Xdite
     # conversation.conversationable = resource
