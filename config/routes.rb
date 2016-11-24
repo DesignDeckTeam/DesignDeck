@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  namespace :admin do
+    resources :users
+    resources :orders
+  end
+
   namespace :account do
     resources :orders do
       post :pay_with_alipay
@@ -33,5 +38,5 @@ Rails.application.routes.draw do
   get '/orders/:order_id/stages/:stage_id/conversations', to: 'conversations#show', as: 'conversation_for_stage'
 
   root "landing#index"
-  
+
 end
