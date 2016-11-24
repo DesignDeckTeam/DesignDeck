@@ -32,7 +32,7 @@ class Account::SamplesController < ApplicationController
   	p = params[:data_value]
     
     if p == "[]"
-      redirect_to account_version_path(@sample.version)
+      redirect_to account_order_path(@sample.version.stage.order)
       return
     end
     
