@@ -17,6 +17,7 @@ class Sample < ApplicationRecord
   belongs_to :user
   belongs_to :version, optional: true
   has_many :sample_comments
+  has_many :conversations, as: :conversationable
 
   mount_uploader :image, ImageUploader
 

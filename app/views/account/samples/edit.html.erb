@@ -1,11 +1,130 @@
-<div class="container text-center">
 
-	<h2>对此图片加批注</h2>
-	<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"target" %>
-	<div id="data">The data goes here</div>
-	<!-- <button id="show">Show Data</button> -->
-	<%= link_to "确定", "#", id:"show", number: @sample.id %>
+<% if false %>
+	<div class="container text-center">
 
-</div>
+		<h2>对此图片加批注</h2>
+		<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"target" %>
+		<div id="data">The data goes here</div>
+		<!-- <button id="show">Show Data</button> -->
+		<%= link_to "确定", "#", id:"show", number: @sample.id %>
 
+	</div>
+<% end %>
+
+
+
+	<h2 style="text-align: center;">对此图片添加批注</h2>
+
+	<div id="imgdiv" style="text-align: center;">
+		<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"image" %>
+		<br/>
+		<button id="toggleEdit" class="btn btn-success">编辑</button>
+		<button id="clear" class="btn btn-danger">清除</button> 
+		<button id="print" class="btn btn-primary">打印</button>
+<!-- 		<button id="export" class="btn btn-default" number: @sample.id >Export</button> 
+ -->	<%= link_to "确定", "#", id:"export", number: @sample.id, class: "btn btn-default" %>
+	</div>
+
+	<div class="hidden">
+		<% @messages_array.each_with_index do |message, index| %>
+			<span id="message_note_<%= index %>"><%= message[:note] %></span>
+			<span id="message_x_<%= index %>"><%= message[:x] %></span>
+			<span id="message_y_<%= index %>"><%= message[:y] %></span>
+			<br>
+		<% end %>
+	</div>
+
+	<div id=txt></div>
+	<script type="text/javascript">
+		;(function($) {
+			$(document).ready(function() {
+				var $img = $("#image").imgNotes({	onAdd: function() {
+					this.options.vAll = "bottom";
+					this.options.hAll = "middle";
+					elem = $(document.createElement('div'))
+					.css({width:'27px', height:'40px','text-align':'center',color:'#fff','font-weight':'bold', 'font-size':'14px'})
+					.append($('<p>'+this.noteCount+'</p>').css({'z-index':1, position:'relative', top:'3px'}))
+					.prepend($('<img>',{src: "<%= asset_path('marker_black.png') %>", width:'27px', height:'40px'}).css({position:'absolute', top:'0px', left:'0px'}));
+					return elem;
+				}
+			});
+				// $img.imgNotes("import", [	{x: "0.5", y:"0.5", note:"AFL Grand Final Trophy"}, 
+				// 	{x: "0.322", y:"0.269", note: "Brisbane Lions Flag"},
+				// 	{x: "0.824", y: "0.593", note: "Fluffy microphone"}]);
+
+				messages_array = [];
+				message_count = <%= @messages_array.count %>;
+
+				for (var i = 0; i < message_count; i++) {
+					// js -> value -> server
+					var message = {};
+					message.x = $('#message_x_'+i).text();
+					message.y = $('#message_y_'+i).text();
+					message.note = $('#message_note_'+i).text();
+					messages_array.push(message);
+				}
+
+				$img.imgNotes("import", messages_array);	
+
+				var $toggle = $("#toggleEdit");
+
+				if ($img.imgNotes("option","canEdit")) {
+					$toggle.text("查看");
+				} else {
+					$toggle.text("编辑");
+				}
+				$toggle.on("click", function() {
+					var $this = $(this);
+					if ($this.text()=="编辑") {
+						$this.text("查看");
+						$img.imgNotes("option", "canEdit", true);
+					} else {
+						$this.text('编辑');
+						$img.imgNotes('option', 'canEdit', false);
+					}
+				});
+
+
+				// 
+				var $export = $("#export");
+				$export.on("click", function() {
+					var $table = $("<table/>").addClass("gridtable");
+					var notes = $img.imgNotes('export');
+					$table.append("<th>X</th><th>Y</th><th>NOTE</th>"); 
+
+					comments_array = [];
+
+					$.each(notes, function(index, item) {
+						$table.append("<tr><td>" + item.x + "</td><td>" + item.y + "</td><td>" + item.note + "</td></tr>");
+						comment = {};
+          				comment.text = item.note;
+          				comment.left = item.x;
+          				comment.top = item.y;
+          				comments_array.push(comment);
+					});
+					// $('#txt').html($table);
+					var id = $(this).attr("number");
+
+			        $.ajax({
+			          url : "/account/samples/" + id,
+			          type : "put",
+			          data : { data_value: JSON.stringify(comments_array) }
+			        });
+			        return false;
+				});
+
+
+
+
+				var $clear = $("#clear");
+				$clear.on("click", function() {
+					$img.imgNotes('clear');
+				});
+				var $print = $("#print");
+				$print.on("click", function() {
+					$(".viewport").printThis();
+				});
+			});
+		})(jQuery);
+	</script>
 

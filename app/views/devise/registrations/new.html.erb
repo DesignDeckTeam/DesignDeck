@@ -10,8 +10,8 @@
                         <%= f.error_notification %>
 
                         <div class="form-inputs">
-                            <%= f.input :email, label: "📮邮箱", required: true, autofocus: true %>
-                            <%= f.input :password, label: "🔑密码", required: true, hint: ("至少#{@minimum_password_length} 个字母" if @minimum_password_length) %>
+                            <%= f.input :email, label: "邮箱", required: true, autofocus: true %>
+                            <%= f.input :password, label: "密码", required: true, hint: ("至少#{@minimum_password_length} 个字母" if @minimum_password_length) %>
                             <%= f.input :password_confirmation, label: "确认密码", required: true %>
                             <%= f.radio_button(:role, "用户") %>
                             <%= label(:role, "用户注册") %>&nbsp;&nbsp;&nbsp;&nbsp;

@@ -9,7 +9,7 @@
     <%= order.description %>
   </td>
   <td>
-    <%= render partial: "common/order_state_translate", locals: {order: order} %>
+    <%= order.state_cn %>
   </td>
   <td>
     <%= order.preference_type %>

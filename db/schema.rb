@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20161123072848) do
     t.datetime "updated_at",                         null: false
     t.integer  "conversationable_id"
     t.string   "conversationable_type"
+    t.float    "x_position_in_sample"
+    t.float    "y_position_in_sample"
   end
 
   create_table "mailboxer_notifications", force: :cascade do |t|

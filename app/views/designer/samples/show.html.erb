@@ -1,0 +1,54 @@
+
+
+
+	<h2 style="text-align: center;">客户的批注</h2>
+
+	<div id="imgdiv" style="text-align: center;">
+		<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"image" %>
+		<br/>
+ 		<%= link_to "返回", designer_order_path(@sample.version.stage.order), class: "btn btn-default btn-lg" %>
+	</div>
+
+	<div class="hidden">
+		<% @messages_array.each_with_index do |message, index| %>
+			<span id="message_note_<%= index %>"><%= message[:note] %></span>
+			<span id="message_x_<%= index %>"><%= message[:x] %></span>
+			<span id="message_y_<%= index %>"><%= message[:y] %></span>
+			<br>
+		<% end %>
+	</div>
+
+	<div id=txt></div>
+	<script type="text/javascript">
+		;(function($) {
+			$(document).ready(function() {
+				var $img = $("#image").imgNotes({	onAdd: function() {
+					this.options.vAll = "bottom";
+					this.options.hAll = "middle";
+					elem = $(document.createElement('div'))
+					.css({width:'27px', height:'40px','text-align':'center',color:'#fff','font-weight':'bold', 'font-size':'14px'})
+					.append($('<p>'+this.noteCount+'</p>').css({'z-index':1, position:'relative', top:'3px'}))
+					.prepend($('<img>',{src: "<%= asset_path('marker_black.png') %>", width:'27px', height:'40px'}).css({position:'absolute', top:'0px', left:'0px'}));
+					return elem;
+				}
+			});
+
+				messages_array = [];
+				message_count = <%= @messages_array.count %>;
+
+				for (var i = 0; i < message_count; i++) {
+					// js -> value -> server
+					var message = {};
+					message.x = $('#message_x_'+i).text();
+					message.y = $('#message_y_'+i).text();
+					message.note = $('#message_note_'+i).text();
+					messages_array.push(message);
+				}
+
+				$img.imgNotes("import", messages_array);	
+
+
+			});
+		})(jQuery);
+	</script>
+

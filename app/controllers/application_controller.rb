@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+
   def send_message_to_resource(from, to, resource, subject, body)
   	if body.present?
   		if resource.conversation.blank?
@@ -24,5 +26,4 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
       devise_parameter_sanitizer.permit(:account_update, keys: [:role])
     end
-
 end
