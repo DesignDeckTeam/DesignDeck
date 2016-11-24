@@ -6,10 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-create_account = User.create([email: 'designer@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'true'])
-create_account = User.create([email: 'mapuying@gmail.com', password: '111111', password_confirmation: '111111', is_designer: 'true'])
-create_account = User.create([email: 'user1@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false'])
-create_account = User.create([email: 'user2@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false'])
+create_account = User.create([email: 'designer@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'true', role: 1])
+create_account = User.create([email: 'mapuying@gmail.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 1])
+create_account = User.create([email: 'user1@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 0])
+create_account = User.create([email: 'user2@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 0])
+create_account = User.create([email: 'admin@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 2])
+
 
 
 create_order = Order.create([title: "咖啡公司咖啡杯设计", description: "需要设计一款咖啡杯，体现出简洁优雅的风格", user_id: 3, preference_type: "LOGO商标", aasm_state: "paid"])
