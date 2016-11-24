@@ -1,11 +1,23 @@
 <% if @order.attachment.present? %>
-  <h2 class="text-center">订单已完成</h2>
-  <h4><%= link_to("下载当前稿件", @order.attachment_url, download: "") %></h4>
-<% else %>
-  <h2 class="text-center">需要设计师提交最终稿</h2>
-<% end %>
+<div class="row">
+  <div class="col-md-7">
+    <h2>订单已完成</h2>
+  </div>
+
+  <div class="col-md-2">
+    <%#= link_to("下载", @order.attachment_url, download: "", class: "btn btn-primary with-button")%>
+  </div>
+  <% else %>
+  <div class="col-md-9">
+    <h2>需要设计师提交最终稿</h2>
+  </div>
+  <% end %>
+  <div class="col-md-3">
+  <%= simple_form_for [:designer, @order] do |f|%>
+    <%= f.input :attachment, label: "上传稿件" %>
+    <%= f.submit "发送" %>
+  <% end %>
+  </div>
+</div>
 <hr>
-<%= simple_form_for [:designer, @order] do |f|%>
-  <%= f.input :attachment, label: "上传稿件" %>
-  <%= f.submit "发送" %>
-<% end %>
+<%= render partial: "common/selected_version", :locals => { :order => @order } %>

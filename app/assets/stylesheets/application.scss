@@ -110,6 +110,7 @@
 */
 
 
+
 /*****************************button 02*****************************/
 .button02{
 
@@ -445,7 +446,13 @@ color: #666;
   width: 300px;
 }
 
+/************ order/show *************/
+.with-button{
+  width: 120px;
+}
 
+
+/************ end order/show *************/
 // Default options for table style
 $table-breakpoint: 480px;
 $table-background-color: #FFF;
