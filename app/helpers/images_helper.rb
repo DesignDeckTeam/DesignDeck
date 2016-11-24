@@ -11,7 +11,11 @@ module ImagesHelper
   
   def render_sample_with_link(sample)
     if sample.image.present?
-      link_to (image_tag sample.image.medium.url, class: "thumbnail", style: "width:100%;"), edit_account_sample_path(sample)       
+      if current_user.is_user?
+        link_to (image_tag sample.image.medium.url, class: "thumbnail", style: "width:100%;"), edit_account_sample_path(sample)       
+      else
+        link_to (image_tag sample.image.medium.url, class: "thumbnail", style: "width:100%;"), designer_sample_path(sample)  
+      end
     else
       image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail", style: "width:100%;")
     end

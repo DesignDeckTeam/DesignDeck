@@ -56,7 +56,7 @@ class Account::SamplesController < ApplicationController
                                 comment_hash["top"])
     end
   	
-  	redirect_to account_version_path(@sample.version)
+  	redirect_to account_order_path(@sample.version.stage.order)
 
   end
 

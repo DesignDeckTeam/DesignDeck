@@ -25,6 +25,8 @@ Rails.application.routes.draw do
         resources :versions
       end
     end
+
+    resources :samples, only: [:show]
   end
 
   resources :designers, only: [:show, :edit, :update]
