@@ -25,4 +25,15 @@ module ImagesHelper
     end
   end    	
 
+  # def render_sample_with_conversations(sample)
+  #   if sample.image.present?
+  #     conversations = sample.conversations
+  #     messages = Mailboxer::Message.find(conversations.ids)
+      
+  #     # link_to (image_tag sample.image.medium.url, class: "thumbnail", style: "width:100%;"), account_version_path(sample.version)       
+
+  #   else
+  #     image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail", style: "width:100%;")
+  #   end
+
 end

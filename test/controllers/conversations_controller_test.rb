@@ -8,6 +8,8 @@
 #  updated_at            :datetime         not null
 #  conversationable_id   :integer
 #  conversationable_type :string
+#  x_position_in_sample  :float
+#  y_position_in_sample  :float
 #
 
 require 'test_helper'
