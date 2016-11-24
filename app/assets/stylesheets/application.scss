@@ -499,6 +499,7 @@ $table-header-border: 1px solid #FFF;
 
     th {
       display: none; // hide all the table header for mobile
+      text-align: center;
       border: $header-border;
       background-color: $header-background-color;
       color: $header-text-color;
