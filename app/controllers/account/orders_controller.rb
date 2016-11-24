@@ -21,6 +21,8 @@ class Account::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user = current_user
+  
+
     if @order.save
       redirect_to account_order_path(@order)
     else
