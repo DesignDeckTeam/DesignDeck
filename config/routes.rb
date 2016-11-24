@@ -3,6 +3,14 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  namespace :admin do
+    resources :users do
+      post :approve_designer
+    end
+
+    resources :orders
+  end
+
   namespace :account do
     resources :orders do
       post :pay_with_alipay
@@ -25,6 +33,8 @@ Rails.application.routes.draw do
         resources :versions
       end
     end
+
+    resources :samples, only: [:show]
   end
 
   resources :designers, only: [:show, :edit, :update]

@@ -42,11 +42,13 @@ gem "simple_form"
 gem "nested_form"
 
 gem "will_paginate"
+gem 'jquery-ui-rails'
 
 gem "pry", group: :development
 
 gem "gravtastic" #gravatar
 gem 'mailboxer', github: 'mailboxer/mailboxer'
+require 'json'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
