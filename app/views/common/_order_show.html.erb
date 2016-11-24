@@ -4,32 +4,6 @@
     <%= render_order_step(order, user) %>
 <% else %>
 
-    <% if false %>
-        <div class="container">
-
-            <ul class="nav nav-tabs nav-justified">                
-                <li><a data-toggle="tab" href="#order_info">订单</a></li>
-                <li class="active"><a data-toggle="tab" href="#stages">作品</a></li>
-                <li><a data-toggle="tab" href="#conversation">对话</a></li>  
-            </ul>
-
-            <div class="tab-content"">
-                <div id="order_info" class="tab-pane fade">
-                    <%= render partial: "common/order_info", :locals => { order: order } %>
-                </div>
-
-                <div id="stages" class="tab-pane fade in active">
-                    <%= render_order_step(order, user) %>
-                </div>
-
-                <div id="conversation" class="tab-pane fade">
-                    <%= render partial: "common/conversation_for_order", :locals => { order: @order } %>
-                </div>
-            </div>
-        </div>
-    <% end %>
-
-
     <div class="panel with-nav-tabs panel-primary container">
         <div class="panel-heading row">
                 <ul class="nav nav-tabs nav-justified ">
@@ -54,8 +28,6 @@
         </div>
     </div>
     
-    
-
 <% end %>
 
 

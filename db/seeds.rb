@@ -10,7 +10,7 @@ create_account = User.create([email: 'designer@designerdeck.com', password: '111
 create_account = User.create([email: 'mapuying@gmail.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 1])
 create_account = User.create([email: 'user1@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 0])
 create_account = User.create([email: 'user2@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 0])
-create_account = User.create([email: 'admin@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', is_admin: 'true', role: 2])
+create_account = User.create([email: 'admin@designerdeck.com', password: '111111', password_confirmation: '111111', is_designer: 'false', role: 2])
 
 
 

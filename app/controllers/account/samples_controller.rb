@@ -56,7 +56,8 @@ class Account::SamplesController < ApplicationController
                                 comment_hash["top"])
     end
   	
-  	redirect_to account_order_path(@sample.version.stage.order)
+  	redirect_to account_order_path(@sample.version.stage.order), notice: "图片已加批注"
+
 
   end
 

@@ -21,7 +21,6 @@
 #  designer_products      :string
 #  token                  :string
 #  role                   :integer
-#  is_admin               :boolean          default(FALSE)
 #
 # Indexes
 #

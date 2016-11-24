@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 
   resources :designers, only: [:show, :edit, :update]
 
+  namespace :admin do
+    resources :orders
+  end
+
   get '/orders/:order_id/conversations', to: 'conversations#index', as: 'conversations_for_order'
   get '/orders/:order_id/stages/:stage_id/conversations', to: 'conversations#show', as: 'conversation_for_stage'
 

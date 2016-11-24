@@ -18,6 +18,7 @@
 //= require bootstrap/dropdown
 //= require bootstrap/tab
 //= require bootstrap/transition
+//= require bootstrap/modal
 //= require jquery_nested_form
 //= require_tree .
 //= require_self
@@ -247,21 +248,4 @@
   //       return false;
   //     });
   // });  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

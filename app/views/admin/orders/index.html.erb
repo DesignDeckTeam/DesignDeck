@@ -1,0 +1,52 @@
+
+<h1 class="text-center "> 所有订单 </h1>
+
+
+<div class="container">
+  <div class="row">
+<div class="col-md-12">
+
+<br><br>
+
+<table class="table table-boldered">
+  <thead>
+      <tr>
+        <td>设计项目</td>
+
+        <td>提交时间</td>
+        <td>订单状态</td>
+        <td>查看订单</td>
+        <td>删除订单</td>
+      </tr>
+  </thead>
+  <tbody>
+  <% @orders.each do |order| %>
+  <tr>
+    <td>
+      <%= link_to(order.title, admin_order_path(order)) %>
+                                                <!-- (order)= order.id -->
+    </td>
+
+
+    <td>
+      <%= order.created_at.strftime("%Y年%m月%d日") %>
+    </td>
+    <td>
+      <%= order.state_cn %>
+    </td>
+     <td>
+    <%= link_to("查看订单", admin_order_path(order), :class => "btn btn-sm btn-primary" ) %>
+    </td>
+
+    <td>
+      <%= link_to("删除订单", admin_order_path(order), :method => :delete, :data => { :confirm => "Are you sure?" }, :class => "btn btn-sm btn-danger") %>
+    </td>
+
+  </tr>
+     <% end %>
+    </tbody>
+  </table>
+
+       </div>
+     </div>
+  </div>
