@@ -32,10 +32,8 @@ class Account::OrdersController < ApplicationController
   def submit_additional_comment
     @order = Order.find(params[:order_id])
     @stage = @order.stages.last
-    send_message_to_resource(current_user,
-                             @order.designer, @stage,
-                             "stage#{@stage.id} conversation",
-                             comment_param[:comment])
+    send_message_to_resource(current_user,@order.designer,
+    @stage,"stage#{@stage.id} conversation",comment_param[:comment])
 
     redirect_to account_order_path(@order), notice: "已发送评论"
   end
