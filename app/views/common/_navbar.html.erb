@@ -31,10 +31,12 @@
       <% end %> 
 
     </div>
-    <%= link_to new_account_order_path do %>
-    <div class="col-md-2 text-center button02 box2">
-      <h5>添加设计委托</h5>
-    </div>
+    <% if current_user && current_user.is_user? %>
+      <%= link_to new_account_order_path do %>
+      <div class="col-md-2 text-center button02 box2">
+        <h5>添加设计委托</h5>
+      </div>
+      <% end %>
     <% end %>
     <!-- /.navbar-collapse -->
   </div>
