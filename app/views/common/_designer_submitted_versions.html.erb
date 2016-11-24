@@ -10,7 +10,7 @@
 
         <div class="col-md-11">
           <% version.samples.each do |sample| %>
-            <div class="col-md-3">
+            <div class="col-md-3"">
               <%= link_to(render_sample(sample), designer_order_stage_version_path(@order, @order.stages.last, version)) %>
             </div>
           <% end %>
