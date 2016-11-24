@@ -17,6 +17,7 @@
 //= require bootstrap/dropdown
 //= require bootstrap/tab
 //= require bootstrap/transition
+//= require bootstrap/modal
 //= require jquery_nested_form
 //= require_tree .
 //= require_self
@@ -26,8 +27,8 @@
 
 // (function ( $ ) {
 
-	
- 
+
+
 // }(jQuery));
 
 
@@ -143,7 +144,7 @@ $(document).ready(function(){
           return data;
         }
 
-      mouseAbs = function(e) {  
+      mouseAbs = function(e) {
         return [e.pageX, e.pageY];
       };
 
@@ -173,7 +174,7 @@ $(document).ready(function(){
           textArea.css(text_css);
           position = mouseAbs(e);
           textArea.css({'left': position[0], 'top': position[1]});
-          $(this).after(textArea);        
+          $(this).after(textArea);
           $(textArea).bind('keydown', resizeTextArea);
           $(textArea).on('paste', function(e) {
             /*TODO Fix resize issue */
@@ -211,16 +212,16 @@ $(document).ready(function(){
         $(obj).click(newTextArea);
         $(document).keydown(handleEsc);
   };
- 
+
     $.fn.TextOver = function(options, callback) {
- 
+
         api = $.TextOver(this, options);
         if ($.isFunction(callback)) callback.call(api);
- 
+
         // Return "this" so the object is chainable (jQuery-style)
       return this;
     };
- 
+
 }(jQuery));
 
 
@@ -263,18 +264,6 @@ jQuery(function($){
 
     });
 
-});  
+});
 
-});  
-
-
-
-
-
-
-
-
-
-
-
-
+});

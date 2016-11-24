@@ -21,6 +21,7 @@
 #  designer_products      :string
 #  token                  :string
 #  role                   :integer
+#  is_admin               :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -98,7 +99,6 @@ class User < ApplicationRecord
   def admin?
     self.role == "管理员"
   end
-
 
   private
 

@@ -6,10 +6,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="col-md-1 col-md-offset-6 login-diy dropdown">
                 <% if !current_user %>
+
                 <div class="text-right">
                   <h5><%= link_to("注册", new_user_registration_path, style: "text-decoration: none") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= link_to("登入", new_user_session_path, style: "text-decoration: none") %></h5>
+                    <%= link_to("登入", new_user_session_path, style: "text-decoration: none") %></h5>
                 </div>
+
                 <% else %>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none">
                        <h5 id="text-and-botton-gray"><%= current_user.email %></h5>
@@ -19,6 +21,7 @@
                       <li><%= link_to "进入订单页面", account_orders_path %></li>
                       <li class="divider"> </li>
                       <% if current_user.designer? %>
+
                       <li> <%= link_to("Designer 后台", designer_orders_path)%></li>
                       <li> <%= link_to("帐户信息", designer_path(current_user.token)) %>
                       <% end %>
@@ -28,6 +31,6 @@
 
         </div>
         <!-- /.navbar-collapse -->
-    </div>
+
     <!-- /.container-fluid -->
 </nav>

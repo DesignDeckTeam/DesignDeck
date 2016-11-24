@@ -25,7 +25,7 @@ class Order < ApplicationRecord
 	mount_uploader :image, ImageUploader
 	validates :title, :description, presence: true
 	mount_uploader :attachment, AttachmentUploader
-	
+
 	has_many :stages
 	belongs_to :user
   accepts_nested_attributes_for :stages, :allow_destroy => true
@@ -78,17 +78,17 @@ class Order < ApplicationRecord
   def state_cn
     case self.aasm_state
     when "placed"
-      return "已下单"
+      return "客户已下单"
     when "paid"
-      return "等待设计师接单"
+      return "客户已付款"
     when "picked"
-      return "项目进行中"
+      return "设计师已接单"
     when "versions_submitted"
-      return "项目进行中"
+      return "设计师已提交"
     when "version_selected"
-      return "项目进行中"
+      return "客户已确认"
     when "completed"
-      return "已完成"
+      return "订单已完成"
     end
   end
 
