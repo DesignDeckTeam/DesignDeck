@@ -41,14 +41,16 @@ class Account::OrdersController < ApplicationController
     redirect_to account_order_path(@order), notice: "已发送评论"
   end
 
-  def show
-    # binding.pry
 
+
+  def show
+    
+    # binding.pry
 
     @order = Order.find(params[:id])
     @stage = @order.current_stage
     case @order.aasm_state
-    when "versions_submitted"
+    when "versions_submitted", "drafts_submitted"
       @stage = @order.stages.last
     else
       @stage = @order.stages.closed.last
@@ -59,6 +61,39 @@ class Account::OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
   end
+
+
+  def select_draft
+
+    @order = Order.find(params[:order_id])
+
+    unless @order.drafts_submitted?
+      redirect_to account_order_path, alert: "当前订单状态不是drafts_submitted"
+      return
+    end
+
+    @stage = @order.stages.last
+    @stage.close!
+
+    version = Version.find_by(id: select_version_params[:version_id])
+    version.select!
+
+    # 在当前的stage中加conversation
+    send_message_to_resource(current_user,
+                             @order.designer, @stage,
+                             "stage#{@stage.id} conversation",
+                             select_version_params[:comment])
+
+    # 改变order的state
+    if params[:commit] == "确定选择方案"
+      @order.select_draft!
+      redirect_to account_order_path(@order), notice: "已选择方案"
+    else
+      redirect_to account_order_path(@order), notice: "发生未知错误"
+    end
+
+  end
+
 
 
 
@@ -93,7 +128,7 @@ class Account::OrdersController < ApplicationController
       redirect_to account_order_path(@order), notice: "已完成订单"
     else
       @order.select_version!
-      redirect_to account_order_path(@order), notice: "已选择方案"
+      redirect_to account_order_path(@order), notice: "已发送反馈"
     end
 
   end

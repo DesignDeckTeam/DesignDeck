@@ -2,14 +2,11 @@
 
 
 <div class="container-fluid">
-	<!-- <h2>来自用户的反馈</h2> -->
-	<h5><%= @order.last_message.sender.email %></h5>
-	<p class="row well pull-left" style="font-size: 1.3em;">
-		"<%= @order.last_message.body %>""
-	</p>
+	<h2>用户选择的方案</h2>
 </div>
 
 <%= render partial: "common/selected_version", :locals => { order: @order } %>
 <%= render partial: "common/designer_submitted_versions" %>
 <%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @order.stages.closed.last, single_version: true } %>
+
 <br>
