@@ -95,7 +95,7 @@ class Designer::OrdersController < ApplicationController
     @order = Order.find(params[:order_id])
     @current_stage = @order.current_stage
 
-    binding.pry
+    # binding.pry
 
     if @current_stage.versions.count < 1
       redirect_to designer_order_path(@order), alert: "请提交新的稿件"
