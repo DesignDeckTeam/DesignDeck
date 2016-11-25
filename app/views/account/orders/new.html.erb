@@ -29,11 +29,11 @@
 		<h3>设计信息</h3>
 		<hr>
 		<div class="col-md-12 font-gray">
-			<%= f.input :title, label: "项目名称", input_html: { class: "form-control"}  %>
+			<%= f.input :title, label: "项目名称", input_html: { class: "form-control"}, placeholder: '给您的项目起一个容易辨识的名字吧' %>
 			<br>
-			<%= f.input :description, label: "设计说明", input_html: { class: "form-control"}  %>
+			<%= f.input :description, label: "设计说明", input_html: { class: "form-control"}, placeholder: '您项目的说明，清楚的描述可以让设计师更加了解您的需求' %>
 			<br>
-			<%= f.input :style_and_regulation, label: "风格 & 规格", input_html: { class: "form-control"} %>
+			<%= f.input :style_and_regulation, label: "风格 & 规格", input_html: { class: "form-control"}, placeholder: '您需要的作品的风格是怎样的？图片的分辨率有特殊要求吗？' %>
 			<br>
 			<div class="input-group">
 					<%= f.label :需设计的页数 %>
