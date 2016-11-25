@@ -110,10 +110,6 @@ class Order < ApplicationRecord
     stage
   end
 
-  def user
-    self.user_id
-  end
-
   def last_closed_stage
     self.stages.where(aasm_state: "closed").last
   end
