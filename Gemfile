@@ -46,7 +46,7 @@ gem "pry", group: :development
 
 gem "gravtastic" #gravatar
 gem 'mailboxer', github: 'mailboxer/mailboxer'
-gem 'fog-aws'
+gem 'fog'
 gem 'figaro'
 
 
