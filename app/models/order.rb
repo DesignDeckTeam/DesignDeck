@@ -114,6 +114,21 @@ class Order < ApplicationRecord
     self.stages.where(aasm_state: "closed").last
   end
 
+  def versioned_stages
+    self.stages.where(id: Version.select(:stage_id).uniq)
+  end
+
+
+  # 最后一个有version的stage
+  def last_versioned_stage
+    # if self.stages.last.versions.present?
+    #   return self.stages.last
+    # else
+    #   return self.stages.closed.last
+    # end
+    self.versioned_stages.last
+  end
+
   def last_message
     if self.stages.last.conversation.present?
       return self.stages.last.conversation.messages.last

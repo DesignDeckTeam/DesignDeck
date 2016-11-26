@@ -1,0 +1,13 @@
+<% selected_version = stage.selected_version %>
+<% samples  = selected_version.samples %>
+
+<div class="container-fluid">
+	<div class="row well">
+		<% samples.each do |sample| %>
+			<div class="col-md-3">
+				<%= render_sample_with_link(sample) %>
+				<%= render_note_indicator(sample) %>
+			</div>
+		<% end %>
+	</div>
+</div>

@@ -1,8 +1,14 @@
 <br>
-<div class="container-fluid">
-	<h2>已选择方案，等待设计师提交新的稿件</h2>
+
+<div class="col-md-10 col-xs-10 right-grey-border">
+	<!-- <div class="container-fluid">
+		<h2>已选择方案，等待设计师提交新的稿件</h2>
+	</div>
+ -->	<%= render partial: "common/selected_stage", :locals => { :stage => @stage } %>
+
 </div>
 
-<%= render partial: "common/selected_version", :locals => { :order => @order } %>
-
+<div class="col-md-2 col-xs-2">
+	<%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
+</div>
 	

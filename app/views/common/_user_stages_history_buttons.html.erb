@@ -1,0 +1,17 @@
+<div class="container" style="position: fixed;">
+	<% if stage == order.last_versioned_stage %>
+		<%= link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary", style: "margin-left:30px;"  %>
+	<% else %>
+		<%= link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default", style: "margin-left:30px;"  %>
+	<% end %>
+	
+	<br>
+	<% other_stages.each_with_index do |another_stage, index| %>
+		<% if stage == another_stage %>
+			<%= link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-primary history-button" %>
+		<% else %>
+			<%= link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-default history-button" %>
+		<% end %>
+		<br>
+	<% end %>
+</div>

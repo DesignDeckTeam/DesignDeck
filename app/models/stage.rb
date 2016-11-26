@@ -18,6 +18,10 @@ class Stage < ApplicationRecord
 	has_many :versions
 
 
+  def selected_version
+    self.versions.where(aasm_state: "selected").last
+  end
+
 
 
 end
