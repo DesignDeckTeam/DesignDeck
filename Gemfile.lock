@@ -16,7 +16,7 @@ GIT
       rails (>= 4.2.0)
 
 GEM
-  remote: https://gems.ruby-china.org/
+  remote: https://rubygems.org/
   specs:
     aasm (4.11.1)
     actioncable (5.0.0.1)
