@@ -44,7 +44,7 @@ class Account::OrdersController < ApplicationController
 
 
   def show
-    
+
     # binding.pry
 
     @order = Order.find(params[:id])
