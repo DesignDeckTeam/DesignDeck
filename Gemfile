@@ -38,9 +38,7 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 # gem 'carrierwave'
 gem "mini_magick"
 gem "simple_form"
-
 gem "nested_form"
-
 gem "will_paginate"
 gem 'jquery-ui-rails'
 
@@ -48,7 +46,7 @@ gem "pry", group: :development
 
 gem "gravtastic" #gravatar
 gem 'mailboxer', github: 'mailboxer/mailboxer'
-gem 'fog'
+gem 'fog-aws'
 gem 'figaro'
 
 
