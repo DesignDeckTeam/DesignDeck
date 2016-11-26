@@ -48,6 +48,10 @@ gem "pry", group: :development
 
 gem "gravtastic" #gravatar
 gem 'mailboxer', github: 'mailboxer/mailboxer'
+gem 'fog'
+gem 'figaro'
+
+
 require 'json'
 
 group :development, :test do
