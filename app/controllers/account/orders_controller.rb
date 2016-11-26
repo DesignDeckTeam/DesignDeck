@@ -7,7 +7,7 @@ class Account::OrdersController < ApplicationController
     @order = Order.find(params[:order_id])
     @order.pay!
 
-    redirect_to account_order_path(@order), notice: "使用支付宝成功完成付款"
+    redirect_to account_orders_path, notice: "使用支付宝成功完成付款"
   end
 
   def index

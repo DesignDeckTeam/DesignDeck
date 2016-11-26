@@ -2,17 +2,24 @@
 
 
 <div class="container-fluid">
-	<!-- <h2>来自用户的反馈</h2> -->
-	<h5><%= @order.last_message.sender.email %></h5>
+
+	<div class="row">
+		<div class="col-md-6">
+			<span><%= @order.last_message.sender.email %></span>
+		</div>
+		<div class="col-md-6">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#myModal">
+		  		查看所有对话
+			</button>
+		</div>
+	</div>
+	<br>
 	<p class="row well pull-left" style="font-size: 1.3em;">
-		"<%= @order.last_message.body %>""
+		"<%= @order.last_message.body %>"
 	</p>
 
 
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-default btn-lg pull-right" data-toggle="modal" data-target="#myModal">
-  		查看所有对话
-	</button>
 
 </div>
 
