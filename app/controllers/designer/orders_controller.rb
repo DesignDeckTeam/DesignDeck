@@ -1,6 +1,7 @@
 class Designer::OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :designer_required
+  before_action :find_order, only: [:show, :update]
 
   layout "order_nav", only: :show
 
@@ -17,10 +18,8 @@ class Designer::OrdersController < ApplicationController
 
   # 如果user已经选择了提交的version，designer打开show页面时就生成新的一个stage
   def show
-    @order = Order.find(params[:id])
-
     case @order.aasm_state
-    when "version_selected"
+    when "version_selected", "draft_selected"
       if @order.stages.last.closed?
         @current_stage = @order.new_stage
       end
@@ -31,9 +30,12 @@ class Designer::OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
-    @order.update(attachment_param)
-    redirect_to designer_order_path
+    if params[:order].present?
+      @order.update(attachment_param)
+      redirect_to designer_order_path, notice: "文件已成功提交"
+    else
+      redirect_to designer_order_path, alert: "需要提交附件"
+    end
   end
 
 
@@ -63,7 +65,35 @@ class Designer::OrdersController < ApplicationController
   end
 
 
-  # picked / selected -> submitted
+  # picked -> drafts_submitted
+  def submit_drafts
+    @order = Order.find(params[:order_id])
+    @current_stage = @order.current_stage
+
+    if @current_stage.versions.count < 2
+      redirect_to designer_order_path(@order), alert: "请提交初稿供客户选择"
+      return
+    end
+
+    if @order.may_submit_drafts?
+      @order.submit_drafts!
+    else
+      redirect_to designer_order_path(@order), alert: "发生了不应该发生的错误"
+      return
+    end
+
+    # 在当前的stage中加conversation
+
+    comment = comment_param[:comment]
+    send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment)
+
+    redirect_to designer_order_path(@order), notice: "已向用户提交了初稿"
+
+  end
+
+
+
+  # draft_selected / version_selected -> submitted
   def submit_versions
 
     @order = Order.find(params[:order_id])
@@ -71,17 +101,15 @@ class Designer::OrdersController < ApplicationController
 
     # binding.pry
 
-    minimum_versions_count = @order.aasm_state == "picked" ? 1 : 1
-
-    if @current_stage.versions.count < minimum_versions_count
-      redirect_to designer_order_path(@order), alert: "请提交稿件方案供客户选择"
+    if @current_stage.versions.count < 1
+      redirect_to designer_order_path(@order), alert: "请提交新的稿件"
       return
     end
 
-    if @order.may_submit_initial_versions?
-      @order.submit_initial_versions!
-    elsif @order.may_submit_new_versions?
-      @order.submit_new_versions!
+    if @order.may_submit_initial_version?
+      @order.submit_initial_version!
+    elsif @order.may_submit_new_version?
+      @order.submit_new_version!
     else
       redirect_to designer_order_path(@order), alert: "发生了不应该发生的错误"
       return
@@ -103,6 +131,10 @@ class Designer::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     # if @order.designer_id != current_user.id
 
+  end
+
+  def find_order
+    @order = Order.find(params[:id])
   end
 
   def comment_param

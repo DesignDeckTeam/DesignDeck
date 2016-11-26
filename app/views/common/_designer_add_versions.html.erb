@@ -1,7 +1,10 @@
 
 
-<h2>添加新的稿件</h2>
-<br>
-<%= link_to("添加稿件", new_designer_order_stage_version_path(order, order.current_stage), class: "btn btn-primary") %>
-<hr>
+<% unless single_version && order.stages.last.versions.present? %>
+	<h2>添加新的稿件</h2>
+	<br>
+	<%= link_to("添加稿件", new_designer_order_stage_version_path(order, order.current_stage), class: "btn btn-primary") %>
+	<hr>	
+<% end %>
+	
 <%= render partial: "common/add_comment", locals: { path: designer_order_submit_versions_path(order), button_text: "发送稿件和评论给客户" } %>

@@ -22,6 +22,23 @@ module OrdersHelper
       else
         render "common/user_order_picked"
       end
+
+
+    when "drafts_submitted"
+      if _user.designer?
+        render "common/designer_submitted_drafts"
+      else
+        render "common/user_drafts_submitted"
+      end
+
+    when "draft_selected"
+      if _user.designer?
+        render "common/designer_draft_selected"
+      else
+        render "common/user_draft_selected"
+      end
+
+
     when "versions_submitted"
       if _user.designer?
         render "common/designer_versions_submitted"

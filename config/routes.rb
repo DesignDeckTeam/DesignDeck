@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :orders do
       post :pay_with_alipay
       post :select_version
+      post :select_draft
       post :submit_additional_comment
     end
 
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   namespace :designer do
     resources :orders do
       post :submit_versions
+      post :submit_drafts
       post :pick_order
       post :submit_additional_comment
       resources :stages do

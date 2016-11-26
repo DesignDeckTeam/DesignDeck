@@ -1,48 +1,39 @@
 
 
-<!-- 检测到designer已经提交3张sample时，提供一个可以选择其中一个sample的页面 -->
 
-<% if Version.decided_version_for_stage(@stage).any? %>
-	<div class="well text-center">
-		<p>已选择设计师的初步方案，等待设计提交初稿</p>
-	</div>
-<% else %>
-	<h2 class="">请选择新提交的方案</h2>
-	<% submitted_versions = @stage.versions %>
-	<%= form_tag account_order_select_version_path(@order), method: :post do %>
+<h2 class="">新的稿件</h2>
+<% submitted_versions = @stage.versions %>
+<%= form_tag account_order_select_version_path(@order), method: :post do %>
 
-		<div class="form-group">
-			<% submitted_versions.each do |version| %>
-				<% samples = version.samples %>
-				<div class="row well"  style="margin-left: 0px; margin-right: 0px;">
-					<div class="col-md-11">
-						<% samples.each do |sample| %>
-						<div class="col-md-3">
-							<%= render_sample_with_link(sample) %>
-							<%= render_note_indicator(sample) %>
-						</div>
-						<% end %>
+	<div class="form-group">
+		<% submitted_versions.each do |version| %>
+			<% samples = version.samples %>
+			<div class="row well"  style="margin-left: 0px; margin-right: 0px;">
+				<% samples.each do |sample| %>
+					<div class="col-md-3">
+						<%= render_sample_with_link(sample) %>
+						<%= render_note_indicator(sample) %>
 					</div>
-					<div class="col-md-1">
-						<%= radio_button_tag "order[version_id]", version.id, checked = true, style: "vertical-align: middle;" %>
-					</div>
+				<% end %>
+				<div class="hidden">
+					<%= radio_button_tag "order[version_id]", version.id, checked = true, style: "vertical-align: middle;" %>
 				</div>
-			<% end %>
-			<hr>
-		</div>
+			</div>
+		<% end %>
+		<hr>
+	</div>
 
-		<%= render partial: "common/comment_area" %>
+	<%= render partial: "common/comment_area" %>
 
-  		<div class="form-action">
-   			<%= submit_tag "需要设计师更新", disable_with: "Submitting...", class: "btn btn-primary pull-right" %>
-   			<%= submit_tag "确认为最终稿", disable_with: "Submitting...", class: "btn btn-success pull-left" %>
-    	</div>
+		<div class="form-action">
+			<%= submit_tag "需要设计师更新", disable_with: "Submitting...", class: "btn btn-primary pull-right" %>
+			<%= submit_tag "确认为最终稿", disable_with: "Submitting...", class: "btn btn-success pull-left" %>
+	</div>
 
-    	<br>
-    	<br>
-    	<br>
+	<br>
+	<br>
+	<br>
 
-	<% end %>
 <% end %>
 	
 

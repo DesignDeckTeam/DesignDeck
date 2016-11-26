@@ -38,6 +38,8 @@ class Order < ApplicationRecord
   	state :placed, :initial => true
     state :paid
     state :picked
+    state :drafts_submitted
+    state :draft_selected
   	state :versions_submitted
   	state :version_selected
   	state :completed
@@ -50,15 +52,23 @@ class Order < ApplicationRecord
       transitions :paid => :placed, :to => :picked
     end
 
-  	event :submit_initial_versions do
-      transitions :from => :picked, :to => :versions_submitted
+    event :submit_drafts do 
+      transitions from: :picked, to: :drafts_submitted
+    end
+
+    event :select_draft do 
+      transitions from: :drafts_submitted, to: :draft_selected
+    end    
+
+  	event :submit_initial_version do
+      transitions :from => :draft_selected, :to => :versions_submitted
     end
 
     event :select_version do
       transitions :from => :versions_submitted, :to => :version_selected
     end
 
-    event :submit_new_versions do
+    event :submit_new_version do
       transitions :from => :version_selected, :to => :versions_submitted
     end
 
@@ -100,8 +110,16 @@ class Order < ApplicationRecord
     stage
   end
 
-  def created_time
+  def last_closed_stage
+    self.stages.where(aasm_state: "closed").last
+  end
 
+  def last_message
+    if self.stages.last.conversation.present?
+      return self.stages.last.conversation.messages.last
+    elsif self.last_closed_stage.conversation.present?
+      return self.last_closed_stage.conversation.messages.last
+    end    
   end
 
   def set_current_stage(stage)

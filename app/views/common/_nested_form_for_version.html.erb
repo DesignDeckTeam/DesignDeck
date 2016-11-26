@@ -1,0 +1,21 @@
+<% version = order.stages.last.versions.build %>
+<% version.samples.build %>
+
+<%= simple_nested_form_for [:designer, order, order.stages.last, version] do |f| %>
+
+    <div id="samples">
+        <%= f.fields_for :samples do |builder| %>
+            <%= render "designer/versions/sample_fields", :f => builder %>
+            <%= builder.link_to_remove "Remove", class: "btn btn-xs btn-default" %>
+            <br><br>
+        <% end %>
+    </div>
+
+    <hr>
+    <%= f.link_to_add "Add a sample", :samples, :data => { :target => "#samples" }, class: "btn btn-default"  %>
+    
+    <br>
+    <br>
+
+    <%= f.submit "Submit", class: "btn btn-lg btn-success" %>
+<% end %>
