@@ -30,8 +30,12 @@ class Designer::OrdersController < ApplicationController
   end
 
   def update
-    @order.update(attachment_param)
-    redirect_to designer_order_path
+    if params[:order].present?
+      @order.update(attachment_param)
+      redirect_to designer_order_path, notice: "文件已成功提交"
+    else
+      redirect_to designer_order_path, alert: "需要提交附件"
+    end
   end
 
 
