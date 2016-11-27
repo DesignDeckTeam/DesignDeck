@@ -1,8 +1,17 @@
 <div class="container" style="position: fixed;">
+
+	<% if order.attachment.present? %>
+        <%= link_to("下载最终版", order.attachment_url, download: "", class: "btn btn-warning with-button history-button")%>
+    <% else %>
+    	<%= link_to("下载最终版", order.attachment_url, download: "", class: "btn btn-default with-button history-button", disabled: "disabled")%>
+    <% end %>
+
+    <br>
+
 	<% if stage == order.last_versioned_stage %>
-		<%= link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary", style: "margin-left:30px;"  %>
+		<%= link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary history-button", style: "margin-left:30px;"  %>
 	<% else %>
-		<%= link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default", style: "margin-left:30px;"  %>
+		<%= link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default history-button", style: "margin-left:30px;"  %>
 	<% end %>
 	
 	<br>
