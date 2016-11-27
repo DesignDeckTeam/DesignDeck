@@ -1,5 +1,9 @@
-<% selected_version = stage.selected_version %>
-<% samples  = selected_version.samples %>
+
+	
+<% samples = stage.versions.first.samples %>
+
+<%# samples = Sample.where(id: stage.versions.ids) %>
+
 
 <div class="container-fluid">
 	<div class="row well">

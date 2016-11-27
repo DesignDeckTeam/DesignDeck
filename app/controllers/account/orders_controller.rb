@@ -47,19 +47,25 @@ class Account::OrdersController < ApplicationController
     
     # binding.pry
     @order = Order.find(params[:id])
-    @stage = @order.current_stage
 
-    if params[:stage_id].present?
-      @stage = Stage.find(params[:stage_id])
-    else
-      @stage = @order.last_versioned_stage
+    if @order.current_stage_id.present?
+      @stage = @order.current_stage
+
+      if params[:stage_id].present?
+        @stage = Stage.find(params[:stage_id])
+      else
+        @stage = @order.last_versioned_stage
+      end
+
+      unless @stage.order == @order 
+        redirect_to account_order_path(@order)
+      end
+
+      @other_stages = @order.versioned_stages[0...-1].reverse   
+         
     end
 
-    unless @stage.order == @order 
-      redirect_to account_order_path(@order)
-    end
-
-    @other_stages = @order.versioned_stages[0...-1].reverse
+      
     
   end
 
