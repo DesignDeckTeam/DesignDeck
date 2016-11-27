@@ -1,22 +1,45 @@
-<% if @order.attachment.present? %>
-<div class="row">
-  <div class="col-md-10">
-    <h2>下载最终稿件</h2>
-  </div>
-  <div class="col-md-2">
-    <%= link_to("下载", @order.attachment_url, download: "", class: "btn btn-warning with-button")%>
-  </div>
+<div class="col-md-10 col-xs-10 right-grey-border">
+  <% if @order.attachment.present? %>
+    <div class="row">
+      <div class="col-md-10">
+        <h2>下载最终稿件</h2>
+      </div>
+  
+      <% if false %>
+        <div class="col-md-2">
+          <%= link_to("下载", @order.attachment_url, download: "", class: "btn btn-warning with-button")%>
+        </div>
+      <% end %>
+
+        
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-md-10">
+        <h2>等待设计师上传最终稿件...</h2>
+        <br>
+      </div>
+
+
+
+      <% if false %>
+        <div class="col-md-2">
+          <br>
+          <button type="button" class="btn btn-primary with-button" disabled="disabled">下载</button>
+        </div>
+      <% end %>
+        
+
+
+    </div>
+  <% end %>
+  
+  <%= render partial: "common/selected_stage", :locals => { :stage => @stage } %>
+
 </div>
-<% else %>
-<div class="row">
-  <div class="col-md-10">
-    <h2>等待设计师上传最终稿件...</h2>
-  </div>
-  <div class="col-md-2">
-    <br>
-    <button type="button" class="btn btn-primary with-button" disabled="disabled">下载</button>
-  </div>
+
+
+<div class="col-md-2 col-xs-2">
+  <%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
 </div>
-<% end %>
-<hr>
-<%= render partial: "common/selected_version", :locals => { :order => @order } %>
+  

@@ -1,5 +1,7 @@
 class Account::SamplesController < ApplicationController
 
+  before_action :find_sample, only: [:show, :edit, :update]
+
 
   require 'json'
 
@@ -7,7 +9,6 @@ class Account::SamplesController < ApplicationController
   end
 
   def edit
-  	@sample = Sample.find(params[:id])
     conversations = @sample.conversations
     @messages_array = []
 
@@ -26,7 +27,6 @@ class Account::SamplesController < ApplicationController
   end
 
   def update
-  	@sample = Sample.find(params[:id])
     @sample.conversations.delete_all
 
   	p = params[:data_value]
@@ -63,6 +63,10 @@ class Account::SamplesController < ApplicationController
 
 
   private
+
+  def find_sample
+    @sample = Sample.find(params[:id])
+  end
 
   def to_hash(string)
     if string.first == "{"

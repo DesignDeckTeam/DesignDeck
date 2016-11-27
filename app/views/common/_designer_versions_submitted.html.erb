@@ -1,4 +1,10 @@
 
 <!-- designer在order是submitted的状态下需要显示的内容 -->
 
-<%= render partial: "common/designer_submitted_versions" %>
+<div class="col-md-10 col-xs-10 right-grey-border">
+	<%= render partial: "common/selected_stage", locals: {stage: @stage} %>
+</div>
+
+<div class="col-md-2 col-xs-2">
+  <%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
+</div>
