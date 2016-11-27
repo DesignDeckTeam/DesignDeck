@@ -61,7 +61,7 @@
 	line-height: 2;
 	font-weight: 600;
 }
-.btn-default{
+.btn-default.no-color{
   padding: 13px 40px;
   font-weight: 700;
   margin-right: 5px;
@@ -70,20 +70,26 @@
   margin-top: 20px;
   margin-bottom: 105px;
 }
-.btn-default:hover{
+.btn-default.no-color:hover{
   background: #4687f4;
   color: #ffffff;
   border-color: #4687f4;
 }
 .btn-default.blud{
+  padding: 13px 40px;
+  margin-top: 20px;
+  position: relative;
   background: #4687f4;
   border-color: #4687f4;
+  font-weight: 700;
   color: #ffffff;
+  margin-right: 5px;
+  margin-bottom: 105px;
 }
 
 .btn-default.blud:hover{
   background: transparent;
-  color: #22222;
+  color: #222222;
 }
 
 /*此服务好处*/
