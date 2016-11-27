@@ -1,0 +1,22 @@
+<div class="container" style="position: fixed;">
+</div>	
+
+<div class="container-fluid">
+
+
+    <%= render_download_order_attachment_button(order) %>
+    <br>
+
+	<%= render_lastest_stage_snap_button(stage, order, current_user) %>
+	<br>
+
+	<% other_stages.each_with_index do |another_stage, index| %>
+		<%= render_another_stage_snap_button(stage, another_stage, order, current_user, index) %>
+		<br>
+	<% end %>
+
+	<%= render_designer_order_show_button_if_necessary(order) %>
+
+
+
+</div>

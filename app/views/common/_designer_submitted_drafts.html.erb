@@ -1,0 +1,43 @@
+<!-- designer提交的drafts -->
+
+<% if @order.stages.last.versions.present? %>
+
+  <% if @order.picked? %>
+    <h2>待提交的初稿</h2>
+  <% elsif @order.drafts_submitted? %>
+    <h2>待客户选择的初稿</h2>
+  <% end %>
+  
+
+    <% @versions.each_with_index do |version,i| %>
+    <div class="container-fluid">
+        <div class="row well">
+
+        <div class="col-md-11">
+          <% version.samples.each do |sample| %>
+            <div class="col-md-3"">
+              <%= render_sample(sample) %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-md-1">
+          <button class="btn btn-default pull-right version-indicator" disabled: "disabled" >
+            <%= "#{i+1}" %>
+          </button>
+        </div>      
+           
+      </div>
+
+    </div>
+  
+   <% end %>
+<% end %>
+
+  
+<% if false %>
+  <div class="col-md-2 col-xs-2">
+      <%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
+  </div>
+<% end %>
+  

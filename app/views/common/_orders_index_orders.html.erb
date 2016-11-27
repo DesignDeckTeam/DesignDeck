@@ -3,7 +3,7 @@
     <%= order.id %>
   </td>
   <td>
-    <%= order.title %>
+    <%= link_to(order.title, designer_order_path(order)) %>
   </td>
   <td>
     <%= order.description %>
