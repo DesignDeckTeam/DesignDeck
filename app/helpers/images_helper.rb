@@ -11,7 +11,7 @@ module ImagesHelper
 
   def render_note_indicator(sample)
     if sample.conversations.any?                       
-      link_to "!", "#", class: "btn btn-danger noted-indicator text-center"
+      link_to "#{sample.conversations.count}", "#", class: "btn btn-danger noted-indicator text-center"
     end
   end
   

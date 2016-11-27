@@ -10,16 +10,19 @@
       <% @current_versions.each_with_index do |version,i| %>
       <div class="container-fluid">
           <div class="row well">
-              <% version.samples.each do |sample| %>
-                <div class="col-md-3"">
-                  <%= link_to(render_sample(sample), designer_order_stage_version_path(@order, @order.stages.last, version)) %>
-                </div>
-              <% end %>
-              <button class="btn btn-default pull-right version-indicator" disabled: "disabled" >
+            <% version.samples.each do |sample| %>
+              <div class="col-md-3"">
+                <%= link_to(render_sample(sample), designer_order_stage_version_path(@order, @order.stages.last, version)) %>
+              </div>
+            <% end %>
+
+            <% if false %>
+              <button class="btn btn-default pull-right version-indicator" disabled="disabled" >
                 <%= "#{i+1}" %>
-              </button>
-             
-        </div>
+              </button>   
+            <% end %>                        
+
+          </div>
 
       </div>
     
