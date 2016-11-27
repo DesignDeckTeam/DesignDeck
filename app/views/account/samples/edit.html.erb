@@ -27,7 +27,7 @@
 
 	<div class="hidden">
 		<% @messages_array.each_with_index do |message, index| %>
-			<span id="message_note_<%= index %>"><%= message[:note] %></span>
+			<span id="message_note_<%= index %>"><%= message[:note].gsub! '\n', '<br>' %></span>
 			<span id="message_x_<%= index %>"><%= message[:x] %></span>
 			<span id="message_y_<%= index %>"><%= message[:y] %></span>
 			<br>
