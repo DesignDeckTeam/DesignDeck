@@ -9,38 +9,51 @@
 <% else %>
 	<h2 class="">请选择一个方案</h2>
 	<% submitted_versions = @stage.versions %>
-	<%= form_tag account_order_select_draft_path(@order), method: :post do %>
 
-		<div class="form-group">
-			<% submitted_versions.each do |version| %>
-				<% samples = version.samples %>
-				<div class="row well"  style="margin-left: 0px; margin-right: 0px;">
-					<div class="col-md-11">
-						<% samples.each do |sample| %>
-						<div class="col-md-3">
-							<%= render_sample_with_link(sample) %>
+	<div class="col-md-10 col-xs-10 right-grey-border">
+		<%= form_tag account_order_select_draft_path(@order), method: :post do %>
+
+			<div class="form-group">
+				<% submitted_versions.each do |version| %>
+					<% samples = version.samples %>
+					<div class="row well"  style="margin-left: 0px; margin-right: 0px;">
+						<div class="col-md-11">
+							<% samples.each do |sample| %>
+							<div class="col-md-3">
+								<%= render_sample_with_link(sample) %>
+							</div>
+							<% end %>
 						</div>
-						<% end %>
+						<div class="col-md-1">
+							<%= radio_button_tag "order[version_id]", version.id, checked = true, style: "vertical-align: middle;" %>
+						</div>
 					</div>
-					<div class="col-md-1">
-						<%= radio_button_tag "order[version_id]", version.id, checked = true, style: "vertical-align: middle;" %>
-					</div>
-				</div>
-			<% end %>
-			<hr>
-		</div>
+				<% end %>
+				<hr>
+			</div>
 
-		<%= render partial: "common/comment_area" %>
+			<%= render partial: "common/comment_area" %>
 
-  		<div class="form-action">
-   			<%= submit_tag "确定选择方案", disable_with: "Submitting...", class: "btn btn-primary pull-right" %>
-    	</div>
+	  		<div class="form-action">
+	   			<%= submit_tag "确定选择方案", disable_with: "Submitting...", class: "btn btn-primary pull-right" %>
+	    	</div>
 
-    	<br>
-    	<br>
-    	<br>
+	    	<br>
+	    	<br>
+	    	<br>
 
-	<% end %>
+		<% end %>
+	</div>
+
+	<div class="col-md-2 col-xs-2">
+		<%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
+	</div>
+
+
+	
+
+
+
 <% end %>
 	
 

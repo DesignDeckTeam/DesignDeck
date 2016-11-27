@@ -25,7 +25,23 @@ class Designer::OrdersController < ApplicationController
       end
     end
 
-    @versions = @order.current_stage.versions
+
+    if params[:stage_id].present?
+      @stage = Stage.find(params[:stage_id])
+    else
+      @stage = @order.current_stage
+    end
+
+    unless @stage.order == @order 
+      redirect_to designer_order_path(@order)
+    end
+
+    @other_stages = @order.versioned_stages[0...-1].reverse
+
+    # binding.pry
+
+    @current_versions = @order.current_stage.versions
+    @versions = @stage.versions
 
   end
 

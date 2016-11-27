@@ -37,7 +37,11 @@
 }
 /********************************************************************/
 
-
+.right-grey-border {
+  border-right-style:solid; 
+  border-right-width: 1px; 
+  border-color: #F5F5F5;
+}
 
 .marker{
   width: 27px;
@@ -209,6 +213,11 @@ table.gridtable td {
   position:absolute;
   right:0;
   top:0;
+}
+
+.history-button {
+  margin-left:30px;
+  margin-top:30px;
 }
 
 

@@ -32,5 +32,12 @@
     </div>
   
    <% end %>
-  <hr>
 <% end %>
+
+  
+<% if false %>
+  <div class="col-md-2 col-xs-2">
+      <%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
+  </div>
+<% end %>
+  

@@ -46,16 +46,27 @@ class Account::OrdersController < ApplicationController
   def show
 
     # binding.pry
-
     @order = Order.find(params[:id])
-    @stage = @order.current_stage
-    case @order.aasm_state
-    when "versions_submitted", "drafts_submitted"
-      @stage = @order.stages.last
-    else
-      @stage = @order.stages.closed.last
+
+    if @order.current_stage_id.present?
+      @stage = @order.current_stage
+
+      if params[:stage_id].present?
+        @stage = Stage.find(params[:stage_id])
+      else
+        @stage = @order.last_versioned_stage
+      end
+
+      unless @stage.order == @order 
+        redirect_to account_order_path(@order)
+      end
+
+      @other_stages = @order.versioned_stages[0...-1].reverse   
+         
     end
-    # @current_stage = @order.current_stage
+
+      
+    
   end
 
   def edit
@@ -72,7 +83,8 @@ class Account::OrdersController < ApplicationController
       return
     end
 
-    @stage = @order.stages.last
+    # @stage = @order.stages.last
+    @stage = @order.last_versioned_stage
     @stage.close!
 
     version = Version.find_by(id: select_version_params[:version_id])
@@ -110,7 +122,7 @@ class Account::OrdersController < ApplicationController
       return
     end
 
-    @stage = @order.stages.last
+    @stage = @order.last_versioned_stage
 
     @stage.close!
 
