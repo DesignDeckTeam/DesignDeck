@@ -48,13 +48,17 @@ class Account::OrdersController < ApplicationController
     # binding.pry
     @order = Order.find(params[:id])
 
+    # binding.pry
+
     if @order.current_stage_id.present?
       @stage = @order.current_stage
 
       if params[:stage_id].present?
         @stage = Stage.find(params[:stage_id])
       else
-        @stage = @order.last_versioned_stage
+        if @order.last_versioned_stage.present?
+          @stage = @order.last_versioned_stage
+        end
       end
 
       unless @stage.order == @order 

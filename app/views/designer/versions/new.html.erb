@@ -7,29 +7,6 @@
     <h3>上传图片样张给用户</h3>
     <br><br>
 
-    <%= render partial: "common/nested_form_for_version", locals: {order: @order} %>
-
-    <% if false %>
-        <%= simple_nested_form_for [:designer, @order, @current_stage, @version ] do |f| %>
-
-            <div id="samples">
-                <%= f.fields_for :samples do |builder| %>
-                    <%= render "sample_fields", :f => builder %>
-                    <%= builder.link_to_remove "Remove", class: "btn btn-xs btn-default" %>
-                    <br><br>
-                <% end %>
-            </div>
-
-            <hr>
-            <%= f.link_to_add "Add a sample", :samples, :data => { :target => "#samples" }, class: "btn btn-default"  %>
-            
-            <br>
-            <br>
-
-            <%= f.submit "Submit", class: "btn btn-lg btn-success" %>
-        <% end %>
-    <% end %>
-
-    
+    <%= render partial: "common/nested_form_for_version", locals: {order: @order} %>  
 
 </div>

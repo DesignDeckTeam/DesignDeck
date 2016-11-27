@@ -25,7 +25,6 @@ class Designer::OrdersController < ApplicationController
       end
     end
 
-
     if params[:stage_id].present?
       @stage = Stage.find(params[:stage_id])
     else
@@ -37,8 +36,6 @@ class Designer::OrdersController < ApplicationController
     end
 
     @other_stages = @order.versioned_stages[0...-1].reverse
-
-    # binding.pry
 
     @current_versions = @order.current_stage.versions
     @versions = @stage.versions
