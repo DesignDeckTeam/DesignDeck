@@ -14,15 +14,305 @@
  *= require_self
  *= require jquery-ui
  */
-
+@import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-// @import "font-awesome-sprockets";
-// @import "font-awesome";
+
 
 
 
 // #4687f4 全站蓝色色号
+
+/************************ begen Landing Page ******************************/
+.top-header{
+  width: 100%;
+}
+
+.navbar-default {
+  background-color: transparent;
+  border-color: transparent;
+  margin-bottom: 0;
+}
+
+/* 一句话形容自己 */
+.banner{
+  background: url("https://ooo.0o0.ooo/2016/11/16/582c1468947dc.jpg");
+  background-repeat: no-repeat; //背景不重复
+  background-position: center;
+  // overflow: hidden;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.banner h3{
+	font-size: 14px;
+	color: #4687f4;
+	margin-top: 250px;
+	font-weight: 700;
+}
+.banner h1{
+	font-size: 55px;
+	// color: #1a1a1a;
+  color: #ffffff;
+}
+.banner p{
+	font-size: 18px;
+	color: #999999;
+	margin-top: 25px;
+	line-height: 2;
+	font-weight: 600;
+}
+.btn-default{
+  padding: 13px 40px;
+  font-weight: 700;
+  margin-right: 5px;
+  background: transparent; //背景透明
+  position: relative; //相对位置
+  margin-top: 20px;
+  margin-bottom: 105px;
+}
+.btn-default:hover{
+  background: #4687f4;
+  color: #ffffff;
+  border-color: #4687f4;
+}
+.btn-default.blud{
+  background: #4687f4;
+  border-color: #4687f4;
+  color: #ffffff;
+}
+
+.btn-default.blud:hover{
+  background: transparent;
+  color: #22222;
+}
+
+/*此服务好处*/
+.advantage h4{
+  margin-top: 100px;
+  font-size: 18px;
+  color: #999999;
+}
+.advantage i.fa{
+  margin-top: 80px;
+  font-size: 25px; //fa图标的大小可用字号大小控制
+  color: #4687f4;
+  font-weight: 700;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #e1e1e1;
+  border-radius: 50%; //倒角把方形变为圆形
+  line-height: 4; //把fa居中
+  cursor: pointer;
+}
+.advantage i.fa:hover{
+  color: #fff;
+  background: #4687f4;
+}
+.advantage h3{
+  font-size: 24px;
+  color: #1a1a1a;
+}
+.advantage p{
+  font-size: 17px;
+  color: #999999;
+  margin-bottom: 70px;
+}
+
+/*运作原理*/
+.details{
+  margin: 70px;
+}
+.details-image{
+  margin-top: 50px;
+}
+.details p{
+  font-size: 18px;
+  color: #999999;
+  margin: 30px 0;
+}
+.hr-blue{
+  border: 1px solid #4687f4;
+}
+.details ul{
+  margin: 0;//分开定义，既工整又好用
+  padding: 0;
+}
+.details ul li{
+  font-size: 18px;
+  color: #1b1b1b;
+  list-style-type:none; //去掉 li 前面的小黑点
+}
+.details ul li i.fa{
+  font-size: 20px;
+  color: #4687f4;
+  height: 30px;//把文字跟图标隔开点
+  width: 30px;
+}
+/*设计师使用原理*/
+.designer-details{
+  background: #f2f2f2;
+  margin-top: 120px;
+}
+.designer-details h4{
+  margin-top: 120px;
+}
+.designer-details h2{
+  margin-bottom: 10px;
+}
+.designer-details p{
+  font-size: 18px;
+  color: #999999;
+  margin-top: 20px;
+}
+.designer-feedback img{
+  margin-top: 120px;
+  margin-bottom: 100px;
+}
+/* user-look*/
+.user-look{
+ // background-color: #f2f2f2;
+ margin-top: 120;
+ // padding: 30px 10px;
+ margin-bottom: 30px;
+}
+.user-look-box{
+  margin-top: 50px;
+}
+.user-look-table{
+  border: 1px solid #e0e0e0;
+  margin-bottom: 60px;
+  border-radius: 4px;
+}
+.user-look-image{
+  // background: url("https://ooo.0o0.ooo/2016/11/27/583a73fa9d282.png");
+  height: 160px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.user-look-content{
+  position: relative;
+  border-bottom: 1px solid #e0e0e0;
+}
+.user-look-content h3{
+  font-size: 18px;
+  position: relative;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  color: #1b1b1b;
+}
+.user-look-content p{
+  font-size: 14px;
+  position: relative;
+  margin-left: 40px;
+  margin-bottom: 15px;
+  color: #999999;
+}
+.user-look-read p{
+  margin: 10px;
+  color: #999999;
+}
+.user-look-read button{
+  width: 200px;
+  height: 30px;
+  border: 1px solid #e0e0e0;
+  color: #008ed6;
+  border-radius: 4px;
+  background: transparent;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+
+/*call-to-action*/
+.call-to-action{
+  background: #4687f4;
+}
+.call-to-action p{
+  font-size: 36px;
+  color: #ffffff;
+  font-weight: 300;
+  padding: 40px 0;
+}
+.call-to-action p span{
+  font-size: 36px;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 40px 0;
+}
+.call-action-button{
+  width: 200px;
+  height: 50px;
+  border-radius: 4px;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  background: transparent;
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 45px;
+}
+.call-action-button:hover{
+  color: #4687f4;
+  background: #ffffff;
+}
+
+/*free*/
+.free{
+  background: #ededed;
+  position: relative;
+	height: 400px;
+}
+.free-head{
+  margin-top: 100px;
+}
+.free hr{
+  margin-bottom: 40px;
+  width: 80px;
+}
+.free i.fa{
+  color: #4687f4;
+  font-size: 30px;
+	padding: 20px;
+}
+.free p{
+  font-size: 18px;
+	color: #999999;
+	line-height: 1;
+}
+
+
+/************************ end Landing Page ********************************/
+
+/************************ begen order index *******************************/
+
+
+/************************ end order index *********************************/
+
+/************************ begen order show  ********************************/
+
+
+/************************ end order show **********************************/
+
+/************************ begen footer  ***********************************/
+.footer{
+  padding: 30px 0px;
+}
+.footer a i{
+  font-size: 20px;
+  color: #545454;
+  margin: 10px 5px;
+  padding-top: 10px;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #cccccc;
+}
+.footer a:hover i{       //链接作用在a上
+  border-color: #4687f4;
+}
+/************************ end footer **************************************/
+
 
 .total_price {
   font-size: 15pt
@@ -32,9 +322,7 @@
   width: 80%;
 }
 
-
 /********************************************************************/
-
 
 
 .marker{
@@ -50,7 +338,7 @@
   text-align: center;
   color: #fff;
 }
- 
+
 .marker.black{
   background: url("marker_black.png");
 }
@@ -403,7 +691,7 @@ color: #666;
 }
 
 #onepagebg{
-  background-image: url("https://ooo.0o0.ooo/2016/11/16/582c1468947dc.jpg");
+  // background-image: url("https://ooo.0o0.ooo/2016/11/16/582c1468947dc.jpg");
 }
 
 .onepage0{
