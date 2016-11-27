@@ -12,7 +12,7 @@
       </div>
       <% else %>
       <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" style="text-decoration: none">
-        <h5 id="text-and-botton-gray">▼&nbsp;&nbsp;<%= current_user.email %></h5>
+        <h5 id="text-and-botton-gray"><%= current_user.email[/[^@]+/]%></h5>
       </a>
       <ul class="dropdown-menu" id="shadow-over">
         <% if current_user.is_user? %>
