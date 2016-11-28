@@ -39,16 +39,17 @@
 
 
   <!-- 设计师的评价系统 -->
-      <p class="text-center">
+
         <!-- 如果未评分，则允许评分 -->
         <% if @order.rating.blank? %>
-        请给设计师的服务评级：
-          <div id="rating-for-message-<%= @order.id %>" class="text-center"></div>
+        <h3>给设计师的服务做个评级吧：
+          <span id="rating-for-message-<%= @order.id %>"></span></h3>
         <!-- 如果评过分，则锁定 -->
         <% else %>
-          <div id="raty-for-message-<%= @order.id %>" class="text-center"></div>
+          <h3>已为设计师评级:
+          <span id="raty-for-message-<%= @order.id %>" ></span></h3>
         <% end %>
-      </p>
+
 
 
       <script>
