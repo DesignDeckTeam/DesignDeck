@@ -4,16 +4,16 @@ class ApplicationController < ActionController::Base
 
 
   # designer -> user
-  $ORDER_PICKED = "order_picked"
-  $DRAFTS_SUBMITTED = "drafts_submitted"
-  $VERSION_SUBMITTED = "version_submitted"
+  $ORDER_PICKED        = "order_picked"
+  $DRAFTS_SUBMITTED    = "drafts_submitted"
+  $VERSION_SUBMITTED   = "version_submitted"
   $ATTACHMENT_UPLOADED = "attachment_uploaded"
 
 
   # user -> designer
-  $DRAFT_SELECTED = "draft_selected"
-  $VERSION_SELECTED = "version_selected"
-  $ORDER_COMPLETED = "order_completed"
+  $DRAFT_SELECTED      = "draft_selected"
+  $VERSION_SELECTED    = "version_selected"
+  $ORDER_COMPLETED     = "order_completed"
 
 
 
@@ -23,6 +23,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  # 清除当前designer某个order的某个特定状态的notifications
+  def clear_unread_notifications_for_order(order, notification_type)
+    notifications = Notification.where(receiver_id: current_user.id)
+                                .where(order_id: order.id)
+                                .where(aasm_state: "unread")
+                                .where(notification_type: notification_type)
+
+    notifications.each do |notification|
+      notification.check!
+    end
+  end  
 
 
   def send_message_to_resource(from, to, resource, subject, body)
