@@ -11,5 +11,37 @@
         </div>
       </div>
     </div>
+
+    <div class="hidden">
+      <span id="current_user_role"><%= current_user.present? ? current_user.role : "none" %></span>
+      <span id="is_qualified_designer"><%= current_user.present? ? current_user.qualified_designer? : "false" %></span>
+      <span id="current_user_name"><%= current_user.present? ? current_user.email : "匿名用户" %></span>
+    </div>
+
   </div>
+
+
+  <script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+        m[a] = m[a] || function() {
+            (m[a].a = m[a].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = i + '?v=' + new Date().getUTCDate();
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '//static.meiqia.com/dist/meiqia.js', '_MEIQIA');
+    _MEIQIA('entId', '42976'); 
+    // 传递顾客信息
+    _MEIQIA('metadata', {
+        name: $('#current_user_name').text(),
+        role: $('#current_user_role').text(), 
+        is_qualified_designer: $('#is_qualified_designer').text(), 
+    });
+
+  </script>
+
 </footer>
+

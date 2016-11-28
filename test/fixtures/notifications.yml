@@ -1,0 +1,30 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  link: MyString
+  sender_id: 1
+  receiver_id: 1
+  order_id: 1
+
+two:
+  type: 
+  link: MyString
+  sender_id: 1
+  receiver_id: 1
+  order_id: 1
+
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id                :integer          not null, primary key
+#  notification_type :string
+#  link              :string
+#  sender_id         :integer
+#  receiver_id       :integer
+#  order_id          :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  aasm_state        :string
+#

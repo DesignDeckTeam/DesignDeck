@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123072848) do
+ActiveRecord::Schema.define(version: 20161128094903) do
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.string  "unsubscriber_type"
@@ -67,6 +67,17 @@ ActiveRecord::Schema.define(version: 20161123072848) do
     t.string   "message_id"
     t.index ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
     t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "notification_type"
+    t.string   "link"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "order_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "aasm_state"
   end
 
   create_table "orders", force: :cascade do |t|
