@@ -54,7 +54,7 @@
   color: #4687f4;
 }
 .navbar-right li{
-    margin-right: 40px;
+    margin-right: 20px;
 }
 .navbar-right{
     margin-right: 100px;
@@ -77,7 +77,7 @@
 	line-height: 1.64;
 	margin-right: 12px;
 }
-.box2 {
+.box2{
 	background: #4687f4;
 	color: #fff;
 	cursor: pointer;
@@ -91,18 +91,28 @@
 	// -moz-transition: -moz-box-shadow 0.5s ease-out;
 	// -o-transition: box-shadow 0.5s ease-out;
 }
+.box2 li h5{
+  color: #fff;
+}
 .box2:hover {
 	// -moz-box-shadow: 0px 0px 15px #4687f4;
 	// -webkit-box-shadow: 0px 0px 15px #4687f4;
 	 box-shadow: 0px 0px 15px #4687f4;
 }
-.button02:hover h5{
-	// color: #fff;
+.button02:hover li h5{
+	color: #fff;
 	text-decoration: none;
 }
 
+#blue-btn-primary{
+  color: #fff;
+	text-decoration: none;
+  display: inline-block;
+}
 
-
+#blue-btn-primary:hover{
+  color: #4687f4;
+}
 
 /************************ end navbar ******************************/
 
@@ -121,7 +131,7 @@
 .banner h3{
 	font-size: 14px;
 	color: #4687f4;
-	margin-top: 250px;
+	margin-top: 350px;
 	font-weight: 700;
 }
 .banner h1{
@@ -234,6 +244,8 @@
   background: #f2f2f2;
   margin-top: 120px;
 }
+
+
 .designer-details h4{
   margin-top: 120px;
 }
@@ -249,6 +261,7 @@
   margin-top: 120px;
   margin-bottom: 100px;
 }
+
 /* user-look*/
 .user-look{
  // background-color: #f2f2f2;
@@ -363,8 +376,8 @@
 	line-height: 1;
 }
 
-
 /************************ end Landing Page ********************************/
+
 
 /************************ begen order index *******************************/
 

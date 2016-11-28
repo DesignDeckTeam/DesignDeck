@@ -1,49 +1,27 @@
-<header>
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <!-- 固定在顶部 -->
-      <div class="container-fluid">
-        <!-- 手机看的时候卷起来 -->
-        <div class="navbar-header page-scroll">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand page-scroll" href="#">DesignDeck</a>
-        </div>
-
-        <div class="collapse navbar-collapse">
-
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a class="page-scroll" href="#">user1</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="#">个人中心</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="#">退出</a>
-            </li>
-            <li class="button02 box2">
-                <h5>添加设计委托</h5>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-</header>
-
 <!-- 一句话形容自己 -->
-<section class="banner" id="home">
+<section class="banner">
   <div class="container">
     <div class="row">
       <div class="col-xs-6">
       	<h3>平面设计、logo设计、网页设计</h3>
       	<h1>结案速度快三倍</h1>
       	<p>DesignDeck 为客户、设计师提供无障碍沟通工具迅速达成共识<br>省时、省力、省心</p>
-        <button class="btn btn-default blud">添加一个设计委托</button>
-    		<button class="btn btn-default no-color">设计师入口</button>
+        <% if !current_user %>
+          <%= link_to new_user_session_path do %>
+          <button class="btn btn-default blud">添加一个设计委托</button>
+      		<button class="btn btn-default no-color">设计师入口</button>
+          <% end %>
+        <% elsif current_user.is_user? %>
+          <%= link_to new_account_order_path do %>
+          <button class="btn btn-default blud">添加一个设计委托</button>
+          <% end %>
+          <button class="btn btn-default no-color" disabled="disable">设计师入口</button>
+        <% elsif current_user.qualified_designer? || current_user.unqualified_designer? || current_user.admin?%>
+          <button class="btn btn-default blud" disabled="disabled">添加一个设计委托</button>
+          <%= link_to designer_path(current_user.token) do %>
+          <button class="btn btn-default no-color">设计师入口</button>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -243,7 +221,9 @@
   </div>
 </section>
 <!-- end 使用者见证 -->
-
+<li>
+  <%= link_to("注册", new_user_registration_path, class: "page-scroll") %>
+</li>
 <!-- Call to action -->
 <section class="call-to-action">
   <div class="container">
@@ -252,7 +232,13 @@
         <p><span>马上注册</span>&nbsp;即可获赠设计体验稿一份&nbsp;&nbsp;>></p>
       </div>
       <div class="col-md-4 col-sm-4">
-        <button class="call-action-button">注册体验</button>
+        <% if !current_user %>
+          <%= link_to new_user_registration_path do %>
+            <button class="call-action-button">注册体验</button>
+          <% end %>
+        <% else %>
+          <button class="call-action-button" disabled="disabled">注册体验</button>
+        <% end %>
       </div>
     </div>
   </div>
