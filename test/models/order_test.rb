@@ -19,6 +19,7 @@
 #  product_quantity     :integer          default(1)
 #  total_price          :integer
 #  attachment           :string
+#  rating               :integer
 #
 
 <<<<<<< HEAD
