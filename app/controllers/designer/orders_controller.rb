@@ -18,6 +18,10 @@ class Designer::OrdersController < ApplicationController
 
   # 如果user已经选择了提交的version，designer打开show页面时就生成新的一个stage
   def show
+
+    # 如果是在show页面，就直接清除通知
+    clear_current_notifications(@order)
+
     case @order.aasm_state
     when "version_selected", "draft_selected"
       if @order.stages.last.closed?
@@ -45,6 +49,8 @@ class Designer::OrdersController < ApplicationController
   def update
     if params[:order].present?
       @order.update(attachment_param)
+      # 发送通知
+      current_user.send_notification(@order.user, @order, $ATTACHMENT_UPLOADED)
       redirect_to designer_order_path, notice: "文件已成功提交"
     else
       redirect_to designer_order_path, alert: "需要提交附件"
@@ -71,6 +77,9 @@ class Designer::OrdersController < ApplicationController
     if @order.set_designer?(current_user)
       # 产生一个新的stage
       @current_stage = @order.current_stage
+      # 发送通知
+      current_user.send_notification(@order.user, @order, $ORDER_PICKED)
+      # 刷新
       redirect_to designer_order_path(@order), notice: "获得了这个订单"
     else
       redirect_to designer_orders_path, alert: "抢单失败"
@@ -84,12 +93,14 @@ class Designer::OrdersController < ApplicationController
     @current_stage = @order.current_stage
 
     if @current_stage.versions.count < 2
-      redirect_to designer_order_path(@order), alert: "请提交初稿供客户选择"
+      redirect_to designer_order_path(@order), alert: "请提交至少2中不同风格的初稿供客户选择"
       return
     end
 
     if @order.may_submit_drafts?
       @order.submit_drafts!
+      # 发送通知
+      current_user.send_notification(@order.user, @order, $DRAFTS_SUBMITTED)
     else
       redirect_to designer_order_path(@order), alert: "发生了不应该发生的错误"
       return
@@ -128,8 +139,9 @@ class Designer::OrdersController < ApplicationController
       return
     end
 
+    # 发送通知
+    current_user.send_notification(@order.user, @order, $VERSION_SUBMITTED)
     # 在当前的stage中加conversation
-
     comment = comment_param[:comment]
     send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment)
 
@@ -140,10 +152,16 @@ class Designer::OrdersController < ApplicationController
 
   private
 
-  def clear_unread_notifications
-    notifications = Notification.where(receiver_id: current_user.id).where(aasm_state: "unread")
-    notifications.each do |notification|
-      notification.check!
+
+
+  def clear_current_notifications(order)
+    case order.aasm_state
+    when "draft_selected"
+      clear_unread_notifications_for_order(order, $DRAFT_SELECTED)
+    when "version_selected"
+      clear_unread_notifications_for_order(order, $VERSION_SELECTED)
+    when "completed"
+      clear_unread_notifications_for_order(order, $ORDER_COMPLETED)
     end
   end
 
