@@ -2,6 +2,21 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
+
+  # designer -> user
+  $ORDER_PICKED = "order_picked"
+  $DRAFTS_SUBMITTED = "drafts_submitted"
+  $VERSION_SUBMITTED = "version_submitted"
+  $ATTACHMENT_UPLOADED = "attachment_uploaded"
+
+
+  # user -> designer
+  $DRAFT_SELECTED = "draft_selected"
+  $VERSION_SELECTED = "version_selected"
+  $ORDER_COMPLETED = "order_completed"
+
+
+
   def designer_required
     if !current_user.qualified_designer?
       redirect_to "/", notice: "您没有此权限"

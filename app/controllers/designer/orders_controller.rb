@@ -140,6 +140,13 @@ class Designer::OrdersController < ApplicationController
 
   private
 
+  def clear_unread_notifications
+    notifications = Notification.where(receiver_id: current_user.id).where(aasm_state: "unread")
+    notifications.each do |notification|
+      notification.check!
+    end
+  end
+
   def allow_legal_designers
     @order = Order.find(params[:id])
     # if @order.designer_id != current_user.id
