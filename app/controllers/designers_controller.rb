@@ -3,8 +3,11 @@ class DesignersController < ApplicationController
   before_action :authenticate_user!
   before_action :get_designer_by_token
 
-
   def show
+    @designer = User.find_by(token: params[:id])
+    @orders = Order.where(designer_id: @designer.id).where.not("rating is null")
+    @total_rating = (@orders.sum(:rating).to_f/ @orders.count).round(1)
+
   end
 
   def edit

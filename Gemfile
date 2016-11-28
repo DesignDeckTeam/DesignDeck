@@ -1,5 +1,5 @@
- # source "https://gems.ruby-china.org"
-source "https://rubygems.org"
+source "https://gems.ruby-china.org"
+#source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.0.0", ">= 5.0.0.1"
@@ -50,6 +50,7 @@ gem 'fog'
 gem 'figaro'
 
 
+
 require 'json'
 
 group :development, :test do
@@ -66,7 +67,7 @@ end
 group :production do
   gem "pg"
 end
-  
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem "web-console"
@@ -81,4 +82,3 @@ gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
 
 # Please clean up duplicated gems if any.
 # Feel free to remove gems that you don't want to use or if they conflict with other gem dependencies. (you might need to update .pryrc also)
-

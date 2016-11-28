@@ -32,7 +32,7 @@ class Designer::OrdersController < ApplicationController
       @stage = @order.current_stage
     end
 
-    unless @stage.order == @order 
+    unless @stage.order == @order
       redirect_to designer_order_path(@order)
     end
 

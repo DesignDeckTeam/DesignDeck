@@ -10,6 +10,16 @@ class Account::OrdersController < ApplicationController
     redirect_to account_orders_path, notice: "使用支付宝成功完成付款"
   end
 
+  def rating
+
+    @order = Order.find(params[:order_id])
+
+    @order.rating = params[:rating].to_i
+    @order.save
+
+    redirect_to account_order_path(@order), notice: "rated"
+  end
+
   def index
     @orders = current_user.orders
   end
@@ -57,16 +67,16 @@ class Account::OrdersController < ApplicationController
         @stage = @order.last_versioned_stage
       end
 
-      unless @stage.order == @order 
+      unless @stage.order == @order
         redirect_to account_order_path(@order)
       end
 
-      @other_stages = @order.versioned_stages[0...-1].reverse   
-         
+      @other_stages = @order.versioned_stages[0...-1].reverse
+
     end
 
-      
-    
+
+
   end
 
   def edit
