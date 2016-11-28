@@ -21,18 +21,104 @@
 
 
 
+
 // #4687f4 全站蓝色色号
 
-/************************ begen Landing Page ******************************/
-.top-header{
-  width: 100%;
+/************************ begen navbar ******************************/
+.navbar-collapse{
+  margin-right:100px;
+}
+.nabvar-header > a{
+  font-size: 50px;
+  margin-left: 20px;
+}
+.nav>li>a {
+  position: relative;
+  display: block;
+  // padding: 10px 0px;
+}
+.navbar-default {
+  background: #fff;
+  border-color: transparent;
+  // padding: 10px 0;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+}
+.navbar-nav>li>a {
+    padding-top: 25px;
+    // padding-bottom: 10px;
+    // line-height: 20px;
+}
+.navbar-default .navbar-nav>li>a {
+  color:  #949494;
+}
+.navbar-default .navbar-nav>li>a:hover {
+  color: #4687f4;
+}
+.navbar-right li{
+    margin-right: 20px;
+}
+.navbar-right{
+    margin-right: 100px;
+    margin-bottom: -1px;
+}
+.navbar-brand {
+    // float: left;
+    padding: 22px 15px;
+    font-size: 25px;
+    line-height: 20px;
+    height: 50px;
+}
+.navbar > .container-fluid .navbar-brand {
+  margin-left:20px;
+}
+/*button 02*/
+.button02{
+	color: #fff;
+	font-size: 12px;
+	line-height: 1.64;
+	margin-right: 12px;
+}
+.box2{
+	background: #4687f4;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	// margin-top: 3px;
+	padding: 18px;
+	text-align: center;
+	width: 150px;
+	transition:all 1s ease-out;
+	// -webkit-transition: -webkit-box-shadow 0.5s ease-out;
+	// -moz-transition: -moz-box-shadow 0.5s ease-out;
+	// -o-transition: box-shadow 0.5s ease-out;
+}
+.box2 li h5{
+  color: #fff;
+}
+.box2:hover {
+	// -moz-box-shadow: 0px 0px 15px #4687f4;
+	// -webkit-box-shadow: 0px 0px 15px #4687f4;
+	 box-shadow: 0px 0px 15px #4687f4;
+}
+.button02:hover li h5{
+	color: #fff;
+	text-decoration: none;
 }
 
-.navbar-default {
-  background-color: transparent;
-  border-color: transparent;
-  margin-bottom: 0;
+#blue-btn-primary{
+  color: #fff;
+	text-decoration: none;
+  display: inline-block;
 }
+
+#blue-btn-primary:hover{
+  color: #4687f4;
+}
+
+/************************ end navbar ******************************/
+
+/************************ begen Landing Page ******************************/
+
 
 /* 一句话形容自己 */
 .banner{
@@ -46,7 +132,7 @@
 .banner h3{
 	font-size: 14px;
 	color: #4687f4;
-	margin-top: 250px;
+	margin-top: 350px;
 	font-weight: 700;
 }
 .banner h1{
@@ -159,6 +245,8 @@
   background: #f2f2f2;
   margin-top: 120px;
 }
+
+
 .designer-details h4{
   margin-top: 120px;
 }
@@ -174,6 +262,7 @@
   margin-top: 120px;
   margin-bottom: 100px;
 }
+
 /* user-look*/
 .user-look{
  // background-color: #f2f2f2;
@@ -288,8 +377,8 @@
 	line-height: 1;
 }
 
-
 /************************ end Landing Page ********************************/
+
 
 /************************ begen order index *******************************/
 
@@ -305,7 +394,7 @@
 .footer{
   padding: 30px 0px;
 }
-.footer a i{
+.footer-icons a i{
   font-size: 20px;
   color: #545454;
   margin: 10px 5px;
@@ -314,10 +403,12 @@
   height: 45px;
   border: 1px solid #cccccc;
 }
-.footer a:hover i{       //链接作用在a上
+.footer-icons a:hover i{       //链接作用在a上
   border-color: #4687f4;
 }
 /************************ end footer **************************************/
+
+
 
 
 .total_price {
@@ -337,8 +428,8 @@
 /********************************************************************/
 
 .right-grey-border {
-  border-right-style:solid; 
-  border-right-width: 1px; 
+  border-right-style:solid;
+  border-right-width: 1px;
   border-color: #F5F5F5;
 }
 
@@ -685,9 +776,7 @@ table.gridtable td {
 .button-height{
   height: 223px;
 }
-.navbar-right li{
-  margin-right: 100px;
-}
+
 .login-diy{
 color: #666;
   }

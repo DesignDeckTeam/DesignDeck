@@ -1,44 +1,60 @@
-<nav class="row navbar-diy">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="col-md-2 text-right navbar-logo-diy">
-    <a id="text-and-botton-gray" href="/" style="text-decoration: none;">DesignDeck</a>
-  </div>
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="col-md-2 col-md-offset-5 login-diy dropdown text-right">
-    <% if !current_user %>
-    <div class="text-right">
-      <h5><%= link_to("注册", new_user_registration_path, style: "text-decoration: none") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <%= link_to("登入", new_user_session_path, style: "text-decoration: none") %></h5>
-      </div>
-      <% else %>
-      <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" style="text-decoration: none">
-        <h5 id="text-and-botton-gray"><%= current_user.email[/[^@]+/]%></h5>
-      </a>
-      <ul class="dropdown-menu" id="shadow-over">
-        <% if current_user.is_user? %>
-        <li><%= link_to "进入订单页面", account_orders_path %></li>
-        <% elsif current_user.qualified_designer? %>
-        <li><%= link_to "设计师后台", designer_orders_path %></li>
-        <li><%= link_to "查看个人信息", designer_path(current_user.token) %></li>
-        <% elsif current_user.unqualified_designer? %>
-        <li><%= link_to "设计师申请", designer_path(current_user.token) %></li>
-        <% elsif current_user.admin? %>
-        <li><%= link_to "管理员后台", admin_users_path %></li>
-        <% end %>
-        <li class="divider"> </li>
-        <li><%= link_to("登出", destroy_user_session_path, method: :delete) %></li>
-      </ul>
-      <% end %> 
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top"><!-- 把navbar固定在顶部 -->
+      <div class="container-fluid">
+        <div class="navbar-header page-scroll"><!-- 用手机等小屏幕看时，菜单会卷起来 -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <!-- <span class="sr-only">伸缩菜单</span> -->
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand page-scroll" href="/">DesignDeck</a>
+        </div>
 
-    </div>
-    <% if current_user && current_user.is_user? %>
-      <%= link_to new_account_order_path do %>
-      <div class="col-md-2 text-center button02 box2">
-        <h5>添加设计委托</h5>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="hidden">
+                <a href="#page-top"></a>
+            <% if !current_user %>
+              <li>
+                <%= link_to("登录", new_user_session_path, class: "page-scroll") %>
+              </li>
+              <li>
+                <%= link_to("注册", new_user_registration_path, class: "page-scroll") %>
+              </li>
+              <a href='<%= new_user_session_path %>' id='blue-btn-primary'>
+                <li class="button02 box2">
+                  <h5>添加设计委托</h5>
+                </li>
+              </a>
+            <% else %>
+              <li>
+                <a class="page-scroll"><%= current_user.email[/[^@]+/] %></a>
+              </li>
+              <% if current_user.is_user? %>
+                <li><%= link_to "个人中心", account_orders_path, class: "page-scroll" %></li>
+                <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
+                <a href='<%= new_account_order_path %>' id='blue-btn-primary'>
+                  <li class="button02 box2">
+                    <h5>添加设计委托</h5>
+                  </li>
+                </a>
+              <% elsif current_user.qualified_designer? %>
+                <li><%= link_to "设计师后台", designer_orders_path, class: "page-scroll" %></li>
+                <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
+                <li class="button02 box2" disabled="disabled"><h5><a>添加设计委托</a></h5></li>
+              <% elsif current_user.unqualified_designer? %>
+                <li><%= link_to "设计师后台", designer_path(current_user.token), class: "page-scroll" %></li>
+                <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
+                <li class="button02 box2" disabled="disabled"><h5><a>添加设计委托</a></h5></li>
+              <% elsif current_user.admin? %>
+                <li><%= link_to "管理员后台", admin_users_path, class: "page-scroll" %></li>
+                <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
+                <li class="button02 box2" disabled="disabled"><h5><a>添加设计委托</a></h5></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
       </div>
-      <% end %>
-    <% end %>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container-fluid -->
-</nav>
+    </nav>
+</header>
