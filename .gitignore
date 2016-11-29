@@ -24,3 +24,6 @@
 /public/*
 /public/uploads/*
 /config/application.yml
+
+[core] 
+excludesfile = /Users/Ray/.gitignore_global 
