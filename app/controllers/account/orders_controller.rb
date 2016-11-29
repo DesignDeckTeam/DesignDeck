@@ -181,18 +181,7 @@ class Account::OrdersController < ApplicationController
 
   private
 
-  def clear_current_notifications(order)
-    case order.aasm_state
-    when "order_picked"
-      clear_unread_notifications_for_order(order, $ORDER_PICKED)
-    when "drafts_submitted"
-      clear_unread_notifications_for_order(order, $DRAFTS_SUBMITTED)  
-    when "version_submitted"
-      clear_unread_notifications_for_order(order, $VERSION_SUBMITTED)
-    when "attachment_uploaded"
-      clear_unread_notifications_for_order(order, $ATTACHMENT_UPLOADED)
-    end
-  end
+
 
 
   def order_params

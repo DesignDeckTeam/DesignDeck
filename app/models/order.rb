@@ -28,6 +28,7 @@ class Order < ApplicationRecord
 	mount_uploader :attachment, AttachmentUploader
 
 	has_many :stages
+  has_many :notifications
 	belongs_to :user
   accepts_nested_attributes_for :stages, :allow_destroy => true
 
@@ -93,11 +94,15 @@ class Order < ApplicationRecord
     when "paid"
       return "客户已付款"
     when "picked"
-      return "设计师已接单"
+      return "已有设计师接单"
+    when "drafts_submitted"
+      return "设计师提交了初稿"
+    when "draft_selected"
+      return "风格已确定"
     when "versions_submitted"
-      return "设计师已提交"
+      return "新稿件已提交"
     when "version_selected"
-      return "客户已确认"
+      return "已发送反馈"
     when "completed"
       return "订单已完成"
     end
@@ -159,6 +164,10 @@ class Order < ApplicationRecord
     else
       false
     end
+  end
+
+  def unread_notifications_for_user(user)
+    self.notifications.where(aasm_state: "unread").where(receiver_id: user.id)
   end
 
 end

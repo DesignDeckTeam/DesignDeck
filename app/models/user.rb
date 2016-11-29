@@ -113,6 +113,7 @@ class User < ApplicationRecord
     self.save
   end
 
+
   private
 
   def generate_token

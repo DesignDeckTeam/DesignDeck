@@ -25,10 +25,12 @@
                 </li>
               </a>
             <!-- 登录时 -->
-            <% else %>
-              <li><a class="page-scroll"><%= current_user.email[/[^@]+/] %></a></li>
+            <% else %>        
+
+              
               <!-- user -->
               <% if current_user.is_user? %>
+                <li><a class="page-scroll"><%= current_user.email[/[^@]+/] %></a></li>
                 <li><%= link_to "订单中心", account_orders_path, class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
 
@@ -40,7 +42,9 @@
                   
               <!-- qualified_designer -->
               <% elsif current_user.qualified_designer? %>
+                <li><%= link_to current_user.email[/[^@]+/], designer_path(current_user.token), class: "page-scroll" %></li>
                 <li><%= link_to "订单中心", designer_orders_path, class: "page-scroll" %></li>
+                
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
                 <li class="button02 box2 hidden-xs" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
               <!-- unqualified_designer -->

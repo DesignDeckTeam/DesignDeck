@@ -152,19 +152,6 @@ class Designer::OrdersController < ApplicationController
 
   private
 
-
-
-  def clear_current_notifications(order)
-    case order.aasm_state
-    when "draft_selected"
-      clear_unread_notifications_for_order(order, $DRAFT_SELECTED)
-    when "version_selected"
-      clear_unread_notifications_for_order(order, $VERSION_SELECTED)
-    when "completed"
-      clear_unread_notifications_for_order(order, $ORDER_COMPLETED)
-    end
-  end
-
   def allow_legal_designers
     @order = Order.find(params[:id])
     # if @order.designer_id != current_user.id

@@ -625,6 +625,16 @@ table.gridtable td {
   margin-top:30px;
 }
 
+.notification-indicator {
+  width:15px; 
+  height: 15px; 
+  border-radius: 50%; 
+  background-color: red;
+  position:absolute;
+  right: 0px;
+  top: 5px;
+}
+
 
 /**************************begin 白色box ***********************/
 
