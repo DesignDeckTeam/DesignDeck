@@ -92,9 +92,15 @@
 	// -moz-transition: -moz-box-shadow 0.5s ease-out;
 	// -o-transition: box-shadow 0.5s ease-out;
 }
-.box2 li h5{
+.box2.h5.a{
   color: #fff;
 }
+
+.box2 h5{
+  color: #fff;
+}
+
+
 .box2:hover {
 	// -moz-box-shadow: 0px 0px 15px #4687f4;
 	// -webkit-box-shadow: 0px 0px 15px #4687f4;
@@ -109,10 +115,19 @@
   color: #fff;
 	text-decoration: none;
   display: inline-block;
+  float: right;
 }
 
 #blue-btn-primary:hover{
   color: #4687f4;
+}
+
+#disabled-blue-btn-primary {
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  pointer-events: none;
+  cursor: default;
 }
 
 /************************ end navbar ******************************/

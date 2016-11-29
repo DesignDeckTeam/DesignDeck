@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top"><!-- 把navbar固定在顶部 -->
       <div class="container-fluid">
         <div class="navbar-header page-scroll"><!-- 用手机等小屏幕看时，菜单会卷起来 -->
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
             <!-- <span class="sr-only">伸缩菜单</span> -->
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -11,46 +11,48 @@
           <a class="navbar-brand page-scroll" href="/">DesignDeck</a>
         </div>
 
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
             <li class="hidden">
-                <a href="#page-top"></a>
+                <a href="#page-top"></a></li>
+            <!-- 未登录时 -->
             <% if !current_user %>
-              <li>
-                <%= link_to("登录", new_user_session_path, class: "page-scroll") %>
-              </li>
-              <li>
-                <%= link_to("注册", new_user_registration_path, class: "page-scroll") %>
-              </li>
+              <li><%= link_to("登录", new_user_session_path, class: "page-scroll") %></li>
+              <li><%= link_to("注册", new_user_registration_path, class: "page-scroll") %></li>
               <a href='<%= new_user_session_path %>' id='blue-btn-primary'>
                 <li class="button02 box2">
                   <h5>添加设计委托</h5>
                 </li>
               </a>
+            <!-- 登录时 -->
             <% else %>
-              <li>
-                <a class="page-scroll"><%= current_user.email[/[^@]+/] %></a>
-              </li>
+              <li><a class="page-scroll"><%= current_user.email[/[^@]+/] %></a></li>
+              <!-- user -->
               <% if current_user.is_user? %>
-                <li><%= link_to "个人中心", account_orders_path, class: "page-scroll" %></li>
+                <li><%= link_to "订单中心", account_orders_path, class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
+
                 <a href='<%= new_account_order_path %>' id='blue-btn-primary'>
                   <li class="button02 box2">
                     <h5>添加设计委托</h5>
                   </li>
                 </a>
+                  
+              <!-- qualified_designer -->
               <% elsif current_user.qualified_designer? %>
-                <li><%= link_to "设计师后台", designer_orders_path, class: "page-scroll" %></li>
+                <li><%= link_to "订单中心", designer_orders_path, class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
-                <li class="button02 box2" disabled="disabled"><h5><a>添加设计委托</a></h5></li>
+                <li class="button02 box2" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
+              <!-- unqualified_designer -->
               <% elsif current_user.unqualified_designer? %>
-                <li><%= link_to "设计师后台", designer_path(current_user.token), class: "page-scroll" %></li>
+                <li><%= link_to "订单中心", designer_path(current_user.token), class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
-                <li class="button02 box2" disabled="disabled"><h5><a>添加设计委托</a></h5></li>
+                <li class="button02 box2" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
+              <!-- admin -->
               <% elsif current_user.admin? %>
                 <li><%= link_to "管理员后台", admin_users_path, class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
-                <li class="button02 box2" disabled="disabled"><h5><a>添加设计委托</a></h5></li>
+                <li class="button02 box2" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
               <% end %>
             <% end %>
           </ul>
