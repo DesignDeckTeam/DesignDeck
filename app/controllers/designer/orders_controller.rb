@@ -79,7 +79,7 @@ class Designer::OrdersController < ApplicationController
       @current_stage = @order.current_stage
       # 发送通知
       current_user.send_notification(@order.user, @order, $ORDER_PICKED)
-      OrderMailer.notify_order_picked(@order).deliver!
+      # OrderMailer.notify_order_picked(@order).deliver!
       # 刷新
       redirect_to designer_order_path(@order), notice: "获得了这个订单"
     else
@@ -93,8 +93,8 @@ class Designer::OrdersController < ApplicationController
     @order = Order.find(params[:order_id])
     @current_stage = @order.current_stage
 
-    if @current_stage.versions.count < 2
-      redirect_to designer_order_path(@order), alert: "请提交至少2中不同风格的初稿供客户选择"
+    if @current_stage.versions.count < 3
+      redirect_to designer_order_path(@order), alert: "请提交至少3种不同风格的初稿供客户选择"
       return
     end
 
