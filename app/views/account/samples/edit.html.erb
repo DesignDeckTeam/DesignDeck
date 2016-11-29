@@ -19,9 +19,9 @@
 		<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"image" %>
 		<br/>
 		<button id="toggleEdit" class="btn btn-success">对图片添加批注</button>
-		<button id="clear" class="btn btn-danger">清除</button> 
+		<button id="clear" class="btn btn-danger">清除</button>
 		<button id="print" class="btn btn-primary">打印</button>
-<!-- 		<button id="export" class="btn btn-default" number: @sample.id >Export</button> 
+<!-- 		<button id="export" class="btn btn-default" number: @sample.id >Export</button>
  -->	<%= link_to "确定", "#", id:"export", number: @sample.id, class: "btn btn-default" %>
 	</div>
 
@@ -48,7 +48,7 @@
 					return elem;
 				}
 			});
-				// $img.imgNotes("import", [	{x: "0.5", y:"0.5", note:"AFL Grand Final Trophy"}, 
+				// $img.imgNotes("import", [	{x: "0.5", y:"0.5", note:"AFL Grand Final Trophy"},
 				// 	{x: "0.322", y:"0.269", note: "Brisbane Lions Flag"},
 				// 	{x: "0.824", y: "0.593", note: "Fluffy microphone"}]);
 
@@ -64,7 +64,7 @@
 					messages_array.push(message);
 				}
 
-				$img.imgNotes("import", messages_array);	
+				$img.imgNotes("import", messages_array);
 
 				var $toggle = $("#toggleEdit");
 
@@ -85,12 +85,12 @@
 				});
 
 
-				// 
+				//
 				var $export = $("#export");
 				$export.on("click", function() {
 					var $table = $("<table/>").addClass("gridtable");
 					var notes = $img.imgNotes('export');
-					$table.append("<th>X</th><th>Y</th><th>NOTE</th>"); 
+					$table.append("<th>X</th><th>Y</th><th>NOTE</th>");
 
 					comments_array = [];
 
@@ -127,4 +127,3 @@
 			});
 		})(jQuery);
 	</script>
-
