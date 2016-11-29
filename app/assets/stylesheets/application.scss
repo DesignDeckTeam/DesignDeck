@@ -626,9 +626,9 @@ table.gridtable td {
 }
 
 .notification-indicator {
-  width:15px; 
-  height: 15px; 
-  border-radius: 50%; 
+  width:15px;
+  height: 15px;
+  border-radius: 50%;
   background-color: red;
   position:absolute;
   right: 0px;
@@ -1082,4 +1082,42 @@ $table-header-border: 1px solid #FFF;
 
 .bottom img{
   vertical-align:text-bottom
+}
+
+
+
+/************ designer/index *************/
+.order-list{
+  background-color: #f1f1f1;
+}
+.order-list-top{
+  margin-top: 100px;
+}
+
+.designer-left h4{
+  color: #ffffff;
+  background: #4285F4;
+  cursor: pointer;
+  padding: 20px 20px 20px 10px;
+  text-align: center;
+  width: 240px;
+  font-size: 18px;
+}
+
+.designer-right{
+  background: white;
+  padding: 20px 20px 20px 10px;
+  cursor: pointer;
+  color: #888B8D;
+  width: 880px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.designer-left:hover h4{
+  box-shadow: #4687f4;
+}
+.designer-right:hover{
+  color: #4687f4;
+  box-shadow: #ffffff;
 }
