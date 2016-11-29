@@ -1,5 +1,4 @@
-<header>
-    <nav class="navbar navbar-default navbar-fixed-top"><!-- 把navbar固定在顶部 -->
+  <nav class="navbar navbar-default navbar-fixed-top"><!-- 把navbar固定在顶部 -->
       <div class="container-fluid">
         <div class="navbar-header page-scroll"><!-- 用手机等小屏幕看时，菜单会卷起来 -->
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -13,8 +12,6 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="hidden">
-                <a href="#page-top"></a>
             <% if !current_user %>
               <li>
                 <%= link_to("登录", new_user_session_path, class: "page-scroll") %>
@@ -57,4 +54,3 @@
         </div>
       </div>
     </nav>
-</header>
