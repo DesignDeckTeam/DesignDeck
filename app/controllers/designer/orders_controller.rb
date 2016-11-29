@@ -79,6 +79,7 @@ class Designer::OrdersController < ApplicationController
       @current_stage = @order.current_stage
       # 发送通知
       current_user.send_notification(@order.user, @order, $ORDER_PICKED)
+      OrderMailer.notify_order_picked(@order).deliver!
       # 刷新
       redirect_to designer_order_path(@order), notice: "获得了这个订单"
     else
