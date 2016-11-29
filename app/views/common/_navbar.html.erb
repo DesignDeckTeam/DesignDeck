@@ -19,7 +19,7 @@
             <% if !current_user %>
               <li><%= link_to("登录", new_user_session_path, class: "page-scroll") %></li>
               <li><%= link_to("注册", new_user_registration_path, class: "page-scroll") %></li>
-              <a href='<%= new_user_session_path %>' id='blue-btn-primary'>
+              <a href='<%= new_user_session_path %>' id='blue-btn-primary' class="hidden-xs">
                 <li class="button02 box2">
                   <h5>添加设计委托</h5>
                 </li>
@@ -32,7 +32,7 @@
                 <li><%= link_to "订单中心", account_orders_path, class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
 
-                <a href='<%= new_account_order_path %>' id='blue-btn-primary'>
+                <a href='<%= new_account_order_path %>' id='blue-btn-primary' class="hidden-xs">
                   <li class="button02 box2">
                     <h5>添加设计委托</h5>
                   </li>
@@ -42,17 +42,17 @@
               <% elsif current_user.qualified_designer? %>
                 <li><%= link_to "订单中心", designer_orders_path, class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
-                <li class="button02 box2" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
+                <li class="button02 box2 hidden-xs" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
               <!-- unqualified_designer -->
               <% elsif current_user.unqualified_designer? %>
                 <li><%= link_to "订单中心", designer_path(current_user.token), class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
-                <li class="button02 box2" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
+                <li class="button02 box2 hidden-xs" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
               <!-- admin -->
               <% elsif current_user.admin? %>
                 <li><%= link_to "管理员后台", admin_users_path, class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
-                <li class="button02 box2" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
+                <li class="button02 box2 hidden-xs" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
               <% end %>
             <% end %>
           </ul>
