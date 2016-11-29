@@ -79,6 +79,11 @@ module OrdersHelper
   end
 
   def render_lastest_stage_snap_button(stage, order, user)
+
+    if order.placed? || order.picked? || order.last_versioned_stage.nil?
+      return link_to "最新稿", "#", class: "btn btn-primary history-button", style: "margin-left:30px;", disabled: "disabled" 
+    end
+
     if stage == order.last_versioned_stage 
       if user.is_user?
         link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary history-button", style: "margin-left:30px;" 
@@ -95,6 +100,11 @@ module OrdersHelper
   end
 
   def render_another_stage_snap_button(stage, another_stage, order, user, index)
+
+    if stage.blank? || another_stage.blank?
+      return
+    end
+
     if stage == another_stage 
       if user.is_user?
         link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-primary history-button"
