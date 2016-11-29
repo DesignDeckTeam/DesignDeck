@@ -9,11 +9,13 @@
 	<%= render_lastest_stage_snap_button(stage, order, current_user) %>
 	<br>
 
-	<% other_stages.each_with_index do |another_stage, index| %>
-		<%= render_another_stage_snap_button(stage, another_stage, order, current_user, index) %>
-		<br>
+	<% if !other_stages.nil? %>
+		<% other_stages.each_with_index do |another_stage, index| %>
+			<%= render_another_stage_snap_button(stage, another_stage, order, current_user, index) %>
+			<br>
+		<% end %>
 	<% end %>
-
+	
 	<%= render_designer_order_show_button_if_necessary(order) %>
 
 </div>
