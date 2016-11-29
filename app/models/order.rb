@@ -87,22 +87,64 @@ class Order < ApplicationRecord
     stage
   end
 
-  def state_cn
+  def state_cn_user
+    case self.aasm_state
+    when "placed"
+      return "已下单"
+    when "paid"
+      return "待接单"
+    when "picked"
+      return "已有设计师接单"
+    when "drafts_submitted"
+      return "初稿已提交"
+    when "draft_selected"
+      return "等待新稿件"
+    when "versions_submitted"
+      return "收到新的稿件"
+    when "version_selected"
+      return "已发送反馈"
+    when "completed"
+      return "订单已完成"
+    end
+  end
+
+  def state_cn_designer
     case self.aasm_state
     when "placed"
       return "客户已下单"
     when "paid"
-      return "客户已付款"
+      return "可接单"
+    when "picked"
+      return "已接单"
+    when "drafts_submitted"
+      return "方案待确定"
+    when "draft_selected"
+      return "方案已确定"
+    when "versions_submitted"
+      return "新稿件已发送"
+    when "version_selected"
+      return "收到新反馈"
+    when "completed"
+      return "订单已完成"
+    end
+  end
+
+  def state_cn_admin
+    case self.aasm_state
+    when "placed"
+      return "客户已下单"
+    when "paid"
+      return "待设计师接单"
     when "picked"
       return "已有设计师接单"
     when "drafts_submitted"
       return "设计师提交了初稿"
     when "draft_selected"
-      return "风格已确定"
+      return "客户已选择风格"
     when "versions_submitted"
-      return "新稿件已提交"
+      return "设计师提交了新稿件"
     when "version_selected"
-      return "已发送反馈"
+      return "客户提交了反馈"
     when "completed"
       return "订单已完成"
     end

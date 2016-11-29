@@ -1,0 +1,8 @@
+<% if user.has_unread_notifications? %>
+	<li><%= link_to account_orders_path do %>
+		<i class="fa fa-circle" aria-hidden="true" style="color: red;"></i><span> 订单中心</span>
+		<% end %>
+	</li>
+<% else %>
+	<li><%= link_to "订单中心", account_orders_path, class: "page-scroll" %></li>
+<% end %>     
