@@ -80,6 +80,11 @@ class User < ApplicationRecord
     message.deliver false, sanitize_text
   end
 
+  def send_notification(receiver, order, notification_type)
+    Notification.create(sender_id: self.id, receiver_id: receiver.id, order_id: order.id, notification_type: notification_type)
+  end
+
+
   def is_user?
     # !is_designer
     self.role == "用户"

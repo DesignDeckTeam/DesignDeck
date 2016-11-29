@@ -1,25 +1,32 @@
 <!-- designer提交的versions -->
 
-<% if @order.stages.last.versions.present? %>
 
-  <h2>已上传的稿件</h2>
 
-    <% @versions.each_with_index do |version,i| %>
-    <div class="container-fluid">
-        <div class="row well">
+
+  <% if @current_versions.present? %>
+
+    <h2>已上传的稿件</h2>
+
+      <% @current_versions.each_with_index do |version,i| %>
+      <div class="container-fluid">
+          <div class="row well">
             <% version.samples.each do |sample| %>
               <div class="col-md-3"">
                 <%= link_to(render_sample(sample), designer_order_stage_version_path(@order, @order.stages.last, version)) %>
               </div>
             <% end %>
-            <button class="btn btn-default pull-right version-indicator" disabled: "disabled" >
-              <%= "#{i+1}" %>
-            </button>
-           
-      </div>
 
-    </div>
-  
-   <% end %>
-  <hr>
-<% end %>
+            <% if false %>
+              <button class="btn btn-default pull-right version-indicator" disabled="disabled" >
+                <%= "#{i+1}" %>
+              </button>   
+            <% end %>                        
+
+          </div>
+
+      </div>
+    
+     <% end %>
+    <hr>
+  <% end %>
+

@@ -18,7 +18,7 @@
 	<div id="imgdiv" style="text-align: center;">
 		<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"image" %>
 		<br/>
-		<button id="toggleEdit" class="btn btn-success">编辑</button>
+		<button id="toggleEdit" class="btn btn-success">对图片添加批注</button>
 		<button id="clear" class="btn btn-danger">清除</button> 
 		<button id="print" class="btn btn-primary">打印</button>
 <!-- 		<button id="export" class="btn btn-default" number: @sample.id >Export</button> 
@@ -27,7 +27,7 @@
 
 	<div class="hidden">
 		<% @messages_array.each_with_index do |message, index| %>
-			<span id="message_note_<%= index %>"><%= message[:note] %></span>
+			<span id="message_note_<%= index %>"><%= message[:note].gsub! '\n', '<br>' %></span>
 			<span id="message_x_<%= index %>"><%= message[:x] %></span>
 			<span id="message_y_<%= index %>"><%= message[:y] %></span>
 			<br>
@@ -71,15 +71,15 @@
 				if ($img.imgNotes("option","canEdit")) {
 					$toggle.text("查看");
 				} else {
-					$toggle.text("编辑");
+					$toggle.text("对图片添加批注");
 				}
 				$toggle.on("click", function() {
 					var $this = $(this);
-					if ($this.text()=="编辑") {
+					if ($this.text()=="对图片添加批注") {
 						$this.text("查看");
 						$img.imgNotes("option", "canEdit", true);
 					} else {
-						$this.text('编辑');
+						$this.text('对图片添加批注');
 						$img.imgNotes('option', 'canEdit', false);
 					}
 				});

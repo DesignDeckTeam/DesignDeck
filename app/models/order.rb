@@ -19,6 +19,7 @@
 #  product_quantity     :integer          default(1)
 #  total_price          :integer
 #  attachment           :string
+#  rating               :integer
 #
 
 class Order < ApplicationRecord
@@ -112,6 +113,21 @@ class Order < ApplicationRecord
 
   def last_closed_stage
     self.stages.where(aasm_state: "closed").last
+  end
+
+  def versioned_stages
+    self.stages.where(id: Version.select(:stage_id).uniq)
+  end
+
+
+  # 最后一个有version的stage
+  def last_versioned_stage
+    # if self.stages.last.versions.present?
+    #   return self.stages.last
+    # else
+    #   return self.stages.closed.last
+    # end
+    self.versioned_stages.last
   end
 
   def last_message

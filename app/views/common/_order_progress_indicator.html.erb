@@ -7,6 +7,8 @@
 	<% when "paid"%>
 		<%= image_tag("progress2.png", style: "width: 80%;") %>
 	<% when "picked", 
+			"draft_selected",
+			"drafts_submitted",
 			"versions_submitted", 
 			"version_selected" %>
 		<%= image_tag("progress3.png", style: "width: 80%;") %>

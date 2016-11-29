@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :orders do
+      collection do
+        post :rating
+      end
       post :pay_with_alipay
       post :select_version
       post :select_draft
@@ -40,6 +43,7 @@ Rails.application.routes.draw do
   end
 
   resources :designers, only: [:show, :edit, :update]
+
 
   namespace :admin do
     resources :orders

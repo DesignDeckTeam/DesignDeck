@@ -1,21 +1,27 @@
-<% if @order.attachment.present? %>
-  <div class="row">
-    <div class="col-md-7"><h2>订单已完成</h2></div>
-    <div class="col-md-2">
-      <%#= link_to("下载", @order.attachment_url, download: "", class: "btn btn-primary with-button")%>
+<div class="col-md-10 col-xs-10 right-grey-border">
+
+  <% if @order.attachment.present? %>
+    <div class="row">
+      <h2>最终稿件已上传</h2>    
     </div>
-  </div>
-<% else %>
-  <div class="col-md-9"><h2>需要设计师提交最终稿</h2></div>
-<% end %>
-
-<div class="col-md-3">
-  <%= simple_form_for [:designer, @order] do |f|%>
-    <%= f.input :attachment, label: "上传稿件" %>
-    <%= f.submit "发送", class: "btn btn-defalut" %>
+  <% else %>
+    <h2>向客户提供最终稿件</h2>
   <% end %>
-  <br>
-</div>
-<hr>
+  <hr>
 
-<%= render partial: "common/selected_version", :locals => { :order => @order } %>
+  <div class="row">
+    <%= simple_form_for [:designer, @order] do |f|%>
+      <%= f.input :attachment, label: "上传稿件" %>
+      <%= f.submit "发送", class: "btn btn-defalut" %>
+    <% end %>
+    <br>
+  </div>
+  <hr>
+
+  <%= render partial: "common/selected_stage", :locals => { :stage => @stage } %>
+
+</div>
+
+<div class="col-md-2 col-xs-2">
+  <%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
+</div>

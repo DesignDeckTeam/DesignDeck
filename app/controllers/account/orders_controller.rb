@@ -10,6 +10,16 @@ class Account::OrdersController < ApplicationController
     redirect_to account_orders_path, notice: "使用支付宝成功完成付款"
   end
 
+  def rating
+
+    @order = Order.find(params[:order_id])
+
+    @order.rating = params[:rating].to_i
+    @order.save
+
+    redirect_to account_order_path(@order), notice: "rated"
+  end
+
   def index
     @orders = current_user.orders
   end
@@ -44,18 +54,37 @@ class Account::OrdersController < ApplicationController
 
 
   def show
-    
+
+    # binding.pry
+    @order = Order.find(params[:id])
+
+    # 如果是在show页面，就直接清除通知
+    clear_current_notifications(@order)
+
+
     # binding.pry
 
-    @order = Order.find(params[:id])
-    @stage = @order.current_stage
-    case @order.aasm_state
-    when "versions_submitted", "drafts_submitted"
-      @stage = @order.stages.last
-    else
-      @stage = @order.stages.closed.last
+    if @order.current_stage_id.present?
+      @stage = @order.current_stage
+
+      if params[:stage_id].present?
+        @stage = Stage.find(params[:stage_id])
+      else
+        if @order.last_versioned_stage.present?
+          @stage = @order.last_versioned_stage
+        end
+      end
+
+      unless @stage.order == @order
+        redirect_to account_order_path(@order)
+      end
+
+      @other_stages = @order.versioned_stages[0...-1].reverse
+
     end
-    # @current_stage = @order.current_stage
+
+
+
   end
 
   def edit
@@ -72,7 +101,8 @@ class Account::OrdersController < ApplicationController
       return
     end
 
-    @stage = @order.stages.last
+    # @stage = @order.stages.last
+    @stage = @order.last_versioned_stage
     @stage.close!
 
     version = Version.find_by(id: select_version_params[:version_id])
@@ -83,6 +113,8 @@ class Account::OrdersController < ApplicationController
                              @order.designer, @stage,
                              "stage#{@stage.id} conversation",
                              select_version_params[:comment])
+
+    current_user.send_notification(@order.designer, @order, $DRAFT_SELECTED)
 
     # 改变order的state
     if params[:commit] == "确定选择方案"
@@ -110,7 +142,7 @@ class Account::OrdersController < ApplicationController
       return
     end
 
-    @stage = @order.stages.last
+    @stage = @order.last_versioned_stage
 
     @stage.close!
 
@@ -123,11 +155,15 @@ class Account::OrdersController < ApplicationController
                              "stage#{@stage.id} conversation",
                              select_version_params[:comment])
 
+
+
     if params[:commit] == "确认为最终稿"
       @order.complete!
+      current_user.send_notification(@order.designer, @order, $ORDER_COMPLETED)
       redirect_to account_order_path(@order), notice: "已完成订单"
     else
       @order.select_version!
+      current_user.send_notification(@order.designer, @order, $VERSION_SELECTED)
       redirect_to account_order_path(@order), notice: "已发送反馈"
     end
 
@@ -144,6 +180,20 @@ class Account::OrdersController < ApplicationController
   end
 
   private
+
+  def clear_current_notifications(order)
+    case order.aasm_state
+    when "order_picked"
+      clear_unread_notifications_for_order(order, $ORDER_PICKED)
+    when "drafts_submitted"
+      clear_unread_notifications_for_order(order, $DRAFTS_SUBMITTED)  
+    when "version_submitted"
+      clear_unread_notifications_for_order(order, $VERSION_SUBMITTED)
+    when "attachment_uploaded"
+      clear_unread_notifications_for_order(order, $ATTACHMENT_UPLOADED)
+    end
+  end
+
 
   def order_params
     params.require(:order).permit(:title, :description, :preference_type, :comment_from_customer, :image, :product_quantity)

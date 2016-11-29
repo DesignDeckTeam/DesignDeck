@@ -11,13 +11,25 @@
     <body>
 
         <%= render "common/navbar" %>
-        <%= render "common/flashes" %>
+        <%= render "common/flashes" %>        
+
+        <div class="container">
+          <br>
+          <ol class="breadcrumb" id="white" style="margin-left: -25px;">
+            <li><%= link_to("首页", root_path) %></li>
+            <% if current_user.qualified_designer? %>
+            <li><%= link_to("订单中心", designer_orders_path) %></li>
+            <% else %>
+            <li><%= link_to("订单中心", account_orders_path) %></li>
+            <% end %>
+            <li class="active">当前订单</li>
+          </ol>
+        </div>
+  
         <%= render partial: "common/order_progress_indicator", locals: {order: @order} %>
-
         <br><br>
-
         <%= yield %>
-
 
     </body>
 </html>
+
