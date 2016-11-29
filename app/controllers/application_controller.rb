@@ -36,6 +36,14 @@ class ApplicationController < ActionController::Base
     end
   end  
 
+  # 清除当前user的所有未读通知
+  def clear_current_notifications(order)
+    notifications = order.unread_notifications_for_user(current_user)
+    notifications.each do |notification|
+      notification.check!
+    end
+  end
+
 
   def send_message_to_resource(from, to, resource, subject, body)
   	if body.present?

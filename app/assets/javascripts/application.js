@@ -19,6 +19,7 @@
 //= require bootstrap/tab
 //= require bootstrap/transition
 //= require bootstrap/modal
+//= require bootstrap/collapse
 //= require jquery_nested_form
 //= require_tree .
 //= require_self

@@ -113,6 +113,11 @@ class User < ApplicationRecord
     self.save
   end
 
+  def has_unread_notifications?
+    Notification.where(receiver_id: self.id).where(aasm_state: "unread").any?
+  end
+
+
   private
 
   def generate_token
