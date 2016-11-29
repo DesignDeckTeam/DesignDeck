@@ -37,7 +37,13 @@ module ImagesHelper
     else
       image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail", style: "width:100%;")
     end
-  end    	
+  end    
+
+  def render_notification_red_dot(order)
+    if order.unread_notifications_for_user(current_user).any?
+      content_tag(:div, "", class: 'notification-indicator')
+    end
+  end
 
   # def render_sample_with_conversations(sample)
   #   if sample.image.present?
