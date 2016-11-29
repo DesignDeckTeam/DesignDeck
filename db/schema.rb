@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20161128094903) do
     t.integer  "product_quantity",     default: 1
     t.integer  "total_price"
     t.string   "attachment"
+    t.integer  "rating"
   end
 
   create_table "sample_comments", force: :cascade do |t|

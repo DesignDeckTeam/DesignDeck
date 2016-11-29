@@ -16,7 +16,7 @@ GIT
       rails (>= 4.2.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.org/
   specs:
     CFPropertyList (2.3.3)
     aasm (4.11.1)

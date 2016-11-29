@@ -23,6 +23,8 @@
 //= require_tree .
 //= require_self
 
+
+
 // $(document).on('turbolinks:load', func);
 
 // $(document).ready(function(){
@@ -78,7 +80,7 @@
 //   });
 
 
-// });  
+// });
 
   // simple text add to image
   // (function ( $ ) {
@@ -131,7 +133,7 @@
   //           return data;
   //         }
 
-  //       mouseAbs = function(e) {  
+  //       mouseAbs = function(e) {
   //         return [e.pageX, e.pageY];
   //       };
 
@@ -161,7 +163,7 @@
   //           textArea.css(text_css);
   //           position = mouseAbs(e);
   //           textArea.css({'left': position[0], 'top': position[1]});
-  //           $(this).after(textArea);        
+  //           $(this).after(textArea);
   //           $(textArea).bind('keydown', resizeTextArea);
   //           $(textArea).on('paste', function(e) {
   //             /*TODO Fix resize issue */
@@ -199,16 +201,16 @@
   //         $(obj).click(newTextArea);
   //         $(document).keydown(handleEsc);
   //   };
-   
+
   //     $.fn.TextOver = function(options, callback) {
-   
+
   //         api = $.TextOver(this, options);
   //         if ($.isFunction(callback)) callback.call(api);
-   
+
   //         // Return "this" so the object is chainable (jQuery-style)
   //       return this;
   //     };
-   
+
   // }(jQuery));
 
 
@@ -247,5 +249,4 @@
   //       });
   //       return false;
   //     });
-  // });  
-
+  // });
