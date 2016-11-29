@@ -30,7 +30,7 @@
       <%= order.created_at.strftime("%Y年%m月%d日") %>
     </td>
     <td>
-      <%= order.state_cn %>
+      <%= order.state_cn_admin %>
     </td>
      <td>
     <%= link_to("查看订单", admin_order_path(order), :class => "btn btn-sm btn-primary" ) %>
