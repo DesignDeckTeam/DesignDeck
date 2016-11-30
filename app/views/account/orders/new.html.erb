@@ -58,7 +58,8 @@
 			</div>
 			<div class="col-md-4">
 				<h4>预计交付时间</h4>
-				  <%= f.label Time.now.strftime("%Y年%m月%d日") %>
+					<% 	t = Time.now + (1*7*24*60*60) %>
+				  <%= f.label t.strftime("%Y年%m月%d日") %>
 			</div>
 			<div class="col-md-4">
 				<h4>设计类型</h4>
@@ -134,16 +135,5 @@
   });
 
 
-});  
+});
 </script>
-
-
-
-
-
-
-
-
-
-
-

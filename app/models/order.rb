@@ -54,13 +54,13 @@ class Order < ApplicationRecord
       transitions :paid => :placed, :to => :picked
     end
 
-    event :submit_drafts do 
+    event :submit_drafts do
       transitions from: :picked, to: :drafts_submitted
     end
 
-    event :select_draft do 
+    event :select_draft do
       transitions from: :drafts_submitted, to: :draft_selected
-    end    
+    end
 
   	event :submit_initial_version do
       transitions :from => :draft_selected, :to => :versions_submitted
@@ -182,7 +182,7 @@ class Order < ApplicationRecord
       return self.stages.last.conversation.messages.last
     elsif self.last_closed_stage.conversation.present?
       return self.last_closed_stage.conversation.messages.last
-    end    
+    end
   end
 
   def set_current_stage(stage)
