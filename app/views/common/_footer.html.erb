@@ -1,15 +1,25 @@
 
-<footer class="footer text-center">
-    <hr>
+<footer class="footer">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <p class="text-center">Copyright ©2016 DesignDeckTeam
-              <br>Design by
-              <a href="#" target=_new>DesignDeck</a>
-          </p>
+        <div class="col-md-7">
+          <span>Copyright ©2016 DesignDeckTeam</span>
+            &emsp;&emsp;
+          <span><i class="fa fa-paper-plane" aria-hidden="true"></i>
+            Design by
+            <a href="#" target=_new>DesignDeck</a>
+          </span>
+        </div>
+        <div class="col-md-5">
+          <a href=""><i class="fa fa-weibo"></i>官方微博</a>&emsp;
+          <a href=""><i class="fa fa-weixin"></i>微信公众号</a>
+            &emsp;&emsp;&emsp;
+          <%= link_to("关于我们", '#') %>&emsp;
+          <%= link_to("常见问题", '#') %>&emsp;
+          <%= link_to("联系我们", '#') %>
         </div>
       </div>
+      <br>
     </div>
 
     <div class="hidden">
@@ -33,15 +43,14 @@
         j.src = i + '?v=' + new Date().getUTCDate();
         s.parentNode.insertBefore(j, s);
     })(window, document, 'script', '//static.meiqia.com/dist/meiqia.js', '_MEIQIA');
-    _MEIQIA('entId', '42976'); 
+    _MEIQIA('entId', '42976');
     // 传递顾客信息
     _MEIQIA('metadata', {
         name: $('#current_user_name').text(),
-        role: $('#current_user_role').text(), 
-        is_qualified_designer: $('#is_qualified_designer').text(), 
+        role: $('#current_user_role').text(),
+        is_qualified_designer: $('#is_qualified_designer').text(),
     });
 
   </script>
 
 </footer>
-

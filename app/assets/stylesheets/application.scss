@@ -134,6 +134,13 @@
 
 /************************ begen Landing Page ******************************/
 
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18em;
+    height: 10em;
+}
 
 /* 一句话形容自己 */
 .banner{
@@ -626,9 +633,9 @@ table.gridtable td {
 }
 
 .notification-indicator {
-  width:15px; 
-  height: 15px; 
-  border-radius: 50%; 
+  width:15px;
+  height: 15px;
+  border-radius: 50%;
   background-color: red;
   position:absolute;
   right: 0px;
