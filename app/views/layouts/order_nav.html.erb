@@ -14,7 +14,6 @@
         <%= render "common/flashes" %>
 
         <!-- <div class="container">
-
           <ol class="breadcrumb" id="white" style="margin-left: -25px;">
             <li><%= link_to("首页", root_path) %></li>
             <% if current_user.qualified_designer? %>
@@ -24,6 +23,10 @@
             <% end %>
             <li class="active">当前订单</li>
           </ol>
+        </div>
+
+        <%= render partial: "common/order_progress_indicator", locals: {order: @order} %>
+        <br><br>
         </div> -->
 
         <%#= render partial: "common/order_progress_indicator", locals: {order: @order} %>
