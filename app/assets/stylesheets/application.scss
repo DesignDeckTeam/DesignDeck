@@ -400,7 +400,44 @@
 /************************ end order index *********************************/
 
 /************************ begen order show  ********************************/
+/*top-tree-button*/
+.show-tree-button{
+  border: 1px solid #e0e0e0;
+  margin-top: -20px;
+}
+.top-button{
+  border-radius: 0px;
+  border: 1px solid #ffffff;
+}
+.top-button:hover{
+  background: #e0e0e0;
+  border: 1px solid #ffffff;
+}
 
+.top-button .acive,
+.top-button .acive:focus{
+  background: #4687f4;
+}
+// .nav-button-line:focus{
+//   border-bottom: 1px solid #4687f4;
+// }
+
+
+
+.btn-default.no-color{
+  padding: 13px 40px;
+  font-weight: 700;
+  margin-right: 5px;
+  background: transparent; //背景透明
+  position: relative; //相对位置
+  margin-top: 20px;
+  margin-bottom: 105px;
+}
+.btn-default.no-color:hover{
+  background: #4687f4;
+  color: #ffffff;
+  border-color: #4687f4;
+}
 
 /************************ end order show **********************************/
 
@@ -625,9 +662,9 @@ table.gridtable td {
 }
 
 .notification-indicator {
-  width:15px; 
-  height: 15px; 
-  border-radius: 50%; 
+  width:15px;
+  height: 15px;
+  border-radius: 50%;
   background-color: red;
   position:absolute;
   right: 0px;
