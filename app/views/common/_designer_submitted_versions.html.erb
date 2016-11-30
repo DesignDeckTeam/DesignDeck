@@ -14,14 +14,7 @@
               <div class="col-md-3"">
                 <%= link_to(render_sample(sample), designer_order_stage_version_path(@order, @order.stages.last, version)) %>
               </div>
-            <% end %>
-
-            <% if false %>
-              <button class="btn btn-default pull-right version-indicator" disabled="disabled" >
-                <%= "#{i+1}" %>
-              </button>   
-            <% end %>                        
-
+            <% end %>                   
           </div>
 
       </div>
