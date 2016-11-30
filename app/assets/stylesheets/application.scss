@@ -416,7 +416,6 @@
   border: 1px solid #ffffff;
 }
 
-.top-button .acive,
 .top-button .acive:focus{
   background: #4687f4;
   border: 1px solid #ffffff;
@@ -432,13 +431,13 @@
 
 .left-section{
   background: #ffffff;
-  min-height: 800px;
+  // min-height: 800px;
 }
 
 .right-section{
   border-left: 1px solid #e0e0e0;
   background: #fafafa;
-  min-height: 800px;
+  // min-height: 800px;
 }
 .right-section ul{
 
@@ -487,6 +486,17 @@
 }
 
 /************************ end order show **********************************/
+
+/************************ designer order show *****************************/
+
+.top-margin{
+  margin-top: 20px;
+}
+.table-text-style tr td{
+  margin-right: 30px;
+}
+
+/************************ end designer order show *************************/
 
 /************************ begen footer  ***********************************/
 .footer{
@@ -1166,3 +1176,69 @@ $table-header-border: 1px solid #FFF;
 .bottom img{
   vertical-align:text-bottom
 }
+/*shin*/
+.text-test li {
+  display: inline-block;
+  margin-right: 20px;
+}
+.text-test h1{
+  font-size: 35px;
+
+}
+.text-test h3{
+  font-size: 10px;
+}
+.text2{
+  margin-top:10px;
+}
+
+.logo-test li{
+  display: inline-block;
+  margin-right: 180px;
+}
+.order-list{
+  background-color: #f1f1f1;
+  min-height: 800px;
+}
+.order-list-top{
+  margin-top: 100px;
+}
+.designer-left{
+  margin-bottom: 10px;
+}
+.designer-left h4{
+  color: #ffffff;
+  background: #4285F4;
+  cursor: pointer;
+  padding: 20px 20px 20px 10px;
+  text-align: center;
+  width: 240px;
+  font-size: 18px;
+}
+
+.designer-right {
+  background: white;
+  padding: 10px;
+  cursor: pointer;
+  color: #888B8D;
+  // text-align: center;
+  font-size: 18px;
+  margin-top: 10px;
+  border-left: 3px solid #888B8D;
+ }
+ .designer-right p{
+   font-size: 14px;
+ }
+ .designer-right h3{
+   margin-top: 15px;
+ }
+.text-center p{
+  margin-top:10px;
+}
+ .designer-left:hover h4{
+   box-shadow: #4687f4;
+ }
+ .designer-right:hover {
+   color: #4687f4;
+   box-shadow: #ffffff;
+ }
