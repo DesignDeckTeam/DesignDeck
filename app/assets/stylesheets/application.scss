@@ -83,7 +83,6 @@
 	color: #fff;
 	cursor: pointer;
 	display: block;
-	// margin-top: 3px;
 	padding: 18px;
 	text-align: center;
 	width: 150px;
@@ -134,6 +133,13 @@
 
 /************************ begen Landing Page ******************************/
 
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18em;
+    height: 10em;
+}
 
 /* 一句话形容自己 */
 .banner{
@@ -401,7 +407,91 @@
 /************************ end order index *********************************/
 
 /************************ begen order show  ********************************/
+/*top-tree-button*/
+.show-tree-button{
+  border: 1px solid #e0e0e0;
+  margin-top: -20px;
+}
+.top-button{
+  border-radius: 0px;
+  border: 1px solid #ffffff;
+  font-weight: 700;
+  color: #949494;
+}
+.top-button:hover{
+  background: #e0e0e0;
+  border: 1px solid #ffffff;
+}
 
+.top-button .acive,
+.top-button .acive:focus{
+  background: #4687f4;
+  border: 1px solid #ffffff;
+}
+// .nav-button-line:focus{
+//   border-bottom: 1px solid #4687f4;
+// }
+
+/*order-show-section*/
+.order-show-bg {
+  background: #eeeeee;
+}
+
+.left-section{
+  background: #ffffff;
+  min-height: 800px;
+}
+
+.right-section{
+  border-left: 1px solid #e0e0e0;
+  background: #fafafa;
+  min-height: 800px;
+}
+.right-section ul{
+
+  margin-top: 20px;
+  margin-left: -30px;
+}
+.bottom-line li{
+  // border-bottom: 1px solid #e0e0e0;
+  display: block;
+}
+.xiao-blue{
+  background: #4687f4;
+  color: #ffffff;
+}
+.xiao-blue:hover{
+  border: 1px solid #4687f4;
+  color: #4687f4;
+  background: transparent;
+}
+.version{
+  border-radius: 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 0px;
+  width: 200px;
+  font-size: 18px;
+  background: #ffffff;
+  margin: 10px 10px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: #777777;
+}
+.version i{
+  margin-right: 10px;
+  color: #4687f4;
+}
+.version:hover{
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  color: #4687f4;
+}
+.order-show-shadow{
+  margin-top: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
 
 /************************ end order show **********************************/
 
@@ -568,36 +658,36 @@ table.gridtable td {
 
 
 /*****************************button 02*****************************/
-.button02{
-
-	color: #fff;
-	font-size: 12px;
-	line-height: 1.64;
-	// margin-top: 12px;
-}
-.box2 {
-	background: #4687f4;
-	color: #fff;
-	cursor: pointer;
-	display: block;
-	// margin-top: 3px;
-	padding: 18px;
-	text-align: center;
-	width: 150px;
-	transition:all 1s ease-out;
-	-webkit-transition: -webkit-box-shadow 0.5s ease-out;
-	-moz-transition: -moz-box-shadow 0.5s ease-out;
-	// -o-transition: box-shadow 0.5s ease-out;
-}
-.box2:hover {
-	-moz-box-shadow: 0px 0px 15px #4687f4;
-	-webkit-box-shadow: 0px 0px 15px #4687f4;
-	 box-shadow: 0px 0px 15px #4687f4;
-}
-.button02:hover h5{
-	// color: #fff;
-	text-decoration: none;
-}
+// .button02{
+//
+// 	color: #fff;
+// 	font-size: 12px;
+// 	line-height: 1.64;
+// 	// margin-top: 12px;
+// }
+// .box2 {
+// 	background: #4687f4;
+// 	color: #fff;
+// 	cursor: pointer;
+// 	display: block;
+// 	// margin-top: 3px;
+// 	padding: 18px;
+// 	text-align: center;
+// 	width: 150px;
+// 	transition:all 1s ease-out;
+// 	-webkit-transition: -webkit-box-shadow 0.5s ease-out;
+// 	-moz-transition: -moz-box-shadow 0.5s ease-out;
+// 	// -o-transition: box-shadow 0.5s ease-out;
+// }
+// .box2:hover {
+// 	-moz-box-shadow: 0px 0px 15px #4687f4;
+// 	-webkit-box-shadow: 0px 0px 15px #4687f4;
+// 	 box-shadow: 0px 0px 15px #4687f4;
+// }
+// .button02:hover h5{
+// 	// color: #fff;
+// 	text-decoration: none;
+// }
 /*********************************end  button02***********************/
 
 
@@ -626,9 +716,9 @@ table.gridtable td {
 }
 
 .notification-indicator {
-  width:15px; 
-  height: 15px; 
-  border-radius: 50%; 
+  width:15px;
+  height: 15px;
+  border-radius: 50%;
   background-color: red;
   position:absolute;
   right: 0px;
