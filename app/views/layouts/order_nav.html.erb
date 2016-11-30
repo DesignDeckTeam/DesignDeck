@@ -10,11 +10,10 @@
 
     <body>
 
-        <%= render "common/navbar" %>
+        <%= render "common/navbar_order_show" %>
         <%= render "common/flashes" %>
 
-        <div class="container">
-          <br>
+        <!-- <div class="container">
           <ol class="breadcrumb" id="white" style="margin-left: -25px;">
             <li><%= link_to("首页", root_path) %></li>
             <% if current_user.qualified_designer? %>
@@ -28,9 +27,13 @@
 
         <%= render partial: "common/order_progress_indicator", locals: {order: @order} %>
         <br><br>
+        </div> -->
+
+        <%#= render partial: "common/order_progress_indicator", locals: {order: @order} %>
+
         <%= yield %>
 
-        <%= render "common/footer" %>       
+        <%= render "common/footer" %>
 
     </body>
 </html>
