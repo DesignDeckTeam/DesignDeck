@@ -2,9 +2,12 @@
 
 
 
+	<%# if @stage.versions.any? %>
+		<%= render partial: "common/selected_stage", :locals => { :order => @order, stage: @stage } %>
+	<%# else %>
+		<%#= render partial: "common/selected_version", :locals => { order: @order } %>
+	<%# end %>
 
-	<%#= render partial: "common/selected_version", :locals => { order: @order } %>
-	<%= render partial: "common/selected_stage", :locals => { :order => @order, stage: @stage } %>
 	<%= render partial: "common/designer_submitted_versions" %>
 	<%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @order.stages.closed.last, single_version: true } %>
 
