@@ -163,7 +163,7 @@ class Order < ApplicationRecord
   end
 
   def versioned_stages
-    self.stages.where(id: Version.select(:stage_id).uniq)
+    self.stages.where(id: Version.select(:stage_id).uniq).order("id")
   end
 
 
