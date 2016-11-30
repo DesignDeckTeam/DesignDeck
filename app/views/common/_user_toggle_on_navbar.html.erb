@@ -1,0 +1,13 @@
+<li class="dropdown navbar-dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  欢迎，<%= user.email[/[^@]+/] %>
+    <b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fa fa-power-off" aria-hidden="true"></i> 登出
+      <% end %>
+    </li>                   
+  </ul>
+</li> 
