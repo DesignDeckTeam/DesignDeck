@@ -101,9 +101,7 @@ module OrdersHelper
 
   def render_another_stage_snap_button(stage, another_stage, order, user, index)
 
-    if stage.blank? || another_stage.blank?
-      return
-    end
+    return if stage.blank? || another_stage.blank?
 
     if stage == another_stage 
       if user.is_user?
