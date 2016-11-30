@@ -28,18 +28,18 @@
           </div>
           <div class="col-md-12 cart-text2">
             <hr>
-            <div class="col-md-10">
+            <div class="col-md-9">
               <p>设计类型：<%= @order.preference_type %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  设计规格：<%= @order.style_and_regulation %> </p>
             </div>
-            <div class="col-md-2 text-right">
-              <p>订单状态&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <div class="col-md-3 text-right">
+              <p>订单状态：待支付</p>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-10 col-md-offset-1 text-time">
-            <p><%= @order.created_at.strftime("%Y年%m月%d日%H:%M") %>&nbsp;</p>
+            <p>订单创建时间：<%= @order.created_at.strftime("%Y年%m月%d日%H:%M") %>&nbsp;</p>
             <hr>
             <h4>设计描述：</h4>
             <p><%= @order.description %></p>
