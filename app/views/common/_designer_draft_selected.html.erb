@@ -2,11 +2,9 @@
 
 
 
-	<div class="container-fluid">
-		<h2>用户选择的方案</h2>
-	</div>
 
-	<%= render partial: "common/selected_version", :locals => { order: @order } %>
+	<%#= render partial: "common/selected_version", :locals => { order: @order } %>
+	<%= render partial: "common/selected_stage", :locals => { :order => @order, stage: @stage } %>
 	<%= render partial: "common/designer_submitted_versions" %>
 	<%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @order.stages.closed.last, single_version: true } %>
 

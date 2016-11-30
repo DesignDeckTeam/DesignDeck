@@ -478,6 +478,23 @@ main{
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   color: #777777;
 }
+
+.selected-version{
+  border-radius: 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 0px;
+  width: 200px;
+  font-size: 18px;
+  background: #7AC3FE;
+  margin: 10px 10px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+
+
 .version i{
   margin-right: 10px;
   color: #4687f4;
