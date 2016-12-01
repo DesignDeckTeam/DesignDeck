@@ -40,11 +40,13 @@
         <% if order.aasm_state == "completed" %>
           <%= link_to account_order_path(order) do %>
             <div class="col-md-3 col-sm-4 col-xs-12">
-          
+
               <div  class="box text-center">
                 <h4><%= truncate(order.title, length:10) %></h4>
-                <hr>
-                <p><%= order.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+                <%= render partial: "common/order_state_translate", locals: {order: order} %>
+                <div class="margin-set">
+                  <p><%= order.state_cn_user %></p>
+                  <p><%= order.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
               </div>
 
               <%= render_notification_red_dot(order) %>

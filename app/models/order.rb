@@ -185,9 +185,9 @@ class Order < ApplicationRecord
       return "您的反馈已经发送，请等待设计师的下一版稿件"
     when "completed"
       if self.attachment.present?
-        return "已定稿，等待设计师为您发送最终稿件的打包文件"
+        return "订单已完成，请下载设计师上传的最终打包文件"
       else
-        return "订单已完成"
+        return "已定稿，等待设计师为您发送最终稿件的打包文件"
       end
     end
   end
