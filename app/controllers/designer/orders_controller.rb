@@ -66,7 +66,7 @@ class Designer::OrdersController < ApplicationController
                              "stage#{@stage.id} conversation",
                              comment_param[:comment])
 
-    redirect_to designer_order_path(@order), notice: "已发送评论"
+    redirect_to designer_order_path(@order) + "#conversation", notice: "已发送评论"
   end
 
 

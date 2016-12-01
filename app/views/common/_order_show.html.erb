@@ -2,45 +2,61 @@
     <%= render_order_step(order, user) %>
 <% else %>
 
-<nav class="show-tree-button">
-  <div class="container">
-    <div class="row text-center nav-tabs">
-      <a href="#order_info" data-toggle="tab">
-      <div class="col-md-4 btn btn-default top-button nav-button-line">订单</div>
-      </a>
-      <a href="#stages" data-toggle="tab">
-      <div class="col-md-4 btn btn-default top-button nav-button-line">作品</div>
-      </a>
-      <a href="#conversation" data-toggle="tab">
-      <div class="col-md-4 btn btn-default top-button nav-button-line">对话</div>
-      </a>
-    </div>
-  </div>
-</nav>
-
- <div class="order-show-bg">
-  <div class="container">
-    <div class="row order-show-shadow">
-      <div class="panel-body">
-            <div class="tab-content">
-
-              <div class="tab-pane fade" id="order_info">
-                  <%= render partial: "common/order_info", :locals => { order: order } %>
-              </div>
-              <div class="tab-pane fade in active" id="stages">
-                  <%= render partial: "common/stage_tab_content", locals: {order: order, user: user, stage: stage, other_stages: @other_stages} %>
-              </div>
-              <div class="tab-pane fade" id="conversation">
-                  <%= render partial: "common/conversation_for_order", :locals => { order: @order } %>
-              </div>
-            </div>
+  <nav class="show-tree-button">
+    <div class="container">
+      <div class="row text-center nav-tabs" id="my_tab">
+        <a href="#order_info" data-toggle="tab">
+          <div class="col-md-4 btn btn-default top-button nav-button-line">订单</div>
+        </a>
+        <a href="#stages" data-toggle="tab">
+          <div class="col-md-4 btn btn-default top-button nav-button-line">作品</div>
+        </a>
+        <a href="#conversation" data-toggle="tab">
+          <div class="col-md-4 btn btn-default top-button nav-button-line">对话</div>
+        </a>
       </div>
     </div>
+  </nav>
+
+  <div class="order-show-bg">
+    <div class="container">
+      <div class="row order-show-shadow">
+        <div class="panel-body">
+              <div class="tab-content">
+
+                <div class="tab-pane fade" id="order_info">
+                    <%= render partial: "common/order_info", :locals => { order: order } %>
+                </div>
+                <div class="tab-pane fade in active" id="stages">
+                    <%= render partial: "common/stage_tab_content", locals: {order: order, user: user, stage: stage, other_stages: @other_stages} %>
+                </div>
+                <div class="tab-pane fade" id="conversation">
+                    <%= render partial: "common/conversation_for_order", :locals => { order: @order } %>
+                </div>
+              </div>
+        </div>
+      </div>
 
 
+    </div>
+    
   </div>
-  
-</div>
-
 
 <% end %>
+
+<script>
+$('#my_tab a').click(function(e) {
+  e.preventDefault();
+  $(this).tab('show');
+});
+
+// store the currently selected tab in the hash value
+$("div.nav-tabs > a").on("shown.bs.tab", function(e) {
+  var id = $(e.target).attr("href").substr(1);
+  window.location.hash = id;
+});
+
+// on load of the page: switch to the currently selected tab
+var hash = window.location.hash;
+$('#my_tab a[href="' + hash + '"]').tab('show');
+</script>
