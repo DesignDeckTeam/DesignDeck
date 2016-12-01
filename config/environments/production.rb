@@ -86,9 +86,9 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              ENV['action_mailer_address'],
+      address:              "cloud.submail.cn",
       port:                 587,
-      domain:               ENV['action_mailer_domain'],
+      domain:               "designdeck.info",
       user_name:            ENV["action_mailer_username"],
       password:             ENV["action_mailer_pw"],
       authentication:       'plain',
