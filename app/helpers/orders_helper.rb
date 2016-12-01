@@ -125,7 +125,9 @@ module OrdersHelper
   def render_final_confirm_button(order)
     if current_user.is_user? 
       if order.versions_submitted? 
-        link_to "确定为最终稿", "#", class: "btn btn-default xiao-blue"
+        link_to "确定为最终稿", account_order_complete_order_path(order), method: :post, class: "btn btn-default xiao-blue"
+      elsif order.completed?
+        link_to "已定稿", "#", class: "btn btn-default xiao-blue", disabled: "disabled"        
       else
         link_to "确定为最终稿", "#", class: "btn btn-default xiao-blue", disabled: "disabled" 
       end
