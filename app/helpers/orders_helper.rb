@@ -61,10 +61,10 @@ module OrdersHelper
   end
 
   def render_additional_comment_if_necessary(order)
-    if current_user.is_user? && order.version_selected?
-      render partial: "common/add_comment", locals: { path: account_order_submit_additional_comment_path(order), button_text: "补充评论" }
-    elsif current_user.designer? && order.versions_submitted?
-      render partial: "common/add_comment", locals: { path: designer_order_submit_additional_comment_path(order), button_text: "补充评论" }
+    if current_user.is_user? && !order.placed? && !order.paid?
+      render partial: "common/add_comment", locals: { path: account_order_submit_additional_comment_path(order), button_text: "发送" }
+    elsif current_user.designer? && !order.placed? && !order.paid?
+      render partial: "common/add_comment", locals: { path: designer_order_submit_additional_comment_path(order), button_text: "发送" }
     end
   end
 
