@@ -7,18 +7,22 @@
 <% versions_count = order.stages.last.versions.count %>
 <% case versions_count %>
 <% when 0 %>
-<% title = "你在提交初稿时需要向客户提交3种不同风格的稿件" %>
+	<% title = "你在提交初稿时需要向客户提交3种不同风格的稿件" %>
 <% when 1 %>
-<% title = "还需要提交2个稿件" %>
+	<% title = "还需要提交2个稿件" %>
 <% when 2 %>
-<% title = "还需要提交1个稿件" %>
+	<% title = "还需要提交1个稿件" %>
 <% when 3 %>
-<% title = "可以发送所有稿件了，在下面写下您想写的评论，一并发送给客户" %>
+	<% title = "可以发送所有稿件了，在下面写下您想写的评论，一并发送给客户" %>
 <% end %>
 
 <%= link_to("添加初稿", new_designer_order_stage_version_path(order, order.current_stage), title: title, 'data-toggle' => 'tooltip', 'data-placement' => 'right', class: "btn btn-primary") %>
 <hr>
-<%= render partial: "common/add_comment", locals: { path: designer_order_submit_drafts_path(order), button_text: "发送稿件和评论给客户" } %>
+<%#= render partial: "common/add_comment", locals: { path: designer_order_submit_drafts_path(order), button_text: "发送稿件和评论给客户" } %>
+
+<%= link_to "发送稿件给客户", designer_order_submit_drafts_path(order), method: :post, class: "btn btn-lg btn-success" %>
+
+
 
 <script>
 	$(document).ready(function() {

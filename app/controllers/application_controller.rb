@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   $VERSION_SUBMITTED   = "version_submitted"
   $ATTACHMENT_UPLOADED = "attachment_uploaded"
 
+  $NEW_MESSAGE         = "new_message_received"
+
 
   # user -> designer
   $DRAFT_SELECTED      = "draft_selected"

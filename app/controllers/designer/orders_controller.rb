@@ -61,6 +61,7 @@ class Designer::OrdersController < ApplicationController
       @order.update(attachment_param)
       # 发送通知
       current_user.send_notification(@order.user, @order, $ATTACHMENT_UPLOADED)
+      OrderMailer.notify_order_state(@order,current_user).deliver!
       redirect_to designer_order_path, notice: "文件已成功提交"
     else
       redirect_to designer_order_path, alert: "需要提交附件"
@@ -76,7 +77,7 @@ class Designer::OrdersController < ApplicationController
                              "stage#{@stage.id} conversation",
                              comment_param[:comment])
 
-    redirect_to designer_order_path(@order), notice: "已发送评论"
+    redirect_to designer_order_path(@order) + "#conversation", notice: "已发送评论"
   end
 
 
@@ -89,7 +90,7 @@ class Designer::OrdersController < ApplicationController
       @current_stage = @order.current_stage
       # 发送通知
       current_user.send_notification(@order.user, @order, $ORDER_PICKED)
-      # OrderMailer.notify_order_picked(@order).deliver!
+      OrderMailer.notify_order_state(@order,current_user).deliver!
       # 刷新
       redirect_to designer_order_path(@order), notice: "获得了这个订单"
     else
@@ -112,6 +113,7 @@ class Designer::OrdersController < ApplicationController
       @order.submit_drafts!
       # 发送通知
       current_user.send_notification(@order.user, @order, $DRAFTS_SUBMITTED)
+      OrderMailer.notify_order_state(@order,current_user).deliver!
     else
       redirect_to designer_order_path(@order), alert: "发生了不应该发生的错误"
       return
@@ -152,6 +154,7 @@ class Designer::OrdersController < ApplicationController
 
     # 发送通知
     current_user.send_notification(@order.user, @order, $VERSION_SUBMITTED)
+    OrderMailer.notify_order_state(@order,current_user).deliver!
     # 在当前的stage中加conversation
     comment = comment_param[:comment]
     send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment)

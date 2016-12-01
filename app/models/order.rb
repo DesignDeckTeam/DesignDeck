@@ -178,7 +178,7 @@ class Order < ApplicationRecord
     when "drafts_submitted"
       return "请在下面多种不同风格的稿件中选择一款，并向设计师提出您选择的理由，以便后续改进"
     when "draft_selected"
-      return "已选择风格，设计师会根据您的风格设计下一版稿件，请等待"
+      return "设计师会根据您的选择的风格设计下一版稿件，请等待"
     when "versions_submitted"
       return "设计师发来了新稿件，点击图片可以对图片加批注，在下面写下您的反馈，设计师会看到并更新，或者如果您对此版本稿件感到满意，可以确定为最终稿"
     when "version_selected"
@@ -210,7 +210,7 @@ class Order < ApplicationRecord
       return "客户提交了反馈，可能在您前一版稿件中的图片加了批注，对话框中也会有ta的意见，根据客户的反馈制作下一版稿件吧~ 今后的提交每次只需要提交一版稿件即可（一版稿件可以存放多张图片）"
     when "completed"
       if self.attachment.present?
-        return "最终版本的稿件打包文件已经上传，您也可以再次上传更新的稿件打包文件"
+        return "最终版本的稿件打包文件已经上传，您也可以再次为客户上传更新的稿件打包文件"
       else
         return "客户已经定稿，您需要为客户提供最终版本的稿件打包文件"
       end

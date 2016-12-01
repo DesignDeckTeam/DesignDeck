@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'admin@designerdeck.com'
+  default from: 'DesignDeck@designdeck.info'
   layout 'mailer'
 end

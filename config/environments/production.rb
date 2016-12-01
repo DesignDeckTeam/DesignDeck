@@ -83,4 +83,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address:              "cloud.submail.cn",
+      port:                 587,
+      domain:               "designdeck.info",
+      user_name:            ENV["action_mailer_username"],
+      password:             ENV["action_mailer_pw"],
+      authentication:       'plain',
+      enable_starttls_auto: true
+  }
+
+  
 end

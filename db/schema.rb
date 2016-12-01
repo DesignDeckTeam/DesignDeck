@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 20161201104042) do
     t.string   "title"
     t.text     "description"
     t.string   "preference_type"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "aasm_state"
     t.integer  "user_id"
     t.integer  "current_stage_id"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20161201104042) do
     t.float    "price"
     t.datetime "deadline"
     t.integer  "designer_id"
-    t.integer  "product_quantity",     limit: 50, default: 1
+    t.integer  "product_quantity",     default: 1
     t.integer  "total_price"
     t.string   "attachment"
     t.integer  "rating"
