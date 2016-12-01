@@ -9,14 +9,19 @@ class Designer::OrdersController < ApplicationController
   # before_action :allow_legal_designers
 
   def index
+    @inidicator = "all_orders"
     if params["orders"] == "all_orders"
       @orders = Order.available_for(current_user)
+      @inidicator = "all_orders"
     elsif params["orders"] == "on_going_orders"
       @orders = Order.available_for(current_user).where.not(aasm_state: "paid").where.not(aasm_state: "completed")
+      @inidicator = "on_going_orders"
     elsif params["orders"] == "new_orders"
       @orders = Order.available_for(current_user).where(aasm_state: "paid")
+      @inidicator = "new_orders"
     elsif params["orders"] == "completed"
       @orders = Order.available_for(current_user).where(aasm_state: "completed")
+      @inidicator = "completed"
     else
       @orders = Order.available_for(current_user)
     end
