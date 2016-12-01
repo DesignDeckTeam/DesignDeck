@@ -16,7 +16,7 @@
 					</p>
 					<div class="message-right-box">	
 						<div class="well" style="background-color: #6BC9CA;">
-							<p class="message-right-content"><%=  "#{message.body}" %></p>
+							<p class="message-right-content"><%= simple_format(message.body) %></p>
 						</div>															
 					</div>					
 
@@ -24,7 +24,7 @@
 					<p class="message-sender-name"><%= "#{message.sender.email}: " %></p>
 					<p class="message-sender-name"><%= "#{std_time(message.created_at)}: " %></p>
 					<div class="well message-left" style="float: left;">
-						<p><%= "#{message.body}" %></p>
+						<p><%= simple_format(message.body) %></p>
 					</div>				
 				<% end %>
  			</div>
