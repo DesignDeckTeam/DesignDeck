@@ -20,8 +20,9 @@
 
 
 
-
-
+// #f1f1f1 深灰背景颜色
+// #888B8D 标题深灰
+// #999999 内容影阴浅灰
 // #4687f4 全站蓝色色号
 
 /************************ begen navbar ******************************/
@@ -1203,15 +1204,16 @@ $table-header-border: 1px solid #FFF;
 .order-list-top{
   margin-top: 100px;
 }
-.designer-left{
-  margin-bottom: 10px;
+.designer-left h4 i{
+  margin-right: 10px;
+  // font-size: 24px;
 }
 .designer-left h4{
   color: #ffffff;
   background: #4285F4;
   cursor: pointer;
-  padding: 20px 20px 20px 10px;
-  text-align: center;
+  padding: 25px 20px 25px 30px;
+  // text-align: center;
   width: 240px;
   font-size: 18px;
 }
@@ -1225,12 +1227,18 @@ $table-header-border: 1px solid #FFF;
   font-size: 18px;
   margin-top: 10px;
   border-left: 3px solid #888B8D;
+  float: right;
+  // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
  }
  .designer-right p{
    font-size: 14px;
  }
  .designer-right h3{
-   margin-top: 15px;
+  //  margin-top: 15px;
+ }
+ .designer-right h4{
+   margin-bottom: 15px;
  }
 .text-center p{
   margin-top:10px;
@@ -1240,5 +1248,6 @@ $table-header-border: 1px solid #FFF;
  }
  .designer-right:hover {
    color: #4687f4;
-   box-shadow: #ffffff;
+   transition:all 1s ease-out; //影阴效果延迟一秒
+   box-shadow: 0px 0px 15px #999999;
  }
