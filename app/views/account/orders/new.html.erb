@@ -36,8 +36,9 @@
 			<%= f.input :style_and_regulation, label: "风格 & 规格", input_html: { class: "form-control"}, placeholder: '您需要的作品的风格是怎样的？图片的分辨率有特殊要求吗？' %>
 			<br>
 			<div class="input-group">
-					<%= f.label :需设计的页数 %>
-					<%= f.number_field :product_quantity, value: 1, class: "form-control", min: 1 %>
+					<%= f.label :需设计的页数： %><br>
+					<%= f.select :product_quantity,1..50, value: 1, class: "form-control"%>
+					<span> (注：设计的页数最多不超过50页}</span>
 			</div>
 			<br>
 			<br>
@@ -58,7 +59,8 @@
 			</div>
 			<div class="col-md-4">
 				<h4>预计交付时间</h4>
-				  <%= f.label Time.now.strftime("%Y年%m月%d日") %>
+					<% 	t = Time.now + (1*7*24*60*60) %>
+				  <%= f.label t.strftime("%Y年%m月%d日") %>
 			</div>
 			<div class="col-md-4">
 				<h4>设计类型</h4>
@@ -134,16 +136,5 @@
   });
 
 
-});  
+});
 </script>
-
-
-
-
-
-
-
-
-
-
-

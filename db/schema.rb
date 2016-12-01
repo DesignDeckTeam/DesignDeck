@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128094903) do
+ActiveRecord::Schema.define(version: 20161130152501) do
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.string  "unsubscriber_type"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 20161128094903) do
     t.string   "title"
     t.text     "description"
     t.string   "preference_type"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "aasm_state"
     t.integer  "user_id"
     t.integer  "current_stage_id"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20161128094903) do
     t.float    "price"
     t.datetime "deadline"
     t.integer  "designer_id"
-    t.integer  "product_quantity",     default: 1
+    t.integer  "product_quantity",     limit: 50, default: 1
     t.integer  "total_price"
     t.string   "attachment"
     t.integer  "rating"
