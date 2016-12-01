@@ -9,10 +9,20 @@ class Designer::OrdersController < ApplicationController
   # before_action :allow_legal_designers
 
   def index
-    @orders = Order.available_for(current_user)
-    @current_orders = @orders.where.not(aasm_state: "paid").where.not(aasm_state: "completed")
-    @new_orders = @orders.where(aasm_state: "paid")
-    @completed_orders = @orders.where(aasm_state: "completed")
+    if params["orders"] == "all_orders"
+      @orders = Order.available_for(current_user)
+    elsif params["orders"] == "on_going_orders"
+      @orders = Order.available_for(current_user).where.not(aasm_state: "paid").where.not(aasm_state: "completed")
+    elsif params["orders"] == "new_orders"
+      @orders = Order.available_for(current_user).where(aasm_state: "paid")
+    elsif params["orders"] == "completed"
+      @orders = Order.available_for(current_user).where(aasm_state: "completed")
+    else
+      @orders = Order.available_for(current_user)
+    end
+    # @current_orders = @orders.where.not(aasm_state: "paid").where.not(aasm_state: "completed")
+    # @new_orders = @orders.where(aasm_state: "paid")
+    # @completed_orders = @orders.where(aasm_state: "completed")
   end
 
 
@@ -65,7 +75,7 @@ class Designer::OrdersController < ApplicationController
     send_message_to_resource(current_user,
                              @order.user, @stage,
                              "stage#{@stage.id} conversation",
-                             comment_param[:comment])
+                             comment_param[:comment]) if params[:order].present? && params[:order][:comment].present?
 
     redirect_to designer_order_path(@order) + "#conversation", notice: "已发送评论"
   end
@@ -111,8 +121,8 @@ class Designer::OrdersController < ApplicationController
 
     # 在当前的stage中加conversation
 
-    comment = comment_param[:comment]
-    send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment)
+    comment = comment_param[:comment] if params[:order].present? && params[:order][:comment].present?
+    send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment) if params[:order].present? && params[:order][:comment].present?
 
     redirect_to designer_order_path(@order), notice: "已向用户提交了初稿"
 
@@ -146,8 +156,8 @@ class Designer::OrdersController < ApplicationController
     current_user.send_notification(@order.user, @order, $VERSION_SUBMITTED)
     OrderMailer.notify_order_state(@order,current_user).deliver!
     # 在当前的stage中加conversation
-    comment = comment_param[:comment]
-    send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment)
+    comment = comment_param[:comment] if params[:order].present? && params[:order][:comment].present?
+    send_message_to_resource(current_user, @order.user, @current_stage, "stage#{@current_stage.id} conversation", comment) if params[:order].present? && params[:order][:comment].present?
 
     redirect_to designer_order_path(@order), notice: "已向用户提交样本"
 

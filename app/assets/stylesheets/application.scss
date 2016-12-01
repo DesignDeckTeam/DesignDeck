@@ -399,6 +399,76 @@
 
 /************************ end order index *********************************/
 
+
+/************************ begen designer order index *******************************/
+.order-list{
+  background-color: #f1f1f1;
+  min-height: 800px;
+  margin-top: -20px;
+}
+.order-list-top{
+  margin-top: 30px;
+}
+
+.order-button i{
+  margin-right: 10px;
+
+}
+.order-button{
+  color: #ffffff;
+  background: #4285F4;
+  cursor: pointer;
+  padding: 22px 20px 22px 0px;
+  margin-top: 10px;
+  width: 240px;
+  font-size: 18px;
+  border-radius: 0px;
+  border: #4285F4;
+}
+
+.designer-right {
+  background: #ffffff;
+  padding: 10px;
+  cursor: pointer;
+  color: #888B8D;
+  // text-align: center;
+  font-size: 18px;
+  margin-top: 10px;
+  border-left: 3px solid #888B8D;
+  float: right;
+  // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+ }
+ .designer-right p{
+   font-size: 14px;
+ }
+ .designer-right h3{
+  //  margin-top: 15px;
+ }
+ .designer-right h4{
+   margin-bottom: 15px;
+ }
+ .designer-right:hover {
+   color: #4687f4;
+   transition:all 0.5s ease-out; //影阴效果延迟0.5秒
+   box-shadow: 0px 0px 30px #cccccc;
+   border-left: 3px solid #4687f4;
+ }
+ .text-right p{
+   margin-top: 10px;
+   margin-right: 10px;
+ }
+ .text-right p i{
+   margin-right: 10px;
+ }
+ .text-right p span{
+   margin-right: 15px;
+ }
+
+/************************ end designer order index *********************************/
+
+
+
 /************************ begen order show  ********************************/
 /*top-tree-button*/
 .show-tree-button{
