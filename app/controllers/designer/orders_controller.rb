@@ -9,10 +9,20 @@ class Designer::OrdersController < ApplicationController
   # before_action :allow_legal_designers
 
   def index
-    @orders = Order.available_for(current_user)
-    @current_orders = @orders.where.not(aasm_state: "paid").where.not(aasm_state: "completed")
-    @new_orders = @orders.where(aasm_state: "paid")
-    @completed_orders = @orders.where(aasm_state: "completed")
+    if params["orders"] == "all_orders"
+      @orders = Order.available_for(current_user)
+    elsif params["orders"] == "on_going_orders"
+      @orders = Order.available_for(current_user).where.not(aasm_state: "paid").where.not(aasm_state: "completed")
+    elsif params["orders"] == "new_orders"
+      @orders = Order.available_for(current_user).where(aasm_state: "paid")
+    elsif params["orders"] == "completed"
+      @orders = Order.available_for(current_user).where(aasm_state: "completed")
+    else
+      @orders = Order.available_for(current_user)
+    end
+    # @current_orders = @orders.where.not(aasm_state: "paid").where.not(aasm_state: "completed")
+    # @new_orders = @orders.where(aasm_state: "paid")
+    # @completed_orders = @orders.where(aasm_state: "completed")
   end
 
 

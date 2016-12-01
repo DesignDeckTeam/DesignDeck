@@ -427,7 +427,7 @@
 }
 
 .designer-right {
-  background: white;
+  background: #ffffff;
   padding: 10px;
   cursor: pointer;
   color: #888B8D;
@@ -450,8 +450,19 @@
  }
  .designer-right:hover {
    color: #4687f4;
-   transition:all 1s ease-out; //影阴效果延迟一秒
-   box-shadow: 0px 0px 15px #999999;
+   transition:all 0.5s ease-out; //影阴效果延迟0.5秒
+   box-shadow: 0px 0px 30px #cccccc;
+   border-left: 3px solid #4687f4;
+ }
+ .text-right p{
+   margin-top: 10px;
+   margin-right: 10px;
+ }
+ .text-right p i{
+   margin-right: 10px;
+ }
+ .text-right p span{
+   margin-right: 15px;
  }
 
 /************************ end designer order index *********************************/
