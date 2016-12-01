@@ -399,6 +399,62 @@
 
 /************************ end order index *********************************/
 
+
+/************************ begen designer order index *******************************/
+.order-list{
+  background-color: #f1f1f1;
+  min-height: 800px;
+  margin-top: -20px;
+}
+.order-list-top{
+  margin-top: 30px;
+}
+.designer-left h4 i{
+  margin-right: 10px;
+  // font-size: 24px;
+}
+.designer-left h4{
+  color: #ffffff;
+  background: #4285F4;
+  cursor: pointer;
+  padding: 25px 20px 25px 30px;
+  // text-align: center;
+  width: 240px;
+  font-size: 18px;
+}
+
+.designer-right {
+  background: white;
+  padding: 10px;
+  cursor: pointer;
+  color: #888B8D;
+  // text-align: center;
+  font-size: 18px;
+  margin-top: 10px;
+  border-left: 3px solid #888B8D;
+  float: right;
+  // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+ }
+ .designer-right p{
+   font-size: 14px;
+ }
+ .designer-right h3{
+  //  margin-top: 15px;
+ }
+ .designer-right h4{
+   margin-bottom: 15px;
+ }
+ .designer-right:hover {
+   color: #4687f4;
+   transition:all 1s ease-out; //影阴效果延迟一秒
+   box-shadow: 0px 0px 15px #999999;
+ }
+
+/************************ end designer order index *********************************/
+
+
+
 /************************ begen order show  ********************************/
 /*top-tree-button*/
 .show-tree-button{
