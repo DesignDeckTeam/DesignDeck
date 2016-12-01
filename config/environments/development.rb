@@ -65,11 +65,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              'cloud.submail.cn',
+      address:              ENV['action_mailer_address'],
       port:                 587,
-      domain:               'designdeck.info',
-      user_name:            '11906',
-      password:             '2c31cc4dd195721ec335c8a0d1aa513a',
+      domain:               ENV['action_mailer_domain'],
+      user_name:            ENV["action_mailer_username"],
+      password:             ENV["action_mailer_pw"],
       authentication:       'plain',
       enable_starttls_auto: true
   }
