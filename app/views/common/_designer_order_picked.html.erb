@@ -1,20 +1,5 @@
 
 
-<div class="container">
-	<%= render partial: "common/order_info", locals: {order: @order} %>
-</div>
-
-	
-
-
-<% if false %>
-	<div class="container">
-		<%= render partial: "common/designer_submitted_versions" %>
-		<%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @current_stage } %>
-	</div>
-<% end %>
-
-<div class="container">
-		<%= render partial: "common/designer_submitted_drafts" %>
-		<%= render partial: "common/designer_add_drafts", locals: { order: @order, current_stage: @current_stage } %>
-</div>
+<%#= render partial: "common/order_info", locals: {order: @order} %>
+<%= render partial: "common/designer_submitted_drafts" %>
+<%= render partial: "common/designer_add_drafts", locals: { order: @order, current_stage: @current_stage } %>

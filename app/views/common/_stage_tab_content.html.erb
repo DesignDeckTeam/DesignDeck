@@ -1,0 +1,7 @@
+<div class="col-md-9 text-center left-section">
+  <%= render_order_step(order, user) %>
+</div>
+
+<div class="col-md-3 right-section">
+  <%= render partial: "common/stages_tab_right_bar", locals: { order: order, stage: stage, other_stages: other_stages } %>
+</div>

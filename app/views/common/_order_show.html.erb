@@ -1,85 +1,62 @@
-
-
-<% if order.placed? || current_user.designer? && order.paid? || current_user.designer? && order.picked? %>
-<%# if order.placed? %>
+<% if order.placed? || current_user.designer? && order.paid? %>
     <%= render_order_step(order, user) %>
 <% else %>
 
-<nav class="show-tree-button">
-  <div class="container">
-    <div class="row text-center nav-tabs">
-      <a href="#order_info" data-toggle="tab">
-      <div class="col-md-4 btn btn-default top-button nav-button-line">订单</div>
-      </a>
-      <a href="#stages" data-toggle="tab">
-      <div class="col-md-4 btn btn-default top-button nav-button-line">作品</div>
-      </a>
-      <a href="#conversation" data-toggle="tab">
-      <div class="col-md-4 btn btn-default top-button nav-button-line">对话</div>
-      </a>
-    </div>
-  </div>
-</nav>
-<section class="order-show-bg">
-  <div class="container">
-    <div class="row order-show-shadow">
-      <div class="col-md-9 text-center left-section">
-        <img src="">
-
+  <nav class="show-tree-button">
+    <div class="container">
+      <div class="row text-center nav-tabs" id="my_tab">
+        <a href="#order_info" data-toggle="tab">
+          <div class="col-md-4 btn btn-default top-button nav-button-line">订单</div>
+        </a>
+        <a href="#stages" data-toggle="tab">
+          <div class="col-md-4 btn btn-default top-button nav-button-line">作品</div>
+        </a>
+        <a href="#conversation" data-toggle="tab">
+          <div class="col-md-4 btn btn-default top-button nav-button-line">对话</div>
+        </a>
       </div>
-      <div class="col-md-3 right-section">
-        <div>
-          <ul class="bottom-line">
-            <li>提示等待回复</li>
-            <hr>
-            <li>
-              <button class="btn btn-default xiao-blue">最终确认</button>
-          		<button class="btn btn-default">下载按钮</button>
-              <hr>
-            </li>
-            <li>设计评价</li>
-            <hr>
-          </ul>
-          <h5>历史快照</h5>
-          <button class="btn btn-default version"><i class="fa fa-chevron-circle-right"></i>第三版</button>
-          <button class="btn btn-default version"><i class="fa fa-chevron-circle-right"></i>第二版</button>
-          <button class="btn btn-default version"><i class="fa fa-chevron-circle-right"></i>第一版</button>
-          <!-- <button class="btn btn-default version">目前没有设计稿</button> -->
+    </div>
+  </nav>
+
+  <div class="order-show-bg">
+    <div class="container">
+      <div class="row order-show-shadow">
+        <div class="panel-body">
+              <div class="tab-content">
+
+                <div class="tab-pane fade" id="order_info">
+                    <%= render partial: "common/order_info", :locals => { order: order } %>
+                </div>
+                <div class="tab-pane fade in active" id="stages">
+                    <%= render partial: "common/stage_tab_content", locals: {order: order, user: user, stage: stage, other_stages: @other_stages} %>
+                </div>
+                <div class="tab-pane fade" id="conversation">
+                    <%= render partial: "common/conversation_for_order", :locals => { order: @order } %>
+                </div>
+              </div>
         </div>
-
-
-
       </div>
+
 
     </div>
-
-
+    
   </div>
-  <div class="container">
-  <!-- <div class="panel with-nav-tabs panel-primary container"> -->
-      <!-- <div class="panel-heading row">
-              <ul class="nav nav-tabs nav-justified ">
-                  <li><a href="#order_info" data-toggle="tab">订单</a></li>
-                  <li class="active"><a href="#stages" data-toggle="tab">作品</a></li>
-                  <li><a href="#conversation" data-toggle="tab">对话</a></li>
-
-              </ul>
-      </div> -->
-      <div class="row">
-
-              <div class="tab-pane fade" id="order_info">
-                  <%= render partial: "common/order_info", :locals => { order: order } %>
-              </div>
-              <div class="tab-pane fade in active" id="stages">
-                  <%= render_order_step(order, user) %>
-              </div>
-              <div class="tab-pane fade" id="conversation">
-                  <%= render partial: "common/conversation_for_order", :locals => { order: @order } %>
-              </div>
-
-      </div>
-  </div>
-
-</section>
 
 <% end %>
+
+<script>
+$('#my_tab a').click(function(e) {
+  e.preventDefault();
+  $(this).tab('show');
+});
+
+// store the currently selected tab in the hash value
+$("div.nav-tabs > a").on("shown.bs.tab", function(e) {
+  var id = $(e.target).attr("href").substr(1);
+  window.location.hash = id;
+});
+
+// on load of the page: switch to the currently selected tab
+var hash = window.location.hash;
+$('#my_tab a[href="' + hash + '"]').tab('show');
+</script>

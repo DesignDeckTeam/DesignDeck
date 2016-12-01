@@ -48,7 +48,7 @@ class Account::OrdersController < ApplicationController
     send_message_to_resource(current_user,@order.designer,
     @stage,"stage#{@stage.id} conversation",comment_param[:comment])
 
-    redirect_to account_order_path(@order), notice: "已发送评论"
+    redirect_to account_order_path(@order) + "#conversation", notice: "已发送评论"
   end
 
 
@@ -170,6 +170,13 @@ class Account::OrdersController < ApplicationController
       redirect_to account_order_path(@order), notice: "已发送反馈"
     end
 
+  end
+
+  def complete_order
+    @order = Order.find(params[:order_id])
+    @order.complete!
+    current_user.send_notification(@order.designer, @order, $ORDER_COMPLETED)
+    redirect_to account_order_path(@order), notice: "已完成订单"
   end
 
 

@@ -4,23 +4,38 @@
 
 
 
+<br>
+<br>
+<br>
 
-<% if stage.versions.present? %>
+<!-- 当前stage是否有selected version -->
+<% if stage.selected_version.present? %>
+	<% samples = stage.selected_version.samples %>
+
+<% elsif @order.draft_selected? %>
+	<% samples = @order.stages.first.selected_version.samples %>	
+<% elsif stage.versions.present? %>
 	<% samples = stage.versions.first.samples %>
+<% end %>
+
+<div class="container-fluid">
+	<div class="row">
+		<% samples.each do |sample| %>
+		<div class="row">				
+			<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<%= render_sample_with_link(sample) %>
+					<%= render_note_indicator(sample) %>
+				</div>
+			<div class="col-md-2"></div>
+		</div>
+				
+		<% end %>
+	</div>
+</div>
 
 	<%# samples = Sample.where(id: stage.versions.ids) %>
 
 
-	<div class="container-fluid">
-		<div class="row well">
-			<% samples.each do |sample| %>
-				<div class="col-md-3">
-					<%= render_sample_with_link(sample) %>
-					<%= render_note_indicator(sample) %>
-				</div>
-			<% end %>
-		</div>
-	</div>
-
-<% end %>
+	
 	

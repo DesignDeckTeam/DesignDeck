@@ -1,17 +1,7 @@
-<div class="col-md-10 col-xs-10 right-grey-border">
   <% if @order.attachment.present? %>
     <div class="row">
-      <div class="col-md-10">
-        <h2>下载最终稿件</h2>
-      </div>
     </div>
   <% else %>
-    <div class="row">
-      <div class="col-md-10">
-        <h2>等待设计师上传最终稿件...</h2>
-        <br>
-      </div>
-    </div>
   <% end %>
 
   <%= render partial: "common/selected_stage", :locals => { :stage => @stage } %>
@@ -95,9 +85,5 @@
       });
       </script>
       <!-- 设计师的评价系统 -->
-</div>
 
 
-<div class="col-md-2 col-xs-2">
-  <%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
-</div>

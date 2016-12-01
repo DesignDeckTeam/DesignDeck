@@ -1,25 +1,33 @@
 
 
-<div class="col-md-10 col-xs-10 right-grey-border">
+<!-- 只显示一个version -->
+	<% version = @stage.selected_version.nil? ? @stage.versions.first : @stage.selected_version %>
+
 	<!-- <h2 class="">新的稿件</h2> -->
 	<% submitted_versions = @stage.versions %>
 	<%= form_tag account_order_select_version_path(@order), method: :post do %>
-
+	<br>
+	<br>
+	<br>
 		<div class="form-group">
-			<% submitted_versions.each do |version| %>
 				<% samples = version.samples %>
-				<div class="row well"  style="margin-left: 0px; margin-right: 0px;">
+				<div class="row">					
 					<% samples.each do |sample| %>
-						<div class="col-md-3">
-							<%= render_sample_with_link(sample) %>
-							<%= render_note_indicator(sample) %>
-						</div>
-					<% end %>
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+								<%= render_sample_with_link(sample) %>
+								<%= render_note_indicator(sample) %>
+							</div>
+							<div class="col-md-2"></div>
+						</div>								
+					<% end %>					
+					
 					<div class="hidden">
 						<%= radio_button_tag "order[version_id]", version.id, checked = true, style: "vertical-align: middle;" %>
 					</div>
 				</div>
-			<% end %>
+				
 			<hr>
 		</div>
 
@@ -27,15 +35,8 @@
 			<%= render partial: "common/comment_area" %>
 			<div class="form-action">
 				<%= submit_tag "需要设计师更新", disable_with: "Submitting...", class: "btn btn-primary pull-right" %>
-				<%= submit_tag "确认为最终稿", disable_with: "Submitting...", class: "btn btn-success pull-left" %>
+				<%#= submit_tag "确认为最终稿", disable_with: "Submitting...", class: "btn btn-success pull-left" %>
 			</div><br><br><br>
 		<% end %>
 	
 	<% end %>
-</div>
-		
-
-
-<div class="col-md-2 col-xs-2">
-	<%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
-</div>

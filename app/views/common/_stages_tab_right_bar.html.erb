@@ -1,0 +1,44 @@
+<ul class="bottom-line">
+  <li><h3><%= order.stage_cn_for(current_user) %></h3></li>
+  <br>
+  <li><%= link_to "我能做什么？", "#", class: "btn btn-xs btn-default", title: order.hint_cn_for(current_user), 'data-toggle' => 'tooltip', 'data-placement' => 'left' %></li>
+  <hr>
+  <li>
+    <%= render_final_confirm_button(order) %>
+    <%= render_download_order_attachment_button(order) %>
+    <hr>
+  </li>
+</ul>
+
+
+<ul class="bottom-line">
+  <li><h5>历史快照</h5></li>
+</ul>
+
+
+
+
+<!-- 显示最新稿的按钮 -->
+<%= render_last_stage_button(stage, order, current_user) %>
+
+<!-- 显示历史stages的按钮 -->
+<% if !other_stages.nil? %>
+    <% other_stages.each_with_index do |another_stage, index| %>
+      <%= render_another_stage_button(stage, another_stage, order, current_user, index) %>
+      <br>
+    <% end %>
+  <% end %>
+
+<%= render_designer_submit_button_if_necessary(order) %>
+
+<!-- <button class="btn btn-default version"></i>测试按钮</button> -->
+<!-- <button class="btn btn-default version"><i class="fa fa-chevron-circle-right"></i>测试按钮</button> -->
+
+
+
+<script>
+  $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip(); 
+  });
+</script>
+  

@@ -1,4 +1,3 @@
-<div class="col-md-10 col-xs-10 right-grey-border">
 
   <% if @order.attachment.present? %>
     <div class="row">
@@ -11,8 +10,10 @@
 
   <div class="row">
     <%= simple_form_for [:designer, @order] do |f|%>
-      <%= f.input :attachment, label: "上传稿件" %>
-      <%= f.submit "发送", class: "btn btn-defalut" %>
+      <%= f.input :attachment, label: "上传最终作品打包文件", input_html: { class: "horizontal-center" } %>
+      <br><br>
+
+      <%= f.submit @order.attachment.present? ? "再次发送" : "发送", class: "btn btn-defalut" %>
     <% end %>
     <br>
   </div>
@@ -20,8 +21,4 @@
 
   <%= render partial: "common/selected_stage", :locals => { :stage => @stage } %>
 
-</div>
 
-<div class="col-md-2 col-xs-2">
-  <%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
-</div>
