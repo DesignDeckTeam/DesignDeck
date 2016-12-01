@@ -115,7 +115,7 @@ class Account::OrdersController < ApplicationController
                              select_version_params[:comment])
 
     current_user.send_notification(@order.designer, @order, $DRAFT_SELECTED)
-    OrderMailer.notify_order_state(@order,current_user).deliver!
+    #OrderMailer.notify_order_state(@order,current_user).deliver!
 
     # 改变order的state
     if params[:commit] == "确定选择方案"
@@ -161,12 +161,12 @@ class Account::OrdersController < ApplicationController
     if params[:commit] == "确认为最终稿"
       @order.complete!
       current_user.send_notification(@order.designer, @order, $ORDER_COMPLETED)
-      OrderMailer.notify_order_state(@order,current_user).deliver!
+      #OrderMailer.notify_order_state(@order,current_user).deliver!
       redirect_to account_order_path(@order), notice: "已完成订单"
     else
       @order.select_version!
       current_user.send_notification(@order.designer, @order, $VERSION_SELECTED)
-      OrderMailer.notify_order_state(@order,current_user).deliver!
+      #OrderMailer.notify_order_state(@order,current_user).deliver!
       redirect_to account_order_path(@order), notice: "已发送反馈"
     end
 
