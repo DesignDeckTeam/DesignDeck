@@ -169,6 +169,13 @@ class Account::OrdersController < ApplicationController
 
   end
 
+  def complete_order
+    @order = Order.find(params[:order_id])
+    @order.complete!
+    current_user.send_notification(@order.designer, @order, $ORDER_COMPLETED)
+    redirect_to account_order_path(@order), notice: "已完成订单"
+  end
+
 
   def update
   end

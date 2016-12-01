@@ -1,15 +1,21 @@
 <ul class="bottom-line">
-  <li>提示等待回复</li>
+  <li><h3><%= order.stage_cn_for(current_user) %></h3></li>
+  <br>
+  <li><%= link_to "我能做什么？", "#", class: "btn btn-xs btn-default", title: order.hint_cn_for(current_user), 'data-toggle' => 'tooltip', 'data-placement' => 'left' %></li>
   <hr>
   <li>
     <%= render_final_confirm_button(order) %>
     <%= render_download_order_attachment_button(order) %>
     <hr>
   </li>
-  <li>设计评价</li>
-  <hr>
 </ul>
-<h5>历史快照</h5>
+
+
+<ul class="bottom-line">
+  <li><h5>历史快照</h5></li>
+</ul>
+
+
 
 
 <!-- 显示最新稿的按钮 -->
@@ -30,3 +36,9 @@
 
 
 
+<script>
+  $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip(); 
+  });
+</script>
+  
