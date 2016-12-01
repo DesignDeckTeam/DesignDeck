@@ -1,5 +1,4 @@
-<% if order.placed? || current_user.designer? && order.paid? || current_user.designer? && order.picked? %>
-<%# if order.placed? %>
+<% if order.placed? || current_user.designer? && order.paid? %>
     <%= render_order_step(order, user) %>
 <% else %>
 

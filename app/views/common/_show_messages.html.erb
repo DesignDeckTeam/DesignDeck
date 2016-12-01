@@ -2,7 +2,7 @@
 <!-- t370: 使用conversation显示comments -->
 <% if stage.conversation.present? %>
 
-	<div class="well" style="background-color: rgba(245, 245, 245, 0.4);">
+	<div class="container-fluid">
 		<% stage.conversation.messages.each do |message| %>
 
 			<div class="row" style="margin-left: 15px; margin-right: 15px;">
@@ -27,8 +27,8 @@
 						<p><%= "#{message.body}" %></p>
 					</div>				
 				<% end %>
-
  			</div>
+
 		<% end %>		
 	</div>				
 		

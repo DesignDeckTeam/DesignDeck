@@ -178,7 +178,7 @@ class Order < ApplicationRecord
     when "drafts_submitted"
       return "请在下面多种不同风格的稿件中选择一款，并向设计师提出您选择的理由，以便后续改进"
     when "draft_selected"
-      return "已选择风格，设计师会根据您的风格设计下一版稿件，请等待"
+      return "设计师会根据您的选择的风格设计下一版稿件，请等待"
     when "versions_submitted"
       return "设计师发来了新稿件，点击图片可以对图片加批注，在下面写下您的反馈，设计师会看到并更新，或者如果您对此版本稿件感到满意，可以确定为最终稿"
     when "version_selected"
