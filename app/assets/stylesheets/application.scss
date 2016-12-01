@@ -1291,37 +1291,6 @@ $table-header-border: 1px solid #FFF;
   background-color: #f1f1f1;
 }
 
-.left{
-  color: #ffffff;
-  background-color: #4285F4;
-  padding: 20px 10px;
-  text-align: center;
-  width: 240px;
-  font-size: 18px;
-  margin-top: 10px;
-  cursor: pointer;
-  transition:all 1s ease-out;
-}
-
-
-.left:hover{
-   box-shadow: 0px 0px 15px #4687f4;
-}
-.right{
-  background: white;
-  cursor: pointer;
-  margin-top: 10px;
-   padding: 20px 20px 20px 10px;
-   color: #888B8D;
-   width: 830px;
-   text-align: center;
-   font-size: 18px;
-   transition:all 1s ease-out;
-}
-
-.right:hover{
-  box-shadow: 0px 0px 15px #979797;
-}
 
 /************ faq/index *************/
 .faq-bg{
