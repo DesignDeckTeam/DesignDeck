@@ -210,7 +210,7 @@ class Order < ApplicationRecord
       return "客户提交了反馈，可能在您前一版稿件中的图片加了批注，对话框中也会有ta的意见，根据客户的反馈制作下一版稿件吧~ 今后的提交每次只需要提交一版稿件即可（一版稿件可以存放多张图片）"
     when "completed"
       if self.attachment.present?
-        return "最终版本的稿件打包文件已经上传，您也可以再次上传更新的稿件打包文件"
+        return "最终版本的稿件打包文件已经上传，您也可以再次为客户上传更新的稿件打包文件"
       else
         return "客户已经定稿，您需要为客户提供最终版本的稿件打包文件"
       end
