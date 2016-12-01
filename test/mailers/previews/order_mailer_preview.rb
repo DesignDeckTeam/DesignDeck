@@ -7,9 +7,7 @@ class OrderMailerPreview < ActionMailer::Preview
   end
 
   def notify_order_picked
-    OrderMailer.notify_order_picked(Order.fourth)
-
-
+    OrderMailer.notify_order_picked(Order.first)
   end
 
 end
