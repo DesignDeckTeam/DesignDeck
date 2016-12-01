@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   $VERSION_SUBMITTED   = "version_submitted"
   $ATTACHMENT_UPLOADED = "attachment_uploaded"
 
+  $NEW_MESSAGE         = "new_message_received"
+
 
   # user -> designer
   $DRAFT_SELECTED      = "draft_selected"
@@ -34,7 +36,7 @@ class ApplicationController < ActionController::Base
     notifications.each do |notification|
       notification.check!
     end
-  end  
+  end
 
   # 清除当前user的所有未读通知
   def clear_current_notifications(order)
@@ -43,7 +45,6 @@ class ApplicationController < ActionController::Base
       notification.check!
     end
   end
-
 
   def send_message_to_resource(from, to, resource, subject, body)
   	if body.present?

@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161201082330) do
 
   create_table "faqs", force: :cascade do |t|
@@ -18,6 +19,9 @@ ActiveRecord::Schema.define(version: 20161201082330) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+=======
+ActiveRecord::Schema.define(version: 20161201104042) do
+>>>>>>> develop
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.string  "unsubscriber_type"

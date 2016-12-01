@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post :select_version
       post :select_draft
       post :submit_additional_comment
+      post :complete_order
     end
 
     resources :samples, only: [:show, :edit, :update]

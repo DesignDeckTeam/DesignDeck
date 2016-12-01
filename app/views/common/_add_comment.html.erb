@@ -1,6 +1,5 @@
 <%= form_tag path do -%>
-<h2>添加评论</h2>
-<%= text_area_tag "order[comment]", nil, class: "form-control", style: "width:100%; min-height:200px;" %>
-<br>
-<%= submit_tag button_text, :class => "btn btn-lg btn-success pull-right" %>
+	<%= text_area_tag "order[comment]", nil, class: "form-control", style: "width:100%; min-height:100px;" %>
+	<br>
+	<%= submit_tag button_text, :class => "btn btn-lg btn-success pull-right" %>
 <% end -%>

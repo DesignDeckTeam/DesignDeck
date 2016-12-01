@@ -61,51 +61,51 @@ module OrdersHelper
   end
 
   def render_additional_comment_if_necessary(order)
-    if current_user.is_user? && order.version_selected?
-      render partial: "common/add_comment", locals: { path: account_order_submit_additional_comment_path(order), button_text: "补充评论" }
-    elsif current_user.designer? && order.versions_submitted?
-      render partial: "common/add_comment", locals: { path: designer_order_submit_additional_comment_path(order), button_text: "补充评论" }
+    if current_user.is_user? && !order.placed? && !order.paid?
+      render partial: "common/add_comment", locals: { path: account_order_submit_additional_comment_path(order), button_text: "发送" }
+    elsif current_user.designer? && !order.placed? && !order.paid?
+      render partial: "common/add_comment", locals: { path: designer_order_submit_additional_comment_path(order), button_text: "发送" }
     end
   end
 
-  
+
 
   def render_lastest_stage_snap_button(stage, order, user)
 
     if order.placed? || order.picked? || order.last_versioned_stage.nil?
-      return link_to "最新稿", "#", class: "btn btn-primary history-button", style: "margin-left:30px;", disabled: "disabled" 
+      return link_to "最新稿", "#", class: "btn btn-primary history-button", style: "margin-left:30px;", disabled: "disabled"
     end
 
-    if stage == order.last_versioned_stage 
+    if stage == order.last_versioned_stage
       if user.is_user?
-        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary history-button", style: "margin-left:30px;" 
+        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary history-button", style: "margin-left:30px;"
       elsif user.designer?
-        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary history-button", style: "margin-left:30px;" 
+        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary history-button", style: "margin-left:30px;"
       end
-    else 
+    else
       if user.is_user?
-        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default history-button", style: "margin-left:30px;" 
+        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default history-button", style: "margin-left:30px;"
       elsif user.designer?
-        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default history-button", style: "margin-left:30px;" 
+        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default history-button", style: "margin-left:30px;"
       end
-    end 
+    end
   end
 
   def render_another_stage_snap_button(stage, another_stage, order, user, index)
 
     return if stage.blank? || another_stage.blank?
 
-    if stage == another_stage 
+    if stage == another_stage
       if user.is_user?
         link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-primary history-button"
       elsif user.designer?
         link_to "第#{@other_stages.count - index}稿", designer_order_path(order, stage_id: another_stage.id), class: "btn btn-primary history-button"
-      end          
+      end
     else
       if user.is_user?
         link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-default history-button"
       elsif user.designer?
-        link_to "第#{@other_stages.count - index}稿", designer_order_path(order, stage_id: another_stage.id), class: "btn btn-default history-button"  
+        link_to "第#{@other_stages.count - index}稿", designer_order_path(order, stage_id: another_stage.id), class: "btn btn-default history-button"
       end
     end
   end
@@ -123,11 +123,13 @@ module OrdersHelper
 
   # stages-right-bar content
   def render_final_confirm_button(order)
-    if current_user.is_user? 
-      if order.versions_submitted? 
-        link_to "确定为最终稿", "#", class: "btn btn-default xiao-blue"
+    if current_user.is_user?
+      if order.versions_submitted?
+        link_to "确定为最终稿", account_order_complete_order_path(order), method: :post, class: "btn btn-default xiao-blue"
+      elsif order.completed?
+        link_to "已定稿", "#", class: "btn btn-default xiao-blue", disabled: "disabled"
       else
-        link_to "确定为最终稿", "#", class: "btn btn-default xiao-blue", disabled: "disabled" 
+        link_to "确定为最终稿", "#", class: "btn btn-default xiao-blue", disabled: "disabled"
       end
     end
   end
@@ -135,7 +137,7 @@ module OrdersHelper
 
   def render_download_order_attachment_button(order)
     if current_user.is_user?
-      if order.attachment.present? 
+      if order.attachment.present?
         link_to("下载最终版", order.attachment_url, download: "", class: "btn btn-warning")
       else
         link_to("下载最终版", "#", download: "", class: "btn btn-default", disabled: "disabled")
@@ -152,39 +154,39 @@ module OrdersHelper
   def render_last_stage_button(stage, order, user)
 
     if order.placed? || order.picked? || order.last_versioned_stage.nil?
-      return link_to "最新稿", "#", class: "btn btn-default version", disabled: "disabled" 
+      return link_to "最新稿", "#", class: "btn btn-default version", disabled: "disabled"
     end
 
-    if stage == order.last_versioned_stage 
+    if stage == order.last_versioned_stage
       if user.is_user?
-        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary selected-version" 
+        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary selected-version"
       elsif user.designer?
-        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary selected-version" 
+        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary selected-version"
       end
-    else 
+    else
       if user.is_user?
-        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default version" 
+        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default version"
       elsif user.designer?
-        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default version" 
+        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default version"
       end
-    end 
+    end
   end
 
   def render_another_stage_button(stage, another_stage, order, user, index)
 
     return if stage.blank? || another_stage.blank?
 
-    if stage == another_stage 
+    if stage == another_stage
       if user.is_user?
         link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-primary selected-version"
       elsif user.designer?
         link_to "第#{@other_stages.count - index}稿", designer_order_path(order, stage_id: another_stage.id), class: "btn btn-primary selected-version"
-      end          
+      end
     else
       if user.is_user?
         link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-default version"
       elsif user.designer?
-        link_to "第#{@other_stages.count - index}稿", designer_order_path(order, stage_id: another_stage.id), class: "btn btn-default version"  
+        link_to "第#{@other_stages.count - index}稿", designer_order_path(order, stage_id: another_stage.id), class: "btn btn-default version"
       end
     end
   end
@@ -194,21 +196,4 @@ module OrdersHelper
       link_to "回到提交页面", designer_order_path(order), class: "btn btn-default version"
     end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 end

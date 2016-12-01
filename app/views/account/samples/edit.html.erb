@@ -1,20 +1,19 @@
 
-	<h2 style="text-align: center;">对此图片添加批注</h2>
-
+	<br>
 	<div id="imgdiv" style="text-align: center;">
-		<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"image" %>
-		<br/>
-		<button id="toggleEdit" class="btn btn-success">对图片添加批注</button>
-		<button id="clear" class="btn btn-danger">清除</button>
-		<button id="print" class="btn btn-primary">打印</button>
-<!-- 		<button id="export" class="btn btn-default" number: @sample.id >Export</button>
- -->	<%= link_to "确定", "#", id:"export", number: @sample.id, class: "btn btn-default" %>
+
+		<div class="container">
+			<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"image" %>
+			<button id="toggleEdit" class="btn btn-success">点击对图片添加批注</button>
+			<button id="clear" class="btn btn-danger">清除所有批注</button> 
+ 			<%= link_to "确定", "#", id:"export", number: @sample.id, class: "btn btn-default" %>
+		</div>
+		 
 	</div>
 
 	<div class="hidden">
 		<% @messages_array.each_with_index do |message, index| %>
 			<span id="message_note_<%= index %>"><%= message[:note] %></span>
-			<%# binding.pry %>
 			<span id="message_x_<%= index %>"><%= message[:x] %></span>
 			<span id="message_y_<%= index %>"><%= message[:y] %></span>
 			<br>
@@ -34,10 +33,7 @@
 					.prepend($('<img>',{src: "<%= asset_path('marker_black.png') %>", width:'27px', height:'40px'}).css({position:'absolute', top:'0px', left:'0px'}));
 					return elem;
 				}
-			});
-				// $img.imgNotes("import", [	{x: "0.5", y:"0.5", note:"AFL Grand Final Trophy"},
-				// 	{x: "0.322", y:"0.269", note: "Brisbane Lions Flag"},
-				// 	{x: "0.824", y: "0.593", note: "Fluffy microphone"}]);
+				});
 
 				messages_array = [];
 				message_count = <%= @messages_array.count %>;
@@ -56,23 +52,25 @@
 				var $toggle = $("#toggleEdit");
 
 				if ($img.imgNotes("option","canEdit")) {
-					$toggle.text("查看");
+					$toggle.text("点击查看批注");
 				} else {
-					$toggle.text("对图片添加批注");
+					$toggle.text("点击对图片添加批注");
 				}
+
 				$toggle.on("click", function() {
 					var $this = $(this);
-					if ($this.text()=="对图片添加批注") {
-						$this.text("查看");
+					if ($this.text()=="点击对图片添加批注") {
+						$this.text("点击查看批注");
 						$img.imgNotes("option", "canEdit", true);
 					} else {
-						$this.text('对图片添加批注');
+						$this.text('点击对图片添加批注');
 						$img.imgNotes('option', 'canEdit', false);
 					}
 				});
 
 
 				//
+				// 
 				var $export = $("#export");
 				$export.on("click", function() {
 					var $table = $("<table/>").addClass("gridtable");
@@ -90,6 +88,7 @@
           				comment.top = item.y;
           				comments_array.push(comment);
 					});
+
 					// $('#txt').html($table);
 					var id = $(this).attr("number");
 
@@ -108,10 +107,10 @@
 				$clear.on("click", function() {
 					$img.imgNotes('clear');
 				});
-				var $print = $("#print");
-				$print.on("click", function() {
-					$(".viewport").printThis();
-				});
+				// var $print = $("#print");
+				// $print.on("click", function() {
+				// 	$(".viewport").printThis();
+				// });
 			});
 		})(jQuery);
 	</script>

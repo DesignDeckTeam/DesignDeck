@@ -51,7 +51,6 @@ gem 'figaro'
 gem 'roadie-rails', '~> 1.0'
 
 
-
 require 'json'
 
 group :development, :test do

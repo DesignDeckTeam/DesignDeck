@@ -6,16 +6,21 @@
     <div id="samples">
         <%= f.fields_for :samples do |builder| %>
             <%= render "designer/versions/sample_fields", :f => builder %>
-            <%= builder.link_to_remove "Remove", class: "btn btn-xs btn-default" %>
+            <% if !order.picked? %>
+                <%= builder.link_to_remove "Remove", class: "btn btn-xs btn-default" %>
+            <% end %>
+            
             <br><br>
         <% end %>
     </div>
 
     <hr>
-    <%= f.link_to_add "添加一张图片", :samples, :data => { :target => "#samples" }, class: "btn btn-default"  %>
-    
+    <% if !order.picked? %>
+        <%= f.link_to_add "添加一张图片", :samples, :data => { :target => "#samples" }, class: "btn btn-default"  %>
+    <% end %>
     <br>
     <br>
 
     <%= f.submit "Submit", class: "btn btn-lg btn-success" %>
 <% end %>
+
