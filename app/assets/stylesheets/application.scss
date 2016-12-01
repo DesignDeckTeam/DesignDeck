@@ -412,7 +412,6 @@
 
 .order-button i{
   margin-right: 10px;
-
 }
 .order-button{
   color: #ffffff;
@@ -425,6 +424,37 @@
   border-radius: 0px;
   border: #4285F4;
 }
+
+
+.order-button:hover {
+  color: #ffffff;
+  background: #4285F4;
+  cursor: pointer;
+  padding: 22px 20px 22px 0px;
+  margin-top: 10px;
+  width: 240px;
+  font-size: 18px;
+  border-radius: 0px;
+  border: #4285F4;
+}
+
+
+.order-button-off i{
+  margin-right: 10px;
+}
+
+.order-button-off {
+  color: #grey;
+  background: #E6E6E6;
+  cursor: pointer;
+  padding: 22px 20px 22px 0px;
+  margin-top: 10px;
+  width: 240px;
+  font-size: 18px;
+  border-radius: 0px;
+  border: #4285F4;
+}
+
 
 .designer-right {
   background: #ffffff;

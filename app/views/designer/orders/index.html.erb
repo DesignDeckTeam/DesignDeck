@@ -3,18 +3,52 @@
     <div class="row order-list-top">
       
       <div class="col-md-3 designer-left ">
-        <%= link_to designer_orders_path(@order, orders: "all_orders"), class:"btn btn-default order-button" do %>
-          <i class="fa fa-dot-circle-o"></i>您的全部订单&nbsp;&nbsp;
+
+        <% if @inidicator == "all_orders" %>
+          <%= link_to designer_orders_path(@order, orders: "all_orders"), class:"btn btn-default order-button" do %>
+            <i class="fa fa-dot-circle-o"></i>全部订单&nbsp;&nbsp;
+          <% end %>
+        <% else %>
+          <%= link_to designer_orders_path(@order, orders: "all_orders"), class:"btn btn-default order-button-off" do %>
+            <i class="fa fa-dot-circle-o"></i>全部订单
+          <% end %>
         <% end %>
-        <%= link_to designer_orders_path(@order, orders: "on_going_orders"), class:"btn btn-default order-button" do %>
-          <i class="fa fa-play-circle"></i>正在进行的订单
+
+
+        <% if @inidicator == "on_going_orders" %>
+          <%= link_to designer_orders_path(@order, orders: "on_going_orders"), class:"btn btn-default order-button" do %>
+            <i class="fa fa-play-circle"></i>正在进行的订单
+          <% end %>
+        <% else %>
+          <%= link_to designer_orders_path(@order, orders: "on_going_orders"), class:"btn btn-default order-button-off" do %>
+            <i class="fa fa-play-circle"></i>正在进行的订单
+          <% end %>
         <% end %>
-        <%= link_to designer_orders_path(@order, orders: "new_orders"), class:"btn btn-default order-button" do %>
-          <i class="fa fa-pause-circle"></i>可以接收的订单
+
+
+        <% if @inidicator == "new_orders" %>
+          <%= link_to designer_orders_path(@order, orders: "new_orders"), class:"btn btn-default order-button" do %>
+            <i class="fa fa-pause-circle"></i>可以接的新订单
+          <% end %>
+        <% else %>
+          <%= link_to designer_orders_path(@order, orders: "new_orders"), class:"btn btn-default order-button-off" do %>
+            <i class="fa fa-pause-circle"></i>可以接的新订单
+          <% end %>
         <% end %>
-        <%= link_to designer_orders_path(@order, orders: "completed"), class:"btn btn-default order-button" do %>
-          <i class="fa fa-stop-circle"></i>已经完成的订单
+
+
+        <% if @inidicator == "completed" %>
+          <%= link_to designer_orders_path(@order, orders: "completed"), class:"btn btn-default order-button" do %>
+            <i class="fa fa-stop-circle"></i>已经完成的订单
+          <% end %>
+        <% else %>
+          <%= link_to designer_orders_path(@order, orders: "completed"), class:"btn btn-default order-button-off" do %>
+            <i class="fa fa-stop-circle"></i>已经完成的订单
+          <% end %>
         <% end %>
+
+
+
       </div>
 
       <% @orders.each_with_index do |order, index| %>
