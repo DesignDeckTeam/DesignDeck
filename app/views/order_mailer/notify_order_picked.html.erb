@@ -1,0 +1,38 @@
+<link rel="stylesheet" type="text/css" href="/assets/application.scss" />
+<div class="container row">
+  <div class="col-md-12">
+    <h2>
+      订单明细 <br><br>
+    </h2>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>项目名称</th>
+          <th>设计类型</th>
+          <th>设计页数</th>
+          <th>价  格</th>
+          <th>订单状态</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>
+              <%= @order.title %>
+            </td>
+            <td>
+              <%= @order.preference_type %>
+            </td>
+            <td>
+              <%= @order.product_quantity %>
+            </td>
+            <td>
+              <%= @order.total_price %>
+            </td>
+            <td>
+              <%= @order.state_cn_user %>
+            </td>
+          </tr>
+    </table>
+
+  </div>
+</div>

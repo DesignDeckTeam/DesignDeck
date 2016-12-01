@@ -68,17 +68,14 @@ module OrdersHelper
     end
   end
 
-  def render_download_order_attachment_button(order)
-    if current_user.is_user?
-      if order.attachment.present? 
-        link_to("下载最终版", order.attachment_url, download: "", class: "btn btn-warning with-button history-button")
-      else
-        link_to("下载最终版", "#", download: "", class: "btn btn-default with-button history-button", disabled: "disabled")
-      end
-    end
-  end
+  
 
   def render_lastest_stage_snap_button(stage, order, user)
+
+    if order.placed? || order.picked? || order.last_versioned_stage.nil?
+      return link_to "最新稿", "#", class: "btn btn-primary history-button", style: "margin-left:30px;", disabled: "disabled" 
+    end
+
     if stage == order.last_versioned_stage 
       if user.is_user?
         link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary history-button", style: "margin-left:30px;" 
@@ -95,6 +92,9 @@ module OrdersHelper
   end
 
   def render_another_stage_snap_button(stage, another_stage, order, user, index)
+
+    return if stage.blank? || another_stage.blank?
+
     if stage == another_stage 
       if user.is_user?
         link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-primary history-button"
@@ -119,5 +119,96 @@ module OrdersHelper
   def std_time(time)
     time.strftime("%Y年%m月%d日 %H:%M")
   end
+
+
+  # stages-right-bar content
+  def render_final_confirm_button(order)
+    if current_user.is_user? 
+      if order.versions_submitted? 
+        link_to "确定为最终稿", "#", class: "btn btn-default xiao-blue"
+      else
+        link_to "确定为最终稿", "#", class: "btn btn-default xiao-blue", disabled: "disabled" 
+      end
+    end
+  end
+
+
+  def render_download_order_attachment_button(order)
+    if current_user.is_user?
+      if order.attachment.present? 
+        link_to("下载最终版", order.attachment_url, download: "", class: "btn btn-warning")
+      else
+        link_to("下载最终版", "#", download: "", class: "btn btn-default", disabled: "disabled")
+      end
+    elsif current_user.designer?
+      if order.completed? && order.attachment.nil?
+        link_to("上传最终版", order.attachment_url, download: "", class: "btn btn-warning")
+      else
+        link_to("上传最终版", "#", download: "", class: "btn btn-default", disabled: "disabled")
+      end
+    end
+  end
+
+  def render_last_stage_button(stage, order, user)
+
+    if order.placed? || order.picked? || order.last_versioned_stage.nil?
+      return link_to "最新稿", "#", class: "btn btn-default version", disabled: "disabled" 
+    end
+
+    if stage == order.last_versioned_stage 
+      if user.is_user?
+        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary selected-version" 
+      elsif user.designer?
+        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-primary selected-version" 
+      end
+    else 
+      if user.is_user?
+        link_to "最新稿", account_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default version" 
+      elsif user.designer?
+        link_to "最新稿", designer_order_path(order, stage_id: order.last_versioned_stage.id), class: "btn btn-default version" 
+      end
+    end 
+  end
+
+  def render_another_stage_button(stage, another_stage, order, user, index)
+
+    return if stage.blank? || another_stage.blank?
+
+    if stage == another_stage 
+      if user.is_user?
+        link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-primary selected-version"
+      elsif user.designer?
+        link_to "第#{@other_stages.count - index}稿", designer_order_path(order, stage_id: another_stage.id), class: "btn btn-primary selected-version"
+      end          
+    else
+      if user.is_user?
+        link_to "第#{@other_stages.count - index}稿", account_order_path(order, stage_id: another_stage.id), class: "btn btn-default version"
+      elsif user.designer?
+        link_to "第#{@other_stages.count - index}稿", designer_order_path(order, stage_id: another_stage.id), class: "btn btn-default version"  
+      end
+    end
+  end
+
+  def render_designer_submit_button_if_necessary(order)
+    if current_user.designer? && order.version_selected?
+      link_to "回到提交页面", designer_order_path(order), class: "btn btn-default version"
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 end

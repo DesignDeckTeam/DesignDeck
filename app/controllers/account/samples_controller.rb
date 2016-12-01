@@ -45,9 +45,9 @@ class Account::SamplesController < ApplicationController
     # binding.pry
     comment_array.each do |comment|
       comment_hash = to_hash(comment)
-      puts comment_hash["text"]
-      puts comment_hash["left"]
-      puts comment_hash["top"]
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + comment_hash["text"]
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + comment_hash["left"]
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + comment_hash["top"]
       current_user.send_message(order.designer,
                                 comment_hash["text"],                                
                                 "stage#{stage.id} sample#{@sample.id}",

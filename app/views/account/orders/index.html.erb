@@ -3,7 +3,7 @@
   <h3>当前订单</h3>
   <hr>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-4 col-xs-12">
       <%= link_to new_account_order_path do %>
       <div class="box-no-shadow text-center">
         <h3><span id="add-icon-color" class="glyphicon glyphicon-plus"></span></h3>
@@ -14,7 +14,7 @@
     <% @orders.each do |order| %>
     <% if order.aasm_state != "completed" %>
         <%= link_to account_order_path(order) do %>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-4 col-xs-12">
 
           <div class="box text-center">
             <h4><%= truncate(order.title, length:10) %></h4>
@@ -39,7 +39,7 @@
       <% @orders.each do |order| %>
         <% if order.aasm_state == "completed" %>
           <%= link_to account_order_path(order) do %>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-4 col-xs-12">
           
               <div  class="box text-center">
                 <h4><%= truncate(order.title, length:10) %></h4>

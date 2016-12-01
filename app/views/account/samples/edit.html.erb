@@ -1,18 +1,4 @@
 
-<% if false %>
-	<div class="container text-center">
-
-		<h2>对此图片加批注</h2>
-		<%= image_tag @sample.image.url, class: "thumbnail horizontal-center", id:"target" %>
-		<div id="data">The data goes here</div>
-		<!-- <button id="show">Show Data</button> -->
-		<%= link_to "确定", "#", id:"show", number: @sample.id %>
-
-	</div>
-<% end %>
-
-
-
 	<h2 style="text-align: center;">对此图片添加批注</h2>
 
 	<div id="imgdiv" style="text-align: center;">
@@ -27,7 +13,8 @@
 
 	<div class="hidden">
 		<% @messages_array.each_with_index do |message, index| %>
-			<span id="message_note_<%= index %>"><%= message[:note].gsub! '\n', '<br>' %></span>
+			<span id="message_note_<%= index %>"><%= message[:note] %></span>
+			<%# binding.pry %>
 			<span id="message_x_<%= index %>"><%= message[:x] %></span>
 			<span id="message_y_<%= index %>"><%= message[:y] %></span>
 			<br>
@@ -60,7 +47,7 @@
 					var message = {};
 					message.x = $('#message_x_'+i).text();
 					message.y = $('#message_y_'+i).text();
-					message.note = $('#message_note_'+i).text();
+					message.note = $('#message_note_'+i).text().replace(/\n/gi, "<br>");
 					messages_array.push(message);
 				}
 
@@ -97,7 +84,8 @@
 					$.each(notes, function(index, item) {
 						$table.append("<tr><td>" + item.x + "</td><td>" + item.y + "</td><td>" + item.note + "</td></tr>");
 						comment = {};
-          				comment.text = item.note;
+          				// comment.text = item.note.replace("\\n", "<br>");
+          				comment.text = item.note.replace(/\n/gi, "<br>");
           				comment.left = item.x;
           				comment.top = item.y;
           				comments_array.push(comment);

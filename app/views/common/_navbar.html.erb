@@ -1,14 +1,13 @@
-<header>
-    <nav class="navbar navbar-default navbar-fixed-top"><!-- 把navbar固定在顶部 -->
+    <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <div class="navbar-header page-scroll"><!-- 用手机等小屏幕看时，菜单会卷起来 -->
+        <div class="navbar-header"><!-- 用手机等小屏幕看时，菜单会卷起来 -->
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
             <!-- <span class="sr-only">伸缩菜单</span> -->
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand page-scroll" href="/">DesignDeck</a>
+          <a class="navbar-brand" href="/">DesignDeck</a>
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -24,40 +23,67 @@
                   <h5>添加设计委托</h5>
                 </li>
               </a>
+
             <!-- 登录时 -->
-            <% else %>        
+            <% else %>
               <!-- user -->
               <% if current_user.is_user? %>
-                <li><a class="page-scroll"><%= current_user.email[/[^@]+/] %></a></li>              
-                <%= render partial: "common/li_order_center_user", locals: {user: current_user} %>                         
-                <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
-
+                <%= render partial: "common/user_toggle_on_navbar", locals: { user: current_user } %>     
+                <%= render partial: "common/li_order_center_user", locals: {user: current_user} %>                                         
                 <a href='<%= new_account_order_path %>' id='blue-btn-primary' class="hidden-xs">
                   <li class="button02 box2">
                     <h5>添加设计委托</h5>
                   </li>
                 </a>
-                  
+
               <!-- qualified_designer -->
               <% elsif current_user.qualified_designer? %>
-                <li><%= link_to current_user.email[/[^@]+/], designer_path(current_user.token), class: "page-scroll" %></li>
+                <li class="dropdown navbar-dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    欢迎，<%= current_user.email[/[^@]+/] %>
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "个人中心", designer_path(current_user.token) %></li>
+                    <li class="divider"> </li>
+                    <li>
+                      <%= link_to destroy_user_session_path, method: :delete do %>
+                      <i class="fa fa-power-off" aria-hidden="true"></i> 登出
+                      <% end %>
+                    </li>  
+                  </ul>
+                </li> 
                 <%= render partial: "common/li_order_center_designer", locals: {user: current_user} %>              
-                <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
                 <li class="button02 box2 hidden-xs" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
+
               <!-- unqualified_designer -->
               <% elsif current_user.unqualified_designer? %>
-                <li><%= link_to "订单中心", designer_path(current_user.token), class: "page-scroll" %></li>
-                <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
+                <li class="dropdown navbar-dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    欢迎，<%= current_user.email[/[^@]+/] %>
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "个人中心", designer_path(current_user.token) %></li>
+                    <li class="divider"> </li>
+                    <li>
+                      <%= link_to destroy_user_session_path, method: :delete do %>
+                      <i class="fa fa-power-off" aria-hidden="true"></i> 登出
+                      <% end %>
+                    </li>  
+                  </ul>
+                </li> 
                 <li class="button02 box2 hidden-xs" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
+
               <!-- admin -->
               <% elsif current_user.admin? %>
                 <li><%= link_to "管理员后台", admin_users_path, class: "page-scroll" %></li>
                 <li><%= link_to("登出", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
                 <li class="button02 box2 hidden-xs" ><h5><a id="disabled-blue-btn-primary">添加设计委托</a></h5></li>
               <% end %>
+
             <% end %>
           </ul>
         </div>
       </div>
     </nav>
-</header>

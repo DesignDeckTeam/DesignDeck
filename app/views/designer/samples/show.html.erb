@@ -1,6 +1,4 @@
 
-
-
 	<h2 style="text-align: center;">客户的批注</h2>
 
 	<div id="imgdiv" style="text-align: center;">
@@ -35,13 +33,12 @@
 
 				messages_array = [];
 				message_count = <%= @messages_array.count %>;
-
 				for (var i = 0; i < message_count; i++) {
 					// js -> value -> server
 					var message = {};
 					message.x = $('#message_x_'+i).text();
 					message.y = $('#message_y_'+i).text();
-					message.note = $('#message_note_'+i).text();
+					message.note = $('#message_note_'+i).text().replace(/\n/gi, "<br>");
 					messages_array.push(message);
 				}
 

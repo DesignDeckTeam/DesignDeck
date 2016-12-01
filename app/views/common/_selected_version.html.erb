@@ -9,14 +9,22 @@
 	<% stage = order.stages.closed.last %>
 <% end %>
 
-
+<br>
+<br>
+<br>
 <div class="container-fluid">
-	<div class="row well">
+	<div class="row">
 		<% samples.each do |sample| %>
-			<div class="col-md-3">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
 				<%= render_sample_with_link(sample) %>
 				<%= render_note_indicator(sample) %>
 			</div>
+			<div class="col-md-2"></div>
+
+		</div>
+
 		<% end %>
 	</div>
 </div>

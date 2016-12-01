@@ -19,15 +19,15 @@ module ImagesHelper
     if sample.image.present?
       if current_user.is_user?
         if sample.version.stage.order.drafts_submitted?
-          link_to (image_tag sample.image.medium.url, class: "thumbnail", style: "width:100%;"), account_sample_path(sample)
+          link_to (image_tag sample.image.medium.url, class: "thumbnail horizontal-center", style: "width:100%;"), account_sample_path(sample)
         else
-          link_to (image_tag sample.image.medium.url, class: "thumbnail", style: "width:100%;"), edit_account_sample_path(sample)       
+          link_to (image_tag sample.image.medium.url, class: "thumbnail horizontal-center", style: "width:100%;"), edit_account_sample_path(sample)       
         end
       else
-        link_to (image_tag sample.image.medium.url, class: "thumbnail", style: "width:100%;"), designer_sample_path(sample)  
+        link_to (image_tag sample.image.medium.url, class: "thumbnail horizontal-center", style: "width:100%;"), designer_sample_path(sample)  
       end
     else
-      image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail", style: "width:100%;")
+      image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail horizontal-center", style: "width:100%;")
     end
   end  
 

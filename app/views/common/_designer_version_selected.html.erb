@@ -1,51 +1,52 @@
 
 
 
-<div class="col-md-10 col-xs-10 right-grey-border">
 
   <!-- 如果要显示当前的stage -->
   <% if @stage == @order.stages.last %>
-     <div class="container-fluid">
+     
+
+    <% if false %>
+      <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
-          <span><%= @order.last_message.sender.email %></span>
+          <span><%= @order.last_message.sender.email if @order.last_message.present? %></span>
         </div>
         <div class="col-md-6">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#myModal">
-              查看所有对话
+              所有对话
           </button>
         </div>
       </div>
       <br>
-      <p class="row well pull-left" style="font-size: 1.3em;">
-        "<%= @order.last_message.body %>"
-      </p>
+      <% if @order.last_message.present? %>
+        <p class="row well pull-left" style="font-size: 1.3em;">
+          "<%= @order.last_message.body %>"
+        </p>
+      <% end %>        
     </div>
-
+    <% end %>
+    
+     
+    <br>
+    <br>
+    <br>
     <%= render partial: "common/selected_version", :locals => { order: @order } %>
     <%= render partial: "common/designer_submitted_versions" %>
     <%= render partial: "common/designer_add_versions", locals: { order: @order, current_stage: @order.stages.closed.last, single_version: true } %>
     <br>
 
-    
   <!-- 如果要在当前页面显示历史快照 -->
   <% else %>
     <%= render partial: "common/selected_stage", locals: {stage: @stage} %>
   <% end %>
-  
+    
 
-  
-</div>
-
-<div class="col-md-2 col-xs-2">
-  <%= render partial: "common/user_stages_history_buttons", locals: { order: @order, stage: @stage, other_stages: @other_stages} %>
-</div>
-  
   
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -53,8 +54,8 @@
         <h4 class="modal-title text-center" id="myModalLabel">所有对话</h4>
       </div>
       <div class="modal-body">
-      	<% @order.stages.each do |stage| %>
-        	<%= render partial:"common/show_messages", locals: {stage: stage} %>
+        <% @order.stages.each do |stage| %>
+          <%= render partial:"common/show_messages", locals: {stage: stage} %>
         <% end %>
       </div>
       <div class="modal-footer">
@@ -63,3 +64,4 @@
     </div>
   </div>
 </div>
+
