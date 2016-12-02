@@ -49,7 +49,7 @@ gem 'mailboxer', github: 'mailboxer/mailboxer'
 gem 'fog'
 gem 'figaro'
 gem 'roadie-rails', '~> 1.0'
-
+gem 'letter_opener', group: :development
 
 require 'json'
 
