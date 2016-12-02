@@ -61,9 +61,10 @@ Rails.application.configure do
   #  :user_name => "postmaster@sandbox4c73462e89ee47fdb5aa35394eeded14.mailgun.org",
   #  :password => "31e8f36894e22c432b8f047b124f5868"
   #}
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener
 
-
-  config.action_mailer.delivery_method = :smtp
+ # config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       address:              ENV['action_mailer_address'],
       port:                 587,
