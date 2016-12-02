@@ -81,6 +81,9 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+
+  config.roadie.url_options = {host: "designdeck.herokuapp.com", scheme: "https"}
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
